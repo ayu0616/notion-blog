@@ -54,16 +54,22 @@ const getBlockData = async (id: string) => {
 const convertToPages = async (data: any) => {
     const pages: Page[] = [];
     for (let p of data.results) {
+        const slug = p.properties.slug.rich_text[0] ? p.properties.slug.rich_text[0].plain_text : "";
+        const lastEditedTime = p.last_edited_time; //最終更新日時
+        if (fs.existsSync(`./data/${slug}.json`)) {
+            const prevData: Page = JSON.parse(fs.readFileSync(`./data/${slug}.json`, "utf-8"));
+            if (new Date(prevData.lastEditedTime).getTime() === new Date(lastEditedTime).getTime()) continue;
+        }
         const page: Page = {
             id: p.id,
             title: p.properties.title.title[0] ? p.properties.title.title[0].plain_text : "",
             tags: p.properties.tags.multi_select.map((tag: any) => {
                 return { name: tag.name, color: tag.color };
             }),
-            lastEditedTime: new Date(p.last_edited_time),
-            slug: p.properties.slug.rich_text[0] ? p.properties.slug.rich_text[0].plain_text : "",
+            lastEditedTime,
+            slug,
             status: p.properties.status.status.name,
-            publishDate: p.properties.publish_date.date ? new Date(p.properties.publish_date.date.start) : null,
+            publishDate: p.properties.publish_date.date,
             blocks: await getBlocks(p.id),
         };
         pages.push(page);

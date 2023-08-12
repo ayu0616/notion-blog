@@ -10,10 +10,10 @@ export interface Tag {
 export interface Page {
     id: string;
     title: string;
-    lastEditedTime: Date;
+    lastEditedTime: string;
     tags: Tag[];
     slug: string;
     status: string;
-    publishDate: Date | null;
+    publishDate: string | null;
     blocks: Block[];
 }
