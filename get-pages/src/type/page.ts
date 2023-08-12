@@ -1,8 +1,10 @@
 import { Block } from "./block/block";
 
+type TagColor = "blue" | "brown" | "default" | "gray" | "green" | "orange" | "pink" | "purple" | "red" | "yellow";
+
 export interface Tag {
     name: string;
-    color: string;
+    color: TagColor;
 }
 
 export interface Page {
@@ -12,6 +14,6 @@ export interface Page {
     tags: Tag[];
     slug: string;
     status: string;
-    publishDate: Date;
+    publishDate: Date | null;
     blocks: Block[];
 }
