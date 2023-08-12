@@ -1,3 +1,4 @@
+import fs from "fs";
 import {
     Block,
     BlockBase,
@@ -227,5 +228,10 @@ const getBlocks = async (id: string) => {
 // メインの処理
 (async () => {
     const pages = await getPages();
-    console.log(pages);
+    pages.forEach((page) => {
+        fs.writeFile(`./data/${page.slug}.json`, JSON.stringify(page), (err) => {
+            if (err) throw err;
+            console.log(`./data/${page.slug}.json`);
+        });
+    });
 })();
