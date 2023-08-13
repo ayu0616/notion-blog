@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "format": "prettier --write --ignore-path .gitignore './**/*.{js,jsx,ts,tsx,json}'"
   },
   "dependencies": {
     "@types/node": "20.4.10",
@@ -33,7 +34,9 @@
     "@storybook/nextjs": "^7.2.3",
     "@storybook/react": "^7.2.3",
     "@storybook/testing-library": "^0.2.0",
+    "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-storybook": "^0.6.13",
+    "prettier": "^3.0.1",
     "storybook": "^7.2.3"
   }
 }
