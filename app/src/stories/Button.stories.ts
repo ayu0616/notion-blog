@@ -14,7 +14,7 @@ const meta = {
     tags: ['autodocs'],
     // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
     argTypes: {
-        backgroundColor: { control: 'color' },
+        mode: { control: 'select', options: ['primary', 'secondary', "orange"] },
     },
 } satisfies Meta<typeof Button>
 
@@ -24,27 +24,7 @@ type Story = StoryObj<typeof meta>
 // More on writing stories with args: https://storybook.js.org/docs/react/writing-stories/args
 export const Primary: Story = {
     args: {
-        primary: true,
-        label: 'Button',
-    },
-}
-
-export const Secondary: Story = {
-    args: {
-        label: 'Button',
-    },
-}
-
-export const Large: Story = {
-    args: {
-        size: 'large',
-        label: 'Button',
-    },
-}
-
-export const Small: Story = {
-    args: {
-        size: 'small',
-        label: 'Button',
+        mode: 'primary',
+        children: 'Button',
     },
 }
