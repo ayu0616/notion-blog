@@ -2,18 +2,19 @@ import './globals.css'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'はっさくの旅ブログ',
-  description: '私はっさくが旅ブログと称して、何でもかんでも書きたいことを各ブログ',
+    title: 'はっさくの旅ブログ',
+    description:
+        '私はっさくが旅ブログと称して、何でもかんでも書きたいことを各ブログ',
 }
 
 export default function RootLayout({
-  children,
+    children,
 }: {
-  children: React.ReactNode
+    children: React.ReactNode
 }) {
-  return (
-    <html lang="ja">
-      <body>{children}</body>
-    </html>
-  )
+    return (
+        <html lang='ja'>
+            <body>{children}</body>
+        </html>
+    )
 }
