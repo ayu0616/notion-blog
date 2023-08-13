@@ -1,3 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=BIZ+UDPGothic:wght@400;700&display=swap'); /* BIZ UDPGothic をダウンロード */
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.drag-none {
+    -webkit-user-drag: none;
+    -khtml-user-drag: none;
+    -moz-user-drag: none;
+    -o-user-drag: none;
+    user-drag: none;
+}
+
+body {
+    font-family: 'BIZ UDPGothic', sans-serif; /* フォントを設定 */
+    @apply text-gray-800;
+}
+
+h1 {
+    @apply text-4xl font-bold;
+}
+
+h2 {
+    @apply text-3xl font-bold;
+}
+
+h3 {
+    @apply text-2xl font-bold;
+}
+
+h4 {
+    @apply text-xl font-bold;
+}
+
+h5 {
+    @apply text-lg font-bold;
+}
+
+h6 {
+    @apply text-base font-bold;
+}
