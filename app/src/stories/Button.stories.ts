@@ -28,3 +28,15 @@ export const Primary: Story = {
         children: 'Button',
     },
 }
+export const Secondary: Story = {
+    args: {
+        mode: 'secondary',
+        children: 'Button',
+    },
+}
+export const Orange: Story = {
+    args: {
+        mode: 'orange',
+        children: 'Button',
+    },
+}
