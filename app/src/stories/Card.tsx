@@ -1,18 +1,14 @@
+import { ReactNode } from 'react'
+import Image from './Image'
+
 interface CardProps {
-    title: string
-    description: string
     imgSrc?: string
     horizontal?: boolean
+    children?: ReactNode
     onClick?: () => void
 }
 
-const Card = ({
-    title,
-    description,
-    imgSrc,
-    horizontal,
-    ...props
-}: CardProps) => {
+const Card = ({ children, imgSrc, horizontal, ...props }: CardProps) => {
     return (
         <div
             className='select-none rounded-md bg-white drop-shadow-md hover:drop-shadow-lg'
@@ -25,17 +21,14 @@ const Card = ({
             >
                 {/* 画像 */}
                 {imgSrc && (
-                    <img
+                    <Image
                         src={imgSrc}
-                        alt={title}
-                        className='drag-none aspect-square rounded-t-md'
+                        alt={imgSrc}
+                        className='drag-none object-cover aspect-square rounded-t-md'
                     />
                 )}
-                {/* タイトルと説明 */}
-                <div className='flex flex-col gap-1 p-3'>
-                    <h3>{title}</h3>
-                    <p className='text-gray-700'>{description}</p>
-                </div>
+                {/* コンテンツ */}
+                <div className='flex flex-col gap-1 p-3'>{children}</div>
             </div>
         </div>
     )
