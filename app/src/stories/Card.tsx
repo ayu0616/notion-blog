@@ -32,7 +32,7 @@ const Card = ({
                     />
                 )}
                 {/* タイトルと説明 */}
-                <div className='p-3'>
+                <div className='flex flex-col gap-1 p-3'>
                     <h3>{title}</h3>
                     <p className='text-gray-700'>{description}</p>
                 </div>
