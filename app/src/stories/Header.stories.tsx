@@ -26,8 +26,8 @@ export const Default: Story = {
         return (
             <div>
                 <meta.component></meta.component>
-                <main>{new Array(1000).fill(0).map((v, i)=>`${i} `) }</main>
+                <main>{new Array(1000).fill(0).map((v, i) => `${i} `)}</main>
             </div>
         )
-    }
+    },
 }

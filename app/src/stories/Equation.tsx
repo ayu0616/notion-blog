@@ -9,7 +9,6 @@ const Equation = ({ math, ...props }: EquationProps) => {
         <div>
             <BlockMath>{math}</BlockMath>
         </div>
-
     )
 }
 

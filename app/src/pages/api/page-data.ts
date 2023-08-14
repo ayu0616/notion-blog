@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next'
-import {JSDOM} from 'jsdom'
+import { JSDOM } from 'jsdom'
 
 export default async function handler(
     req: NextApiRequest,
@@ -18,7 +18,10 @@ export default async function handler(
         const parser = new JSDOM(html)
         const doc = parser.window.document
         const title = doc.querySelector('title')?.textContent ?? url
-        const description = doc.querySelector('meta[name="description"]')?.getAttribute('content') ?? ''
+        const description =
+            doc
+                .querySelector('meta[name="description"]')
+                ?.getAttribute('content') ?? ''
 
         res.status(200).json({ title, description })
     } catch (error) {

@@ -1,6 +1,6 @@
+import type { Metadata } from 'next'
 import Header from '@/stories/Header'
 import './globals.css'
-import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
     title: 'はっさくの旅ブログ',
@@ -17,7 +17,8 @@ export default function RootLayout({
         <html lang='ja'>
             <body>
                 <Header></Header>
-                {children}</body>
+                {children}
+            </body>
         </html>
     )
 }

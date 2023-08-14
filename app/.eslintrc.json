@@ -4,7 +4,7 @@
         "plugin:storybook/recommended",
         "plugin:import/recommended",
         "plugin:import/warnings",
-        "prettier",
+        "prettier"
     ],
     "rules": {
         "import/order": [
