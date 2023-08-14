@@ -5,7 +5,7 @@ import './globals.css'
 export const metadata: Metadata = {
     title: 'はっさくの旅ブログ',
     description:
-        '私はっさくが旅ブログと称して、何でもかんでも書きたいことを各ブログ',
+        '私はっさくが旅ブログと称して、何でもかんでも書きたいことを書くブログ',
 }
 
 export default function RootLayout({
