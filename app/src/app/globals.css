@@ -40,3 +40,8 @@ h5 {
 h6 {
     @apply text-base font-bold;
 }
+
+/* 整形された数式の下に整形前の数式が表示されるので、それを消す */
+.katex-html {
+    @apply hidden;
+}
