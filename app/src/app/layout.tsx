@@ -1,3 +1,4 @@
+import Header from '@/stories/Header'
 import './globals.css'
 import type { Metadata } from 'next'
 
@@ -14,7 +15,9 @@ export default function RootLayout({
 }) {
     return (
         <html lang='ja'>
-            <body>{children}</body>
+            <body>
+                <Header></Header>
+                {children}</body>
         </html>
     )
 }
