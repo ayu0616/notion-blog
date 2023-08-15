@@ -1,5 +1,5 @@
+import Header from '@/components/layout/Header'
 import type { Metadata } from 'next'
-import Header from '@/stories/Header'
 import './globals.css'
 
 export const metadata: Metadata = {

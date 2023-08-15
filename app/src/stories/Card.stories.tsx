@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
-import Card from './Card'
+import Card from '../components/common/Card'
 
 // More on how to set up stories at: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 const meta = {
@@ -30,5 +30,5 @@ export const Default: Story = {
                 <p>fugafuga fugafuga</p>
             </meta.component>
         )
-    }
+    },
 }

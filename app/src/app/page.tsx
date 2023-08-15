@@ -1,9 +1,9 @@
-import Card from '@/stories/Card'
-import Image from '@/stories/Image'
+import Card from '@/components/common/Card'
+import Image from '@/components/common/Image'
+import TagList from '@/components/common/tag/TagList'
 import { Page } from '@/type/page/page'
 import dateToStr from '@/util/dateToStr'
 import Link from 'next/link'
-import TagList from '@/stories/TagList'
 
 export default function Home() {
     const mockData: Page[] = [
@@ -47,7 +47,7 @@ export default function Home() {
                                     className='w-1/3 rounded-l-md'
                                     objectFit='cover'
                                 ></Image>
-                                <div className='flex-1 flex flex-col gap-2 p-3'>
+                                <div className='flex flex-1 flex-col gap-2 p-3'>
                                     <h3>{page.title}</h3>
                                     <TagList tagData={page.tags}></TagList>
                                     <p className='text-end text-sm text-gray-600'>
