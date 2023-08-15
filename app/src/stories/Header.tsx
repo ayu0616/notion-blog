@@ -14,6 +14,7 @@ interface MenuItem {
 const Header = () => {
     const [open, setOpen] = useState(false)
     const navElem = useRef<HTMLDivElement>(null)
+    const ulElem = useRef<HTMLUListElement>(null)
 
     const menu: MenuItem[] = [
         {
@@ -29,21 +30,24 @@ const Header = () => {
             title: 'タグ別',
         },
     ]
+    const navHeight = 49 * menu.length
 
     const toggleOpen = () => setOpen((prev) => !prev)
 
     useEffect(() => {
         if (open) {
-            navElem.current?.classList.add('block')
-            navElem.current?.classList.remove('hidden')
+            navElem.current?.style.setProperty('height', `${navHeight}px`)
+            setTimeout(() => {
+                ulElem.current?.classList.remove('hidden')
+            }, 250)
         } else {
-            navElem.current?.classList.add('hidden')
-            navElem.current?.classList.remove('block')
+            navElem.current?.style.setProperty('height', '0')
+            ulElem.current?.classList.add('hidden')
         }
-    }, [open])
+    }, [open, navHeight])
 
     return (
-        <header className='sticky left-0 top-0 w-full items-center justify-between bg-orange-500 text-white md:flex z-50'>
+        <header className='sticky left-0 top-0 z-50 w-full items-center justify-between bg-orange-500 text-white md:flex'>
             <div className='flex items-center justify-between'>
                 <h1 className='p-3'>
                     <Link href='/'>はっさくの旅ブログ</Link>
@@ -55,8 +59,11 @@ const Header = () => {
                     {open ? <BsXLg /> : <BsList />}
                 </div>
             </div>
-            <nav ref={navElem} className='md:block'>
-                <ul className='md:flex md:pr-3'>
+            <nav
+                ref={navElem}
+                className='transition-[height] duration-500 ease-in-out md:block md:h-[auto!important]'
+            >
+                <ul className='md:flex md:pr-3' ref={ulElem}>
                     {menu.map((item, index) => (
                         <li
                             key={index}
