@@ -25,3 +25,10 @@ export const Default: Story = {
         color: "blue"
     },
 }
+
+export const WithLink: Story = {
+    args: { name: 'タグ', color: 'blue' },
+    render() {
+        return <a href='#' className='hover:underline'><meta.component name='タグ' color='blue'></meta.component></a>
+    },
+}
