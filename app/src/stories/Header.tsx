@@ -43,7 +43,7 @@ const Header = () => {
     }, [open])
 
     return (
-        <header className='sticky left-0 top-0 w-full items-center justify-between bg-orange-500 text-white md:flex'>
+        <header className='sticky left-0 top-0 w-full items-center justify-between bg-orange-500 text-white md:flex z-50'>
             <div className='flex items-center justify-between'>
                 <h1 className='p-3'>
                     <Link href='/'>はっさくの旅ブログ</Link>
