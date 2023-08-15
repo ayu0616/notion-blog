@@ -1,6 +1,6 @@
 import { TagColor } from '@/type/page/page'
 
-interface TagProps {
+export interface TagProps {
     color: TagColor
     name: string
 }
@@ -13,7 +13,7 @@ const Tag = ({ name, color, ...props }: TagProps) => {
             case 'blue':
                 return 'bg-blue-300/50'
             case 'green':
-                return 'bg-lime-300/50'
+                return 'bg-green-400/50'
             case 'yellow':
                 return 'bg-yellow-300/50'
             case 'purple':
