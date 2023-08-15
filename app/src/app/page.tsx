@@ -1,4 +1,5 @@
 import Card from '@/stories/Card'
+import Image from '@/stories/Image'
 import { Page } from '@/type/page/page'
 import dateToStr from '@/util/dateToStr'
 import Link from 'next/link'
@@ -14,7 +15,7 @@ export default function Home() {
             status: 'writing',
             publishDate: null,
             blocks: [],
-            image: 'https://s3.us-west-2.amazonaws.com/secure.notion-static.com/1d037251-36fe-4636-9f55-87e282a39f7b/Nextjs-logo.svg.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20230815%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20230815T000841Z&X-Amz-Expires=3600&X-Amz-Signature=24a7103a6f8b25f068835d724e496b9522d93525d1c811720224d619184c2d00&X-Amz-SignedHeaders=host&x-id=GetObject',
+            image: null,
             description:
                 'Notionのページをブログとして公開したいと思ったのでNext.jsを利用して自作することにしました',
         },
@@ -38,12 +39,22 @@ export default function Home() {
                 {mockData.map((page, i) => {
                     return (
                         <Link href={`/blog/${page.slug}`} key={i}>
-                            <Card imgSrc={page?.image ?? ''} horizontal>
-                                <h3>{page.title}</h3>
-                                <p>{page.description}</p>
-                                <p>
-                                    {dateToStr(new Date(page.lastEditedTime))}
-                                </p>
+                            <Card horizontal className='gap-3'>
+                                <Image
+                                    src={page.image ?? '/no_image.jpg'}
+                                    alt=''
+                                    className='w-1/3 rounded-l-md'
+                                    objectFit='cover'
+                                ></Image>
+                                <div className='flex-1'>
+                                    <h3>{page.title}</h3>
+                                    <p>{page.description}</p>
+                                    <p>
+                                        {dateToStr(
+                                            new Date(page.lastEditedTime),
+                                        )}
+                                    </p>
+                                </div>
                             </Card>
                         </Link>
                     )
