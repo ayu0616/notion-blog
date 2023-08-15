@@ -69,8 +69,10 @@ const convertToPages = async (data: any) => {
             lastEditedTime,
             slug,
             status: p.properties.status.status.name,
-            publishDate: p.properties.publish_date.date,
+            publishDate: p.properties.publish_date.date?.start??null,
             blocks: await getBlocks(p.id),
+            image: p.properties.image.files[0] ? p.properties.image.files[0][p.properties.image.files[0].type].url : null,
+            description: p.properties.description.rich_text.map((text: any) => text.plain_text).join(""),
         };
         pages.push(page);
     }
