@@ -16,4 +16,6 @@ export interface Page {
     status: string;
     publishDate: string | null;
     blocks: Block[];
+    image: string | null;
+    description: string;
 }
