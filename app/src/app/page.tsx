@@ -40,22 +40,22 @@ export default function Home() {
                 {mockData.map((page, i) => {
                     return (
                         <Link href={`/blog/${page.slug}`} key={i}>
-                            <Card horizontal className='gap-3'>
+                            <Card horizontal className=''>
                                 <Image
                                     src={page.image ?? '/no_image.jpg'}
                                     alt=''
                                     className='w-1/3 rounded-l-md'
                                     objectFit='cover'
                                 ></Image>
-                                <div className='flex-1'>
+                                <div className='flex-1 flex flex-col gap-2 p-3'>
                                     <h3>{page.title}</h3>
                                     <TagList tagData={page.tags}></TagList>
-                                    <p>{page.description}</p>
-                                    <p>
+                                    <p className='text-end text-sm text-gray-600'>
                                         {dateToStr(
                                             new Date(page.lastEditedTime),
                                         )}
                                     </p>
+                                    <p>{page.description}</p>
                                 </div>
                             </Card>
                         </Link>
