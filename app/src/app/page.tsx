@@ -3,6 +3,7 @@ import Image from '@/stories/Image'
 import { Page } from '@/type/page/page'
 import dateToStr from '@/util/dateToStr'
 import Link from 'next/link'
+import TagList from '@/stories/TagList'
 
 export default function Home() {
     const mockData: Page[] = [
@@ -48,6 +49,7 @@ export default function Home() {
                                 ></Image>
                                 <div className='flex-1'>
                                     <h3>{page.title}</h3>
+                                    <TagList tagData={page.tags}></TagList>
                                     <p>{page.description}</p>
                                     <p>
                                         {dateToStr(
