@@ -15,6 +15,7 @@
 body {
     font-family: 'BIZ UDPGothic', sans-serif; /* フォントを設定 */
     @apply text-gray-800;
+    @apply bg-orange-50;
 }
 
 h1 {
