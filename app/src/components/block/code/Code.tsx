@@ -15,11 +15,17 @@ const Code = ({
     showLineNumbers = true,
     ...props
 }: CodeProps) => {
-    // TODO: コードをコピーする機能を実装する
+    // TODO: コピーしたことを通知するポップアップを作成する
+    const copyCode = () => {
+        navigator.clipboard.writeText(props.children)
+    }
     return (
         <div className='code-block-container relative'>
             <div className='absolute left-0 top-0 w-full border-b border-b-gray-300 p-2 text-right text-sm text-white'>
-                <button className='hover:text-yellow-300 hover:underline active:text-yellow-400'>
+                <button
+                    className='hover:text-yellow-300 hover:underline active:text-yellow-400'
+                    onClick={copyCode}
+                >
                     copy
                 </button>
             </div>
