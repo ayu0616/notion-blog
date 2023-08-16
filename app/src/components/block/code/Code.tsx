@@ -17,7 +17,7 @@ const Code = ({
 }: CodeProps) => {
     // TODO: コードをコピーする機能を実装する
     return (
-        <div className='code-block-container'>
+        <div className='code-block-container relative'>
             <div className='absolute left-0 top-0 w-full border-b border-b-gray-300 p-2 text-right text-sm text-white'>
                 <button className='hover:text-yellow-300 hover:underline active:text-yellow-400'>
                     copy
