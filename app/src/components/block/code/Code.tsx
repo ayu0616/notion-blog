@@ -7,6 +7,7 @@ interface CodeProps {
     children: string
     language: string
     showLineNumbers?: boolean
+    wrapLongLines?: boolean
     style?: { [key: string]: CSSProperties }
 }
 
@@ -29,7 +30,11 @@ const Code = ({
                     copy
                 </button>
             </div>
-            <SyntaxHighlighter {...props} style={style}></SyntaxHighlighter>
+            <SyntaxHighlighter
+                {...props}
+                showLineNumbers={showLineNumbers}
+                style={style}
+            ></SyntaxHighlighter>
         </div>
     )
 }
