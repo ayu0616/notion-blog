@@ -5,12 +5,17 @@ interface ButtonProps {
     children?: ReactNode
     disabled?: boolean
     onClick?: () => void
+    className?: string
 }
 
 /**
  * Primary UI component for user interaction
  */
-export const Button = ({ mode = 'primary', ...props }: ButtonProps) => {
+export const Button = ({
+    mode = 'primary',
+    className = '',
+    ...props
+}: ButtonProps) => {
     const baseClass =
         'rounded-md border-0 px-4 py-2 text-white outline-none outline-0 outline-offset-0 focus:outline-4 disabled:opacity-75 disabled:cursor-not-allowed'
     const modeClass = (() => {
@@ -28,7 +33,7 @@ export const Button = ({ mode = 'primary', ...props }: ButtonProps) => {
     return (
         <button
             type='button'
-            className={[baseClass, modeClass].join(' ')}
+            className={[baseClass, modeClass, className].join(' ')}
             {...props}
         ></button>
     )
