@@ -1,4 +1,4 @@
-import { ReactNode } from 'react'
+import { ForwardedRef, ReactNode, forwardRef } from 'react'
 
 interface ButtonProps {
     mode?: 'primary' | 'secondary' | 'orange'
@@ -11,11 +11,10 @@ interface ButtonProps {
 /**
  * Primary UI component for user interaction
  */
-export const Button = ({
-    mode = 'primary',
-    className = '',
-    ...props
-}: ButtonProps) => {
+export const Button = forwardRef(function Button(
+    { mode = 'primary', className = '', ...props }: ButtonProps,
+    ref: ForwardedRef<HTMLButtonElement>,
+) {
     const baseClass =
         'rounded-md border-0 px-4 py-2 text-white outline-none outline-0 outline-offset-0 focus:outline-4 disabled:opacity-75 disabled:cursor-not-allowed'
     const modeClass = (() => {
@@ -35,6 +34,7 @@ export const Button = ({
             type='button'
             className={[baseClass, modeClass, className].join(' ')}
             {...props}
+            ref={ref}
         ></button>
     )
-}
+})
