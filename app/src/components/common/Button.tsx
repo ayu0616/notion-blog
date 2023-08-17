@@ -16,15 +16,15 @@ export const Button = forwardRef(function Button(
     ref: ForwardedRef<HTMLButtonElement>,
 ) {
     const baseClass =
-        'rounded-md border-0 px-4 py-2 text-white outline-none outline-0 outline-offset-0 focus:outline-4 disabled:opacity-75 disabled:cursor-not-allowed'
+        'rounded-md border-0 px-4 py-2 text-white ring-none ring-0 ring-offset-0 focus:ring-4 disabled:opacity-75 disabled:cursor-not-allowed'
     const modeClass = (() => {
         switch (mode) {
             case 'primary':
-                return 'bg-blue-600 enabled:hover:bg-blue-700 enabled:active:bg-blue-800 outline-blue-900/80'
+                return 'bg-blue-600 enabled:hover:bg-blue-700 enabled:active:bg-blue-800 ring-blue-500/80'
             case 'secondary':
-                return 'bg-gray-500 enabled:hover:bg-gray-600 enabled:active:bg-gray-700 outline-gray-500/80'
+                return 'bg-gray-500 enabled:hover:bg-gray-600 enabled:active:bg-gray-700 ring-gray-500/80'
             case 'orange':
-                return 'bg-orange-600 enabled:hover:bg-orange-700 enabled:active:bg-orange-800 outline-orange-900/80'
+                return 'bg-orange-600 enabled:hover:bg-orange-700 enabled:active:bg-orange-800 ring-orange-500/80'
             default:
                 return ''
         }
