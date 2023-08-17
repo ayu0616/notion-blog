@@ -14,6 +14,7 @@
 
 body {
     font-family: 'BIZ UDPGothic', sans-serif; /* フォントを設定 */
+    line-height: 1.75rem; /* 行間を広く */
     @apply text-gray-800;
     @apply bg-orange-50;
 }
