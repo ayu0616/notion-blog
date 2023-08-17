@@ -63,7 +63,10 @@ const RichText = ({
     if (href) {
         return (
             <a
-                className={annotationClass.join(' ')}
+                className={[
+                    'text-blue-600 hover:text-blue-700 hover:underline active:text-blue-800',
+                    ...annotationClass,
+                ].join(' ')}
                 href={href}
                 target='_blank'
                 rel='noreferrer'
