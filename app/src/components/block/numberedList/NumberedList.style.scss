@@ -1,13 +1,13 @@
 @mixin bulletedList($nest_num: 5) {
     list-style-type: number;
 
-    > li > ol {
+    > li > ol.numbered-list {
         list-style-type: lower-alpha;
 
-        > li > ol {
+        > li > ol.numbered-list {
             list-style-type: lower-roman;
 
-            > li > ol {
+            > li > ol.numbered-list {
                 @if $nest_num > 0 {
                     @include bulletedList($nest_num - 1);
                 }
@@ -16,13 +16,13 @@
     }
 }
 
-ol {
+ol.numbered-list {
     @include bulletedList(3);
 
     > li {
         @apply pl-2;
 
-        > ol {
+        > ol.numbered-list {
             @apply ml-4;
         }
     }

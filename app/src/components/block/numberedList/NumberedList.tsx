@@ -5,7 +5,7 @@ interface NumberedListProps {
 }
 
 const NumberedList = ({ ...props }: NumberedListProps) => {
-    return <ol {...props}></ol>
+    return <ol {...props} className='numbered-list list-inside'></ol>
 }
 
 export default NumberedList

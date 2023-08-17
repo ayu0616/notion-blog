@@ -5,7 +5,7 @@ interface BulletedListProps {
 }
 
 const BulletedList = ({ ...props }: BulletedListProps) => {
-    return <ul {...props}></ul>
+    return <ul {...props} className='bulleted-list list-inside'></ul>
 }
 
 export default BulletedList

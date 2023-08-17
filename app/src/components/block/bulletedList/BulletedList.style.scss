@@ -5,17 +5,17 @@
         // border-radius: 50%;
     }
 
-    > ul > li {
+    > ul.bulleted-list > li {
         &::before {
             content: '◦';
         }
 
-        > ul > li {
+        > ul.bulleted-list > li {
             &::before {
                 content: '▪';
             }
 
-            > ul > li {
+            > ul.bulleted-list > li {
                 @if $nest_num > 0 {
                     @include bulletedList($nest_num - 1);
                 }
@@ -24,7 +24,7 @@
     }
 }
 
-ul > li {
+ul.bulleted-list > li {
     @include bulletedList(3);
 
     &::before {
@@ -40,7 +40,7 @@ ul > li {
         vertical-align: middle;
     }
 
-    > ul {
+    > ul.bulleted-list {
         @apply ml-4;
     }
 }
