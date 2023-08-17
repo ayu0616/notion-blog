@@ -1,5 +1,5 @@
 import NextImage from 'next/image'
-import './Image.style.scss'
+import './ImageBase.style.scss'
 
 interface ImageProps {
     src: string

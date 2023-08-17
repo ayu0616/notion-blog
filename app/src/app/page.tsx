@@ -1,5 +1,5 @@
 import Card from '@/components/common/Card'
-import Image from '@/components/common/Image'
+import Image from '@/components/common/ImageBase'
 import TagList from '@/components/common/tag/TagList'
 import { Page } from '@/type/page/page'
 import dateToStr from '@/util/dateToStr'
