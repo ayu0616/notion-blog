@@ -1,4 +1,4 @@
-import Image from 'next/image'
+import NextImage from 'next/image'
 import './Image.style.scss'
 
 interface ImageProps {
@@ -8,16 +8,16 @@ interface ImageProps {
     objectFit?: "contain" | "cover" | "fill" | "none" | "scale-down"
 }
 
-const MyImage = ({
+const Image = ({
     className,
     objectFit = 'contain',
     ...props
 }: ImageProps) => {
     return (
         <div className={'image-container ' + className}>
-            <Image {...props} layout='fill' objectFit={objectFit} className='rounded-[inherit]' />
+            <NextImage {...props} layout='fill' objectFit={objectFit} className='rounded-[inherit]' />
         </div>
     )
 }
 
-export default MyImage
+export default Image
