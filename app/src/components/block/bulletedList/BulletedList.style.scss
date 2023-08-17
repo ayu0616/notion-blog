@@ -1,0 +1,50 @@
+@mixin bulletedList($nest_num: 5) {
+    &::before {
+        content: '•';
+        border: none;
+        // border-radius: 50%;
+    }
+
+    > ul > li {
+        &::before {
+            content: '◦';
+        }
+
+        > ul > li {
+            &::before {
+                content: '▪';
+            }
+
+            > ul > li {
+                @if $nest_num > 0 {
+                    @include bulletedList($nest_num - 1);
+                }
+            }
+        }
+    }
+}
+
+ul > li {
+    @include bulletedList(3);
+
+    &::before {
+        $size: calc(1rem / 3);
+        $mr: 0.5rem;
+
+        display: inline-block;
+        margin-right: $mr;
+
+        font-family: Arial;
+        font-size: 1.5rem;
+        line-height: 1.5rem;
+        vertical-align: middle;
+    }
+
+    > ul {
+        @apply ml-4;
+    }
+}
+
+li {
+    // @apply pl-2;
+}

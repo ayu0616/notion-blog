@@ -1,7 +1,11 @@
-interface BulletedListProps {}
+import './BulletedList.style.scss'
+
+interface BulletedListProps {
+    children?: React.ReactNode
+}
 
 const BulletedList = ({ ...props }: BulletedListProps) => {
-    return <div></div>
+    return <ul {...props}></ul>
 }
 
 export default BulletedList

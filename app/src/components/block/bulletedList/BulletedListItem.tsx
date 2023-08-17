@@ -1,7 +1,9 @@
-interface BulletedListItemProps {}
+interface BulletedListItemProps {
+    children?: React.ReactNode
+}
 
 const BulletedListItem = ({ ...props }: BulletedListItemProps) => {
-    return <div></div>
+    return <li {...props}></li>
 }
 
 export default BulletedListItem
