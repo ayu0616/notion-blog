@@ -1,5 +1,5 @@
 interface ParagraphProps {
-    children: React.ReactNode
+    children?: React.ReactNode
 }
 
 const Paragraph = ({ children, ...props }: ParagraphProps) => {
