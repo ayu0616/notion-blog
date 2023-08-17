@@ -1,0 +1,32 @@
+@mixin bulletedList($nest_num: 5) {
+    list-style-type: number;
+
+    > li > ol {
+        list-style-type: lower-alpha;
+
+        > li > ol {
+            list-style-type: lower-roman;
+
+            > li > ol {
+                @if $nest_num > 0 {
+                    @include bulletedList($nest_num - 1);
+                }
+            }
+        }
+    }
+}
+
+ol {
+    @include bulletedList(3);
+
+    > li {
+        @apply pl-2;
+
+        > ol {
+            @apply ml-4;
+        }
+    }
+}
+li {
+    // @apply pl-2;
+}

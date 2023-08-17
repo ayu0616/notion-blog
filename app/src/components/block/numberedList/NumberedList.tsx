@@ -1,7 +1,11 @@
-interface NumberedListProps {}
+import './NumberedList.style.scss'
+
+interface NumberedListProps {
+    children?: React.ReactNode
+}
 
 const NumberedList = ({ ...props }: NumberedListProps) => {
-    return <div></div>
+    return <ol {...props}></ol>
 }
 
 export default NumberedList

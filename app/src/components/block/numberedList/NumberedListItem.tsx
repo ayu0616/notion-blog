@@ -1,7 +1,9 @@
-interface NumberedListItemProps {}
+interface NumberedListItemProps {
+    children?: React.ReactNode
+}
 
 const NumberedListItem = ({ ...props }: NumberedListItemProps) => {
-    return <div></div>
+    return <li {...props}></li>
 }
 
 export default NumberedListItem
