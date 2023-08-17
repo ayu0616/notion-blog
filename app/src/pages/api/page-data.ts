@@ -1,5 +1,5 @@
-import { NextApiRequest, NextApiResponse } from 'next'
 import { JSDOM } from 'jsdom'
+import { NextApiRequest, NextApiResponse } from 'next'
 
 export default async function handler(
     req: NextApiRequest,
@@ -22,8 +22,9 @@ export default async function handler(
             doc
                 .querySelector('meta[name="description"]')
                 ?.getAttribute('content') ?? ''
+        const iconUrl = `http://www.google.com/s2/favicons?domain=${url}`
 
-        res.status(200).json({ title, description })
+        res.status(200).json({ title, description, iconUrl })
     } catch (error) {
         console.error(error)
         res.status(500).json({ message: 'Internal server error' })
