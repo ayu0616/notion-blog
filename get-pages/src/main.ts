@@ -4,6 +4,7 @@ import {
     BlockBase,
     BlockType,
     Bookmark,
+    BulletedList,
     BulletedListItem,
     Callout,
     Code,
@@ -13,6 +14,7 @@ import {
     Heading2,
     Heading3,
     Image,
+    NumberedList,
     NumberedListItem,
     Paragraph,
 } from "./type/block/block";
@@ -30,6 +32,11 @@ const BASE_URL = "https://api.notion.com/v1";
 const HEADERS = {
     Authorization: `Bearer ${NOTION_API_KEY}`,
     "Notion-Version": "2022-06-28",
+};
+
+/** 配列のディープコピーを作成する */
+const deepCopy = <T>(arr: T[]): T[] => {
+    return JSON.parse(JSON.stringify(arr));
 };
 
 /** データベース上にあるページの情報をAPIから取得する */
@@ -69,7 +76,7 @@ const convertToPages = async (data: any) => {
             lastEditedTime,
             slug,
             status: p.properties.status.status.name,
-            publishDate: p.properties.publish_date.date?.start??null,
+            publishDate: p.properties.publish_date.date?.start ?? null,
             blocks: await getBlocks(p.id),
             image: p.properties.image.files[0] ? p.properties.image.files[0][p.properties.image.files[0].type].url : null,
             description: p.properties.description.rich_text.map((text: any) => text.plain_text).join(""),
@@ -230,7 +237,55 @@ const getPages = async () => {
 const getBlocks = async (id: string) => {
     const data = await getBlockData(id);
     const blocks = await convertToBlocks(data);
-    return blocks;
+    return wrapListItems(blocks);
+};
+
+/** リストアイテムをグルーピング */
+const wrapListItems = (blocks: Block[]) => {
+    const res: Block[] = [];
+    const bWrapper: BulletedListItem[] = [];
+    const nWrapper: NumberedListItem[] = [];
+    blocks.forEach((b) => {
+        if (b.type === "bulleted_list_item") {
+            bWrapper.push(b);
+        } else if (b.type === "numbered_list_item") {
+            nWrapper.push(b);
+        } else {
+            if (bWrapper.length > 0) {
+                res.push({
+                    type: "bulleted_list",
+                    listItems: deepCopy(bWrapper),
+                } as BulletedList);
+                bWrapper.length = 0;
+            }
+            if (nWrapper.length > 0) {
+                res.push({
+                    type: "numbered_list",
+                    listItems: deepCopy(nWrapper),
+                } as NumberedList);
+                nWrapper.length = 0;
+            }
+            res.push(b);
+        }
+        if (b.hasChildren && b.children) {
+            b.children = wrapListItems(b.children);
+        }
+    });
+    if (bWrapper.length > 0) {
+        res.push({
+            type: "bulleted_list",
+            listItems: deepCopy(bWrapper),
+        } as BulletedList);
+        bWrapper.length = 0;
+    }
+    if (nWrapper.length > 0) {
+        res.push({
+            type: "numbered_list",
+            listItems: deepCopy(nWrapper),
+        } as NumberedList);
+        nWrapper.length = 0;
+    }
+    return res;
 };
 
 // メインの処理

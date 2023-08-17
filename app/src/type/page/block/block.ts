@@ -4,6 +4,7 @@ import { RichText } from "./richText";
 export type BlockType =
     | "bookmark"
     | "breadcrumb"
+    | "bulleted_list"
     | "bulleted_list_item"
     | "callout"
     | "child_database"
@@ -21,6 +22,7 @@ export type BlockType =
     | "image"
     | "link_preview"
     | "link_to_page"
+    | "numbered_list"
     | "numbered_list_item"
     | "paragraph"
     | "pdf"
@@ -35,7 +37,21 @@ export type BlockType =
     | "unsupported"
     | "video";
 
-export type Block = Paragraph | Heading1 | Heading2 | Heading3 | BulletedListItem | NumberedListItem | Bookmark | Code | Equation | Callout | Divider | Image;
+export type Block =
+    | Paragraph
+    | Heading1
+    | Heading2
+    | Heading3
+    | BulletedListItem
+    | NumberedListItem
+    | Bookmark
+    | Code
+    | Equation
+    | Callout
+    | Divider
+    | Image
+    | BulletedList
+    | NumberedList;
 
 export interface BlockBase {
     id: string;
@@ -82,11 +98,23 @@ export interface Heading3 extends Heading {
 }
 
 /** 箇条書きリスト */
+export interface BulletedList extends BlockBase {
+    type: "bulleted_list";
+    listItems: BulletedListItem[];
+}
+
+/** 箇条書きリストアイテム */
 export interface BulletedListItem extends RichTextBlockContent {
     type: "bulleted_list_item";
 }
 
 /** 番号付きリスト */
+export interface NumberedList extends BlockBase {
+    type: "numbered_list";
+    listItems: NumberedListItem[];
+}
+
+/** 番号付きリストアイテム */
 export interface NumberedListItem extends RichTextBlockContent {
     type: "numbered_list_item";
 }

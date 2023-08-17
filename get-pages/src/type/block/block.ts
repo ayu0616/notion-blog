@@ -98,7 +98,7 @@ export interface Heading3 extends Heading {
 }
 
 /** 箇条書きリスト */
-export interface BulletedList {
+export interface BulletedList extends BlockBase {
     type: "bulleted_list";
     listItems: BulletedListItem[];
 }
@@ -109,7 +109,7 @@ export interface BulletedListItem extends RichTextBlockContent {
 }
 
 /** 番号付きリスト */
-export interface NumberedList {
+export interface NumberedList extends BlockBase {
     type: "numbered_list";
     listItems: NumberedListItem[];
 }
