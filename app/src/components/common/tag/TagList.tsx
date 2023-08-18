@@ -1,12 +1,13 @@
-import Tag, { TagProps } from "./Tag"
+import Tag, { TagProps } from './Tag'
 
 interface TagListProps {
     tagData: TagProps[]
+    className?: string
 }
 
-const TagList = ({tagData, ...props }: TagListProps) => {
+const TagList = ({ tagData, className = '', ...props }: TagListProps) => {
     return (
-        <ul className="flex gap-3 flex-wrap">
+        <ul className={['flex flex-wrap gap-3', className].join(' ')}>
             {tagData.map((tag, index) => (
                 <li key={index}>
                     <Tag {...tag} />
