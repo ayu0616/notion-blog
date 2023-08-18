@@ -45,7 +45,7 @@ export default function Home() {
         }
     })
     return (
-        <main>
+        <main className="max-w-4xl mx-auto">
             <Carousel data={carouselData}></Carousel>
             <div className='grid gap-4 p-4'>
                 {mockData.map((page, i) => {
