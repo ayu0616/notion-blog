@@ -124,7 +124,7 @@ const Carousel = ({ data, ...props }: CarouselProps) => {
                         <Link
                             href={`/blog/${d.slug}`}
                             key={index}
-                            className='relative'
+                            className='relative min-w-full'
                         >
                             <Image
                                 src={d.image}
