@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react'
+import { useCallback, useEffect, useRef } from 'react'
 import { FaAngleLeft, FaAngleRight } from 'react-icons/fa'
 import Image from '../ImageBase'
 import './Carousel.style.scss'
@@ -9,6 +9,8 @@ interface CarouselProps {
 
 const Carousel = ({ srcList, ...props }: CarouselProps) => {
     const container = useRef<HTMLDivElement>(null)
+
+    const intervalRef = useRef<NodeJS.Timer | null>(null)
 
     const goNext = () => {
         if (!container.current) {
@@ -50,25 +52,44 @@ const Carousel = ({ srcList, ...props }: CarouselProps) => {
         }
     }
 
-    useEffect(() => {
-        const interval = setInterval(() => {
+    const startInterval = useCallback(() => {
+        intervalRef.current = setInterval(() => {
             goNext()
         }, 7500)
-        return () => clearInterval(interval)
     }, [])
+
+    const stopInterval = () => {
+        if (intervalRef.current) {
+            clearInterval(intervalRef.current)
+            intervalRef.current = null
+        }
+    }
+
+    useEffect(() => {
+        startInterval()
+        return () => stopInterval()
+    }, [startInterval])
 
     return (
         <div className='relative'>
             {/* 進む・戻るボタン */}
             <button
                 className='absolute left-0 top-0 z-10 flex h-full items-center justify-center bg-black/25 px-2 text-2xl text-white/50 hover:bg-black/50 hover:text-white/75 md:px-4'
-                onClick={goPrev}
+                onClick={() => {
+                    stopInterval()
+                    startInterval()
+                    goPrev()
+                }}
             >
                 <FaAngleLeft></FaAngleLeft>
             </button>
             <button
                 className='absolute right-0 top-0 z-10 flex h-full items-center justify-center bg-black/25 px-2 text-2xl text-white/50 hover:bg-black/50 hover:text-white/75 md:px-4'
-                onClick={goNext}
+                onClick={() => {
+                    stopInterval()
+                    startInterval()
+                    goNext()
+                }}
             >
                 <FaAngleRight></FaAngleRight>
             </button>
