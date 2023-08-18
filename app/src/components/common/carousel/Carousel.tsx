@@ -98,6 +98,10 @@ const Carousel = ({ srcList, ...props }: CarouselProps) => {
             <div
                 className='carousel-container flex aspect-video w-full snap-x snap-mandatory overflow-x-scroll'
                 ref={container}
+                onScroll={() => {
+                    stopInterval()
+                    startInterval()
+                }}
             >
                 {srcList.map((src, index) => {
                     return (
