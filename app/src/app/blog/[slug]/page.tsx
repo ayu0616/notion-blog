@@ -446,7 +446,11 @@ const Page = () => {
     const slug = params?.slug ?? ''
     return (
         <main className='mx-auto flex max-w-4xl flex-col gap-4 bg-white p-6'>
-            <PageInfo {...data} publishDate={data.publishDate ?? "1970"} />
+            <PageInfo
+                {...data}
+                publishDate={data.publishDate ?? '1970'}
+                image={data.image ?? '/no_image.jpg'}
+            />
             {data.blocks.map((block, index) => {
                 return <Block key={index} data={block} />
             })}
