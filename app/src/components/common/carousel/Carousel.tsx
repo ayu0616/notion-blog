@@ -132,12 +132,14 @@ const Carousel = ({ data, ...props }: CarouselProps) => {
                                 className='aspect-video h-full snap-center'
                                 objectFit='cover'
                             ></Image>
-                            <div className='absolute bottom-0 flex w-full flex-col gap-1 bg-black/25 p-3 text-sm text-white md:px-4'>
+                            <div className='absolute bottom-0 flex w-full flex-col gap-2 bg-black/25 p-3 text-sm text-white md:px-4'>
                                 <p>{d.title}</p>
-                                <p className='text-xs'>
-                                    {dateToStr(d.publishDate)}
-                                </p>
-                                <TagList tagData={d.tags} gap={1}></TagList>
+                                <div className='flex gap-4 justify-between items-end'>
+                                    <TagList tagData={d.tags} gap={1} className='flex-1'></TagList>
+                                    <p className='text-right text-xs w-fit'>
+                                        {dateToStr(d.publishDate)}
+                                    </p>
+                                </div>
                             </div>
                         </Link>
                     )
