@@ -80,13 +80,14 @@ const Carousel = ({ srcList, ...props }: CarouselProps) => {
             >
                 {srcList.map((src, index) => {
                     return (
-                        <Image
-                            key={index}
-                            src={src}
-                            alt={`${src} in carousel`}
-                            className='aspect-video h-full snap-center'
-                            objectFit='cover'
-                        ></Image>
+                        <div key={index}>
+                            <Image
+                                src={src}
+                                alt={`${src} in carousel`}
+                                className='aspect-video h-full snap-center'
+                                objectFit='cover'
+                            ></Image>
+                        </div>
                     )
                 })}
             </div>
