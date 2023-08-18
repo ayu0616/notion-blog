@@ -1,4 +1,4 @@
-import { useRef } from 'react'
+import { useEffect, useRef } from 'react'
 import { FaAngleLeft, FaAngleRight } from 'react-icons/fa'
 import Image from '../ImageBase'
 import './Carousel.style.scss'
@@ -49,6 +49,13 @@ const Carousel = ({ srcList, ...props }: CarouselProps) => {
             })
         }
     }
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            goNext()
+        }, 7500)
+        return () => clearInterval(interval)
+    }, [])
 
     return (
         <div className='relative'>
