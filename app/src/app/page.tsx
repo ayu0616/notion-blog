@@ -45,9 +45,9 @@ export default function Home() {
         }
     })
     return (
-        <main className="max-w-4xl mx-auto">
+        <main className="max-w-4xl mx-auto space-y-4">
             <Carousel data={carouselData}></Carousel>
-            <div className='grid gap-4 p-4'>
+            <div className='grid gap-4 px-4'>
                 {mockData.map((page, i) => {
                     return (
                         <Link href={`/blog/${page.slug}`} key={i}>
