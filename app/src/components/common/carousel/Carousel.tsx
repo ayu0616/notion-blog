@@ -1,13 +1,23 @@
+import { Tag as TagType } from '@/type/page/page'
+import Link from 'next/link'
 import { useCallback, useEffect, useRef } from 'react'
 import { FaAngleLeft, FaAngleRight } from 'react-icons/fa'
+import dateToStr from '../../../util/dateToStr'
 import Image from '../ImageBase'
+import TagList from '../tag/TagList'
 import './Carousel.style.scss'
 
 interface CarouselProps {
-    srcList: string[]
+    data: {
+        image: string
+        publishDate: string
+        title: string
+        tags: TagType[]
+        slug: string
+    }[]
 }
 
-const Carousel = ({ srcList, ...props }: CarouselProps) => {
+const Carousel = ({ data, ...props }: CarouselProps) => {
     const container = useRef<HTMLDivElement>(null)
 
     const intervalRef = useRef<NodeJS.Timer | null>(null)
@@ -74,7 +84,7 @@ const Carousel = ({ srcList, ...props }: CarouselProps) => {
         <div className='relative'>
             {/* 進む・戻るボタン */}
             <button
-                className='absolute left-0 top-0 z-10 flex h-full items-center justify-center bg-black/25 px-2 text-2xl text-white/50 hover:bg-black/50 hover:text-white/75 md:px-4'
+                className='absolute left-0 top-0 z-10 flex h-full items-center justify-center px-2 text-2xl text-white/50 hover:text-white/75 md:px-4'
                 onClick={() => {
                     stopInterval()
                     startInterval()
@@ -84,7 +94,7 @@ const Carousel = ({ srcList, ...props }: CarouselProps) => {
                 <FaAngleLeft></FaAngleLeft>
             </button>
             <button
-                className='absolute right-0 top-0 z-10 flex h-full items-center justify-center bg-black/25 px-2 text-2xl text-white/50 hover:bg-black/50 hover:text-white/75 md:px-4'
+                className='absolute right-0 top-0 z-10 flex h-full items-center justify-center px-2 text-2xl text-white/50 hover:text-white/75 md:px-4'
                 onClick={() => {
                     stopInterval()
                     startInterval()
@@ -103,16 +113,27 @@ const Carousel = ({ srcList, ...props }: CarouselProps) => {
                     startInterval()
                 }}
             >
-                {srcList.map((src, index) => {
+                {data.map((d, index) => {
                     return (
-                        <div key={index}>
+                        <Link
+                            href={`/blog/${d.slug}`}
+                            key={index}
+                            className='relative'
+                        >
                             <Image
-                                src={src}
-                                alt={`${src} in carousel`}
+                                src={d.image}
+                                alt={`image of ${d.title}`}
                                 className='aspect-video h-full snap-center'
                                 objectFit='cover'
                             ></Image>
-                        </div>
+                            <div className='absolute bottom-0 flex w-full flex-col gap-1 bg-black/25 p-3 text-sm text-white/75 md:px-4'>
+                                <p>{d.title}</p>
+                                <p className='text-xs'>
+                                    {dateToStr(d.publishDate)}
+                                </p>
+                                <TagList tagData={d.tags} gap={1}></TagList>
+                            </div>
+                        </Link>
                     )
                 })}
             </div>
