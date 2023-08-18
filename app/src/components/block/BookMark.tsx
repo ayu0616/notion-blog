@@ -1,7 +1,7 @@
 'use client'
 
-import Image from 'next/image'
 import { useEffect, useState } from 'react'
+import Image from '../common/ImageBase'
 
 interface BookMarkProps {
     href: string
@@ -28,16 +28,16 @@ const BookMark = ({ href, ...props }: BookMarkProps) => {
     return (
         <div className='rounded-md bg-white drop-shadow-lg hover:drop-shadow-xl active:drop-shadow-md'>
             <a href={href} target='_blank' rel='noopener noreferrer'>
-                <div className='p-3'>
-                    <h4>{title}</h4>
-                    <p>{description}</p>
-                    <p className='text-right text-sm text-gray-500'>
+                <div className='space-y-1 p-3'>
+                    <h6>{title}</h6>
+                    <p className='text-xs leading-3 md:text-sm'>
+                        {description}
+                    </p>
+                    <p className='flex items-center justify-end text-right text-xs text-gray-500 md:text-sm'>
                         <Image
                             src={iconUrl}
                             alt={`icon of ${href}`}
-                            className='mr-2 inline-block'
-                            width={16}
-                            height={16}
+                            className='mr-1 inline-block h-[12px] w-[12px] md:h-4 md:w-4 md:mr-2'
                         />
                         {href}
                     </p>
