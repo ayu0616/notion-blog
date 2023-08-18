@@ -1,4 +1,4 @@
-"use client"
+'use client'
 
 import { Tag as TagType } from '@/type/page/page'
 import Link from 'next/link'
@@ -86,24 +86,28 @@ const Carousel = ({ data, ...props }: CarouselProps) => {
         <div className='relative'>
             {/* 進む・戻るボタン */}
             <button
-                className='absolute left-0 top-0 z-10 flex h-full items-center justify-center px-2 text-2xl text-white/50 hover:text-white/75 md:px-4'
+                className='absolute left-0 top-0 z-10 flex h-full items-center justify-center px-2 text-3xl text-white md:px-4 md:text-4xl'
                 onClick={() => {
                     stopInterval()
                     startInterval()
                     goPrev()
                 }}
             >
-                <FaAngleLeft></FaAngleLeft>
+                <span className='drop-shadow-lg'>
+                    <FaAngleLeft></FaAngleLeft>
+                </span>
             </button>
             <button
-                className='absolute right-0 top-0 z-10 flex h-full items-center justify-center px-2 text-2xl text-white/50 hover:text-white/75 md:px-4'
+                className='absolute right-0 top-0 z-10 flex h-full items-center justify-center px-2 text-3xl text-white md:px-4 md:text-4xl'
                 onClick={() => {
                     stopInterval()
                     startInterval()
                     goNext()
                 }}
             >
-                <FaAngleRight></FaAngleRight>
+                <span className='drop-shadow-lg'>
+                    <FaAngleRight></FaAngleRight>
+                </span>
             </button>
 
             {/* 画像 */}
