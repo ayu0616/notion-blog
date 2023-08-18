@@ -14,7 +14,7 @@ const BookMark = ({ href, ...props }: BookMarkProps) => {
 
     useEffect(() => {
         const getTitle = async () => {
-            const resData = await fetch('/api/page-data?url=' + href).then(
+            const resData = await fetch('/api/bookmark-data?url=' + href).then(
                 (res) => res.json(),
             )
             const { title, description, iconUrl } = resData
