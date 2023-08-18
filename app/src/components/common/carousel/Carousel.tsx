@@ -134,9 +134,13 @@ const Carousel = ({ data, ...props }: CarouselProps) => {
                             ></Image>
                             <div className='absolute bottom-0 flex w-full flex-col gap-2 bg-black/25 p-3 text-sm text-white md:px-4'>
                                 <p>{d.title}</p>
-                                <div className='flex gap-4 justify-between items-end'>
-                                    <TagList tagData={d.tags} gap={1} className='flex-1'></TagList>
-                                    <p className='text-right text-xs w-fit'>
+                                <div className='flex items-end justify-between gap-4'>
+                                    <TagList
+                                        tagData={d.tags}
+                                        gap={1}
+                                        className='flex-1'
+                                    ></TagList>
+                                    <p className='w-fit text-right text-xs'>
                                         {dateToStr(d.publishDate)}
                                     </p>
                                 </div>

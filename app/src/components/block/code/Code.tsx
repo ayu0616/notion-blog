@@ -35,8 +35,8 @@ const Code = ({
             className='code-block-container rounded-md'
             style={{ background: style['pre[class*="language-"]'].background }}
         >
-            <div className='w-full border-b border-b-gray-300 p-2 flex justify-between text-sm text-white'>
-                <div className='p-1'>{ props.language}</div>
+            <div className='flex w-full justify-between border-b border-b-gray-300 p-2 text-sm text-white'>
+                <div className='p-1'>{props.language}</div>
                 <button
                     ref={buttonRef}
                     className='p-1 hover:text-yellow-300 hover:underline active:text-yellow-400'

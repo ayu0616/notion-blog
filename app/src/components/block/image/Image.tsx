@@ -6,7 +6,9 @@ interface ImageProps {
 }
 
 const Image = ({ ...props }: ImageProps) => {
-    return <ImageBase {...props} className='rounded-md drop-shadow-md'></ImageBase>
+    return (
+        <ImageBase {...props} className='rounded-md drop-shadow-md'></ImageBase>
+    )
 }
 
 export default Image

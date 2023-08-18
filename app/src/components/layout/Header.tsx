@@ -49,7 +49,7 @@ const Header = () => {
     return (
         <header className='sticky left-0 top-0 z-50 w-full items-center justify-between bg-orange-500 text-white md:flex'>
             <div className='flex items-center justify-between'>
-                <h1 className='py-4 px-6 text-2xl'>
+                <h1 className='px-6 py-4 text-2xl'>
                     <Link href='/'>はっさくの旅ブログ</Link>
                 </h1>
                 <div
@@ -70,7 +70,7 @@ const Header = () => {
                             className='border-t border-white hover:bg-orange-600 active:bg-orange-700 md:border-t-0'
                         >
                             <Link href={item.href ?? '/'}>
-                                <div className='flex items-center gap-1 py-3 px-6 md:px-3'>
+                                <div className='flex items-center gap-1 px-6 py-3 md:px-3'>
                                     {item.icon}
                                     {item.title}
                                 </div>

@@ -37,15 +37,15 @@ export default function Home() {
     ]
     const carouselData = mockData.map((page) => {
         return {
-            image: page.image??"/no_image.jpg",
-            publishDate: page.publishDate??"1970-01-01",
+            image: page.image ?? '/no_image.jpg',
+            publishDate: page.publishDate ?? '1970-01-01',
             title: page.title,
             tags: page.tags,
             slug: page.slug,
         }
     })
     return (
-        <main className="max-w-4xl mx-auto space-y-4">
+        <main className='mx-auto max-w-4xl space-y-4'>
             <Carousel data={carouselData}></Carousel>
             <div className='grid gap-4 px-4'>
                 {mockData.map((page, i) => {
@@ -60,7 +60,10 @@ export default function Home() {
                                 ></Image>
                                 <div className='flex flex-1 flex-col gap-2 p-3'>
                                     <h3>{page.title}</h3>
-                                    <TagList isLink tagData={page.tags}></TagList>
+                                    <TagList
+                                        isLink
+                                        tagData={page.tags}
+                                    ></TagList>
                                     <p className='text-end text-sm text-gray-600'>
                                         {dateToStr(
                                             new Date(page.lastEditedTime),

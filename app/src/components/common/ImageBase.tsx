@@ -5,17 +5,18 @@ interface ImageProps {
     src: string
     alt: string
     className?: string
-    objectFit?: "contain" | "cover" | "fill" | "none" | "scale-down"
+    objectFit?: 'contain' | 'cover' | 'fill' | 'none' | 'scale-down'
 }
 
-const Image = ({
-    className,
-    objectFit = 'contain',
-    ...props
-}: ImageProps) => {
+const Image = ({ className, objectFit = 'contain', ...props }: ImageProps) => {
     return (
         <div className={'image-container ' + className}>
-            <NextImage {...props} layout='fill' objectFit={objectFit} className='rounded-[inherit]' />
+            <NextImage
+                {...props}
+                layout='fill'
+                objectFit={objectFit}
+                className='rounded-[inherit]'
+            />
         </div>
     )
 }

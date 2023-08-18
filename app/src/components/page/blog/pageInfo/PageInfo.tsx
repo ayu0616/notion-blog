@@ -10,15 +10,21 @@ interface PageInfoProps {
     image: string
 }
 
-const PageInfo = ({ title, tags, publishDate,image, ...props }: PageInfoProps) => {
+const PageInfo = ({
+    title,
+    tags,
+    publishDate,
+    image,
+    ...props
+}: PageInfoProps) => {
     return (
-        <div className='space-y-2 mb-16'>
+        <div className='mb-16 space-y-2'>
             <h2>{title}</h2>
             <TagList tagData={tags} isLink className='justify-end' />
             <p className='text-end text-sm text-gray-600'>
                 {dateToStr(publishDate)}
             </p>
-            <Image src={image} alt={"ヘッダ画像"}></Image>
+            <Image src={image} alt={'ヘッダ画像'}></Image>
         </div>
     )
 }

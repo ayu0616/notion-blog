@@ -22,13 +22,17 @@ type Story = StoryObj<typeof meta>
 export const Default: Story = {
     args: {
         name: 'タグ',
-        color: "blue"
+        color: 'blue',
     },
 }
 
 export const WithLink: Story = {
     args: { name: 'タグ', color: 'blue' },
     render() {
-        return <a href='#' className='hover:underline'><meta.component name='タグ' color='blue'></meta.component></a>
+        return (
+            <a href='#' className='hover:underline'>
+                <meta.component name='タグ' color='blue'></meta.component>
+            </a>
+        )
     },
 }

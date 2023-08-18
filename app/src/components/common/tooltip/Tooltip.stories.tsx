@@ -27,7 +27,9 @@ export const Default: Story = {
     },
     render: (args) => {
         const buttonRef = useRef<HTMLButtonElement>(null)
-        const [buttonElem, setButtonElem] = useState<HTMLButtonElement | null>(null)
+        const [buttonElem, setButtonElem] = useState<HTMLButtonElement | null>(
+            null,
+        )
         const [show, setShow] = useState(false)
         useEffect(() => {
             setButtonElem(buttonRef.current)
