@@ -1,3 +1,5 @@
+"use client"
+
 import { Tag as TagType } from '@/type/page/page'
 import Link from 'next/link'
 import { useCallback, useEffect, useRef } from 'react'
