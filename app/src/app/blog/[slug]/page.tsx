@@ -445,7 +445,7 @@ const Page = () => {
     const params = useParams()
     const slug = params?.slug ?? ''
     return (
-        <main className='mx-auto flex max-w-4xl flex-col gap-4 bg-white p-6'>
+        <main className='mx-auto max-w-4xl space-y-4 bg-white p-6'>
             <PageInfo
                 {...data}
                 publishDate={data.publishDate ?? '1970'}
