@@ -1,5 +1,6 @@
 import Card from '@/components/common/Card'
 import Image from '@/components/common/ImageBase'
+import Carousel from '@/components/common/carousel/Carousel'
 import TagList from '@/components/common/tag/TagList'
 import { Page } from '@/type/page/page'
 import dateToStr from '@/util/dateToStr'
@@ -34,8 +35,18 @@ export default function Home() {
                 'これはテストです。これはテストです。これはテストです。これはテストです。これはテストです。これはテストです。これはテストです。',
         },
     ]
+    const carouselData = mockData.map((page) => {
+        return {
+            image: page.image??"/no_image.jpg",
+            publishDate: page.publishDate??"1970-01-01",
+            title: page.title,
+            tags: page.tags,
+            slug: page.slug,
+        }
+    })
     return (
         <main>
+            <Carousel data={carouselData}></Carousel>
             <div className='grid gap-4 p-4'>
                 {mockData.map((page, i) => {
                     return (
