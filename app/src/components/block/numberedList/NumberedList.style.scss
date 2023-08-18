@@ -1,11 +1,11 @@
 @mixin bulletedList($nest_num: 5) {
-    list-style-type: number;
+    @apply list-decimal;
 
     > li > ol.numbered-list {
-        list-style-type: lower-alpha;
+        @apply list-[lower-alpha];
 
         > li > ol.numbered-list {
-            list-style-type: lower-roman;
+            @apply list-[lower-roman];
 
             > li > ol.numbered-list {
                 @if $nest_num > 0 {
