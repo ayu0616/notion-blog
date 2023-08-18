@@ -1,6 +1,7 @@
 'use client'
 
 import Block from '@/components/block/Block'
+import PageInfo from '@/components/page/blog/pageInfo/PageInfo'
 import { Page as PageData } from '@/type/page/page'
 import { useParams } from 'next/navigation'
 
@@ -445,6 +446,7 @@ const Page = () => {
     const slug = params?.slug ?? ''
     return (
         <main className='mx-auto flex max-w-4xl flex-col gap-4 bg-white p-6'>
+            <PageInfo title={data.title} tags={data.tags} publishDate={data.publishDate ?? "1970"} />
             {data.blocks.map((block, index) => {
                 return <Block key={index} data={block} />
             })}
