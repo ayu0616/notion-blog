@@ -30,7 +30,7 @@ const Header = () => {
             title: 'タグ別',
         },
     ]
-    const navHeight = 53 * menu.length
+    const navHeight = 45 * menu.length
 
     const toggleOpen = () => setOpen((prev) => !prev)
 
