@@ -444,11 +444,11 @@ const Page = () => {
     const params = useParams()
     const slug = params?.slug ?? ''
     return (
-        <>
+        <main className='mx-auto flex max-w-4xl flex-col gap-4 bg-white p-6'>
             {data.blocks.map((block, index) => {
                 return <Block key={index} data={block} />
             })}
-        </>
+        </main>
     )
 }
 
