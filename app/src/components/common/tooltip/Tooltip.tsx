@@ -58,7 +58,9 @@ const Tooltip = ({
         }
     }
     useEffect(initialize, [elem, placement, container, isShow])
-    window.addEventListener('resize', initialize)
+    try {
+        window.addEventListener('resize', initialize)
+    } catch (e) {}
 
     const isShowClass = isShow ? '' : 'opacity-0 -z-50'
     let containerColorClass = ''
