@@ -1,11 +1,13 @@
 import { TagColor } from '@/type/page/page'
+import Link from 'next/link'
 
 export interface TagProps {
     color: TagColor
     name: string
+    isLink?: boolean
 }
 
-const Tag = ({ name, color, ...props }: TagProps) => {
+const Tag = ({ name, color, isLink = false, ...props }: TagProps) => {
     const bg = (() => {
         switch (color) {
             case 'red':
@@ -30,7 +32,19 @@ const Tag = ({ name, color, ...props }: TagProps) => {
                 return 'bg-slate-300/50 text-slate-500'
         }
     })()
-    return <span className={['rounded-sm p-1', bg].join(' ')}>{name}</span>
+    if (isLink) {
+        return (
+            <Link href={`/tag/${name}`} className=''>
+                <span
+                    className={['rounded-sm p-1 hover:underline', bg].join(' ')}
+                >
+                    {name}
+                </span>
+            </Link>
+        )
+    } else {
+        return <span className={['rounded-sm p-1', bg].join(' ')}>{name}</span>
+    }
 }
 
 export default Tag

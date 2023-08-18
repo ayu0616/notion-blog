@@ -60,7 +60,7 @@ export default function Home() {
                                 ></Image>
                                 <div className='flex flex-1 flex-col gap-2 p-3'>
                                     <h3>{page.title}</h3>
-                                    <TagList tagData={page.tags}></TagList>
+                                    <TagList isLink tagData={page.tags}></TagList>
                                     <p className='text-end text-sm text-gray-600'>
                                         {dateToStr(
                                             new Date(page.lastEditedTime),

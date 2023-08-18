@@ -14,7 +14,7 @@ const PageInfo = ({ title, tags, publishDate,image, ...props }: PageInfoProps) =
     return (
         <div className='space-y-2 mb-16'>
             <h2>{title}</h2>
-            <TagList tagData={tags} className='justify-end' />
+            <TagList tagData={tags} isLink className='justify-end' />
             <p className='text-end text-sm text-gray-600'>
                 {dateToStr(publishDate)}
             </p>

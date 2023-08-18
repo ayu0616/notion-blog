@@ -4,12 +4,14 @@ interface TagListProps {
     tagData: TagProps[]
     className?: string
     gap?: number
+    isLink?: boolean
 }
 
 const TagList = ({
     tagData,
     className = '',
     gap = 1 | 2 | 3 | 4,
+    isLink = false,
     ...props
 }: TagListProps) => {
     const gapClass =
@@ -26,7 +28,7 @@ const TagList = ({
         <ul className={['flex flex-wrap', gapClass, className].join(' ')}>
             {tagData.map((tag, index) => (
                 <li key={index}>
-                    <Tag {...tag} />
+                    <Tag {...tag} isLink={isLink} />
                 </li>
             ))}
         </ul>
