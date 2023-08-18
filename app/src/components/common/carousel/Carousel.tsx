@@ -14,20 +14,40 @@ const Carousel = ({ srcList, ...props }: CarouselProps) => {
         if (!container.current) {
             return
         }
-        container.current.scrollBy({
-            left: container.current.clientWidth,
-            behavior: 'smooth',
-        })
+        const containerWidth = container.current.clientWidth
+        const maxScrollLeft = container.current.scrollWidth - containerWidth
+        const nextScrollLeft = container.current.scrollLeft + containerWidth
+        if (nextScrollLeft > maxScrollLeft) {
+            container.current.scrollTo({
+                left: 0,
+                behavior: 'smooth',
+            })
+        } else {
+            container.current.scrollBy({
+                left: containerWidth,
+                behavior: 'smooth',
+            })
+        }
     }
 
     const goPrev = () => {
         if (!container.current) {
             return
         }
-        container.current.scrollBy({
-            left: -container.current.clientWidth,
-            behavior: 'smooth',
-        })
+        const containerWidth = container.current.clientWidth
+        const maxScrollLeft = container.current.scrollWidth - containerWidth
+        const nextScrollLeft = container.current.scrollLeft - containerWidth
+        if (nextScrollLeft < 0) {
+            container.current.scrollTo({
+                left: maxScrollLeft,
+                behavior: 'smooth',
+            })
+        } else {
+            container.current.scrollBy({
+                left: -containerWidth,
+                behavior: 'smooth',
+            })
+        }
     }
 
     return (
