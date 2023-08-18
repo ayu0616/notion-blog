@@ -52,21 +52,21 @@ const Block = ({ data, ...props }: BlockProps) => {
             )
         case 'heading_1':
             return (
-                <Heading level={1}>
+                <Heading level={3}>
                     <RichTexts datas={data.richTexts} />
                     <Children datas={data.children} />
                 </Heading>
             )
         case 'heading_2':
             return (
-                <Heading level={2}>
+                <Heading level={4}>
                     <RichTexts datas={data.richTexts} />
                     <Children datas={data.children} />
                 </Heading>
             )
         case 'heading_3':
             return (
-                <Heading level={3}>
+                <Heading level={5}>
                     <RichTexts datas={data.richTexts} />
                     <Children datas={data.children} />
                 </Heading>
