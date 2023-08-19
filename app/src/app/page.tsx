@@ -22,7 +22,7 @@ export default async function Home() {
         }
     })
     return (
-        <main className='mx-auto max-w-4xl space-y-4'>
+        <main className='mx-auto max-w-4xl space-y-4 pb-4'>
             <Carousel data={carouselData}></Carousel>
             <div className='grid gap-4 px-4'>
                 {pageData.map((page, i) => {
