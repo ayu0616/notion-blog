@@ -28,5 +28,6 @@ export const Default: Story = {
             { name: 'JavaScript', color: 'yellow' },
         ],
         publishDate: '2023-08-11',
+        image: '/no_image.jpg',
     },
 }

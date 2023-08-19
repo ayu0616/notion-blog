@@ -33,10 +33,7 @@ export const Default: Story = {
             <>
                 <div>{'hoge '.repeat(10000)}</div>
                 <meta.component show={show} setShow={setShow}>
-                    <Card
-                        title='Modal'
-                        description={'this is modal '.repeat(40)}
-                    ></Card>
+                    <Card></Card>
                 </meta.component>
             </>
         )

@@ -20,12 +20,10 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
-    args: {
-        imgSrc: 'https://upload.wikimedia.org/wikipedia/commons/9/92/Ja-fukushima-ohuchijuku-7.jpg',
-    },
+    args: {},
     render() {
         return (
-            <meta.component imgSrc='https://upload.wikimedia.org/wikipedia/commons/9/92/Ja-fukushima-ohuchijuku-7.jpg'>
+            <meta.component>
                 <h3>hogehoge</h3>
                 <p>fugafuga fugafuga</p>
             </meta.component>
