@@ -66,7 +66,7 @@ export default function Home() {
                                     ></TagList>
                                     <p className='text-end text-sm text-gray-600'>
                                         {dateToStr(
-                                            new Date(page.lastEditedTime),
+                                            new Date(page.publishDate ?? 0),
                                         )}
                                     </p>
                                     <p>{page.description}</p>
