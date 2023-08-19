@@ -83,7 +83,7 @@ const Carousel = ({ data, ...props }: CarouselProps) => {
     }, [startInterval])
 
     return (
-        <div className='relative'>
+        <div className='relative bg-gray-50'>
             {/* 進む・戻るボタン */}
             <button
                 className='absolute left-0 top-0 z-10 flex h-full items-center justify-center px-2 text-3xl text-white md:px-4 md:text-4xl'
