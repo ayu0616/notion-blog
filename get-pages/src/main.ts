@@ -1,4 +1,5 @@
 import fs from "fs";
+import { imgToUri } from "./imgToUri";
 import {
     Block,
     BlockBase,
@@ -67,21 +68,29 @@ const convertToPages = async (data: any) => {
             const prevData: Page = JSON.parse(fs.readFileSync(`./data/${slug}.json`, "utf-8"));
             if (new Date(prevData.lastEditedTime).getTime() === new Date(lastEditedTime).getTime()) continue;
         }
-        const page: Page = {
-            id: p.id,
-            title: p.properties.title.title[0] ? p.properties.title.title[0].plain_text : "",
-            tags: p.properties.tags.multi_select.map((tag: any) => {
-                return { name: tag.name, color: tag.color };
-            }),
-            lastEditedTime,
-            slug,
-            status: p.properties.status.status.name,
-            publishDate: p.properties.publish_date.date?.start ?? null,
-            blocks: await getBlocks(p.id),
-            image: p.properties.image.files[0] ? p.properties.image.files[0][p.properties.image.files[0].type].url : null,
-            description: p.properties.description.rich_text.map((text: any) => text.plain_text).join(""),
-        };
-        pages.push(page);
+        let image: null | string = null;
+        if (p.properties.image.files[0]) {
+            if (p.properties.image.files[0].type === "external") {
+                image = p.properties.image.files[0].external.url;
+            } else {
+                image = await imgToUri(p.properties.image.files[0].file.url);
+            }
+            const page: Page = {
+                id: p.id,
+                title: p.properties.title.title[0] ? p.properties.title.title[0].plain_text : "",
+                tags: p.properties.tags.multi_select.map((tag: any) => {
+                    return { name: tag.name, color: tag.color };
+                }),
+                lastEditedTime,
+                slug,
+                status: p.properties.status.status.name,
+                publishDate: p.properties.publish_date.date?.start ?? null,
+                blocks: await getBlocks(p.id),
+                image,
+                description: p.properties.description.rich_text.map((text: any) => text.plain_text).join(""),
+            };
+            pages.push(page);
+        }
     }
     return pages;
 };
@@ -211,11 +220,17 @@ const convertToBlocks = async (data: any) => {
                 blocks.push(divider);
                 break;
             case "image":
+                let url = "";
+                if (b.image.type === "external") {
+                    url = b.image.external.url;
+                } else {
+                    url = await imgToUri(b.image.file.url);
+                }
                 const image: Image = {
                     ...blockBase,
                     type: "image",
                     caption: convertToRichTexts(b.image.caption),
-                    url: b.image.url,
+                    url,
                 };
                 blocks.push(image);
                 break;
