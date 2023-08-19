@@ -13,7 +13,7 @@ export default async function handler(
             if (slug) {
                 const pageData = JSON.parse(
                     fs.readFileSync(
-                        `../../../../get-pages/data/${slug}.json`,
+                        `../get-pages/data/${slug}.json`,
                         'utf8',
                     ),
                 )
