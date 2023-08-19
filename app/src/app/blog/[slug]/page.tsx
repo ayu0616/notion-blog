@@ -1,5 +1,6 @@
 import Block from '@/components/block/Block'
 import PageInfo from '@/components/page/blog/pageInfo/PageInfo'
+import { Page as PageData } from '@/type/page/page'
 
 const NEXT_PUBLIC_URL = process.env.NEXT_PUBLIC_URL
 
