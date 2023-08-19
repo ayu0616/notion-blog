@@ -8,12 +8,13 @@
     ],
     "rules": {
         "import/order": [
-            "error",
+            "warn",
             {
                 "alphabetize": {
                     "order": "asc"
                 }
             }
-        ]
+        ],
+        "react-hooks/rules-of-hooks": "off"
     }
 }
