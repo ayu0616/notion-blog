@@ -1,3 +1,5 @@
+"use client"
+
 import { CSSProperties, useEffect, useRef, useState } from 'react'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 import { vscDarkPlus } from 'react-syntax-highlighter/dist/cjs/styles/prism'
