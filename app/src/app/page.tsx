@@ -5,13 +5,17 @@ import TagList from '@/components/common/tag/TagList'
 import { Page } from '@/type/page/page'
 import dateToStr from '@/util/dateToStr'
 import Link from 'next/link'
+import fs from 'fs'
 
 const NEXT_PUBLIC_URL = process.env.NEXT_PUBLIC_URL
 
 export default async function Home() {
-    const pageData: Page[] = await fetch(
-        `${NEXT_PUBLIC_URL}/data/pages.json`,
-    ).then((res) => res.json())
+    // const pageData: Page[] = await fetch(
+    //     `${NEXT_PUBLIC_URL}/data/pages.json`,
+    // ).then((res) => res.json())
+    const pageData: Page[] = JSON.parse(
+        fs.readFileSync('./public/data/pages.json', 'utf-8'),
+    )
     const carouselData = pageData.map((page) => {
         return {
             image: page.image ?? '/no_image.jpg',
