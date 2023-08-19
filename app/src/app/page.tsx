@@ -6,9 +6,11 @@ import { Page } from '@/type/page/page'
 import dateToStr from '@/util/dateToStr'
 import Link from 'next/link'
 
+const NEXT_PUBLIC_URL = process.env.NEXT_PUBLIC_URL
+
 export default async function Home() {
-    const { pageData }: { pageData: Page[] } = await fetch(
-        'http://localhost:3000/api/page-data',
+    const pageData: Page[] = await fetch(
+        `${NEXT_PUBLIC_URL}/data/pages.json`,
     ).then((res) => res.json())
     const carouselData = pageData.map((page) => {
         return {
