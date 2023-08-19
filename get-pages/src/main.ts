@@ -1,4 +1,5 @@
 import fs from "fs";
+import path from "path";
 import { imgToUri } from "./imgToUri";
 import {
     Block,
@@ -35,9 +36,12 @@ const HEADERS = {
     "Notion-Version": "2022-06-28",
 };
 
-/** 配列のディープコピーを作成する */
-const deepCopy = <T>(arr: T[]): T[] => {
-    return JSON.parse(JSON.stringify(arr));
+// データを格納するパス
+const DATA_PATH = "../app/public/data";
+
+/** ディープコピーを作成する */
+const deepCopy = <T>(obj: T): T => {
+    return JSON.parse(JSON.stringify(obj));
 };
 
 /** データベース上にあるページの情報をAPIから取得する */
@@ -64,8 +68,8 @@ const convertToPages = async (data: any) => {
     for (let p of data.results) {
         const slug = p.properties.slug.rich_text[0] ? p.properties.slug.rich_text[0].plain_text : "";
         const lastEditedTime = p.last_edited_time; //最終更新日時
-        if (fs.existsSync(`./data/${slug}.json`)) {
-            const prevData: Page = JSON.parse(fs.readFileSync(`./data/${slug}.json`, "utf-8"));
+        if (fs.existsSync(path.join(DATA_PATH, "page", `${slug}.json`))) {
+            const prevData: Page = JSON.parse(fs.readFileSync(path.join(DATA_PATH, "page", `${slug}.json`), "utf-8"));
             if (new Date(prevData.lastEditedTime).getTime() === new Date(lastEditedTime).getTime()) continue;
         }
         let image: null | string = null;
@@ -307,9 +311,22 @@ const wrapListItems = (blocks: Block[]) => {
 (async () => {
     const pages = await getPages();
     pages.forEach((page) => {
-        fs.writeFile(`./data/${page.slug}.json`, JSON.stringify(page), (err) => {
+        fs.writeFile(path.join(DATA_PATH, "page", `${page.slug}.json`), JSON.stringify(page), (err) => {
             if (err) throw err;
-            console.log(`./data/${page.slug}.json`);
+            console.log(path.join(DATA_PATH, "page", `${page.slug}.json`));
         });
+    });
+    // ページのデータからブロックのデータを削除したもの
+    const pagesWithoutBlocks = pages.map((p) => {
+        const keysWithoutBlocks = (Object.keys(p) as (keyof Page)[]).filter((key) => key !== "blocks");
+        const pageWithoutBlocks: any = {};
+        keysWithoutBlocks.forEach((key) => {
+            pageWithoutBlocks[key] = p[key];
+        });
+        return pageWithoutBlocks;
+    });
+    fs.writeFile(path.join(DATA_PATH, "pages.json"), JSON.stringify(pagesWithoutBlocks), (err) => {
+        if (err) throw err;
+        console.log(path.join(DATA_PATH, "pages.json"));
     });
 })();
