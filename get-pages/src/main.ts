@@ -68,9 +68,12 @@ const convertToPages = async (data: any) => {
     for (let p of data.results) {
         const slug = p.properties.slug.rich_text[0] ? p.properties.slug.rich_text[0].plain_text : "";
         const lastEditedTime = p.last_edited_time; //最終更新日時
+        let isUpdated = true;
         if (fs.existsSync(path.join(DATA_PATH, "page", `${slug}.json`))) {
             const prevData: Page = JSON.parse(fs.readFileSync(path.join(DATA_PATH, "page", `${slug}.json`), "utf-8"));
-            if (new Date(prevData.lastEditedTime).getTime() === new Date(lastEditedTime).getTime()) continue;
+            if (new Date(prevData.lastEditedTime).getTime() === new Date(lastEditedTime).getTime()) {
+                isUpdated = false;
+            }
         }
         let image: null | string = null;
         if (p.properties.image.files[0]) {
@@ -89,7 +92,7 @@ const convertToPages = async (data: any) => {
                 slug,
                 status: p.properties.status.status.name,
                 publishDate: p.properties.publish_date.date?.start ?? null,
-                blocks: await getBlocks(p.id),
+                blocks: isUpdated ? await getBlocks(p.id) : [],
                 image,
                 description: p.properties.description.rich_text.map((text: any) => text.plain_text).join(""),
             };
@@ -310,12 +313,18 @@ const wrapListItems = (blocks: Block[]) => {
 // メインの処理
 (async () => {
     const pages = await getPages();
-    pages.forEach((page) => {
+    for (const page of pages) {
+        if (fs.existsSync(path.join(DATA_PATH, "page", `${page.slug}.json`))) {
+            const prevData: Page = JSON.parse(fs.readFileSync(path.join(DATA_PATH, "page", `${page.slug}.json`), "utf-8"));
+            if (new Date(prevData.lastEditedTime).getTime() === new Date(page.lastEditedTime).getTime()) {
+                continue;
+            }
+        }
         fs.writeFile(path.join(DATA_PATH, "page", `${page.slug}.json`), JSON.stringify(page), (err) => {
             if (err) throw err;
             console.log(path.join(DATA_PATH, "page", `${page.slug}.json`));
         });
-    });
+    }
     // ページのデータからブロックのデータを削除したもの
     const pagesWithoutBlocks = pages.map((p) => {
         const keysWithoutBlocks = (Object.keys(p) as (keyof Page)[]).filter((key) => key !== "blocks");
