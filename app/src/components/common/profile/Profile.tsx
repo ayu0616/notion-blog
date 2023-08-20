@@ -1,4 +1,5 @@
 import { FaGithub, FaInstagram, FaTwitter } from 'react-icons/fa'
+import ImageBase from '../ImageBase'
 
 interface ProfileProps {}
 
@@ -41,6 +42,11 @@ const Profile = ({ ...props }: ProfileProps) => {
     ]
     return (
         <div>
+            <ImageBase
+                src='/profile_icon.png'
+                alt='著者のアイコン'
+                className='rounded-full w-24 h-24'
+            ></ImageBase>
             <h4>はっさく</h4>
             <div className='flex'>
                 {snsIcons.map((snsIcon) => {
