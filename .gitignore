@@ -132,3 +132,5 @@ dist
 # python cache
 __pycache__/
 .mypy_cache/
+
+.vscode
