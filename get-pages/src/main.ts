@@ -82,22 +82,22 @@ const convertToPages = async (data: any) => {
             } else {
                 image = await imgToUri(p.properties.image.files[0].file.url);
             }
-            const page: Page = {
-                id: p.id,
-                title: p.properties.title.title[0] ? p.properties.title.title[0].plain_text : "",
-                tags: p.properties.tags.multi_select.map((tag: any) => {
-                    return { name: tag.name, color: tag.color };
-                }),
-                lastEditedTime,
-                slug,
-                status: p.properties.status.status.name,
-                publishDate: p.properties.publish_date.date?.start ?? null,
-                blocks: isUpdated ? await getBlocks(p.id) : [],
-                image,
-                description: p.properties.description.rich_text.map((text: any) => text.plain_text).join(""),
-            };
-            pages.push(page);
         }
+        const page: Page = {
+            id: p.id,
+            title: p.properties.title.title[0] ? p.properties.title.title[0].plain_text : "",
+            tags: p.properties.tags.multi_select.map((tag: any) => {
+                return { name: tag.name, color: tag.color };
+            }),
+            lastEditedTime,
+            slug,
+            status: p.properties.status.status.name,
+            publishDate: p.properties.publish_date.date?.start ?? null,
+            blocks: isUpdated ? await getBlocks(p.id) : [],
+            image,
+            description: p.properties.description.rich_text.map((text: any) => text.plain_text).join(""),
+        };
+        pages.push(page);
     }
     return pages;
 };
