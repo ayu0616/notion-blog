@@ -8,7 +8,7 @@ interface ImageProps {
     objectFit?: 'contain' | 'cover' | 'fill' | 'none' | 'scale-down'
 }
 
-const Image = ({ className, objectFit = 'contain', ...props }: ImageProps) => {
+const ImageBase = ({ className, objectFit = 'contain', ...props }: ImageProps) => {
     return (
         <div className={'image-container ' + className}>
             <NextImage
@@ -21,4 +21,4 @@ const Image = ({ className, objectFit = 'contain', ...props }: ImageProps) => {
     )
 }
 
-export default Image
+export default ImageBase

@@ -1,7 +1,7 @@
 import { Tag as TagType } from '@/type/page/page'
 import dateToStr from '../../../../util/dateToStr'
+import ImageBase from '../../../common/ImageBase'
 import TagList from '../../../common/tag/TagList'
-import Image from '@/components/common/ImageBase'
 
 interface PageInfoProps {
     title: string
@@ -24,7 +24,7 @@ const PageInfo = ({
             <p className='text-end text-sm text-gray-600'>
                 {dateToStr(publishDate)}
             </p>
-            <Image src={image} alt={'ヘッダ画像'}></Image>
+            <ImageBase src={image} alt={'ヘッダ画像'}></ImageBase>
         </div>
     )
 }
