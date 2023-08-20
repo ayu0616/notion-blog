@@ -45,9 +45,9 @@ const Profile = ({ ...props }: ProfileProps) => {
             <ImageBase
                 src='/profile_icon.png'
                 alt='著者のアイコン'
-                className='rounded-full w-24 h-24'
+                className='rounded-full w-24 h-24 mx-auto'
             ></ImageBase>
-            <h4>はっさく</h4>
+            <h4 className='text-center'>はっさく</h4>
             <div className='flex'>
                 {snsIcons.map((snsIcon) => {
                     return (
