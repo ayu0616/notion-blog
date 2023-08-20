@@ -1,3 +1,6 @@
+import BulletedList from '@/components/block/bulletedList/BulletedList'
+import BulletedListItem from '@/components/block/bulletedList/BulletedListItem'
+import Image from 'next/image'
 import { FaGithub, FaInstagram, FaTwitter } from 'react-icons/fa'
 import ImageBase from '../ImageBase'
 
@@ -6,22 +9,39 @@ interface ProfileProps {}
 const Profile = ({ ...props }: ProfileProps) => {
     const snsIcons = [
         {
+            name: 'atcoder',
+            icon: (
+                <Image
+                    src='https://img.atcoder.jp/assets/top/img/logo_bk.svg'
+                    alt='atcoder'
+                    width={16}
+                    height={16}
+                />
+            ),
+            link: 'https://atcoder.jp/users/ayu0616',
+            className:
+                'bg-gray-200 text-white hover:bg-gray-100 outline-gray-300',
+        },
+        {
             name: 'github',
             icon: <FaGithub></FaGithub>,
             link: 'https://github.com/ayu0616',
-            color: 'bg-gray-600 text-white hover:bg-gray-500',
+            className:
+                'bg-gray-600 text-white hover:bg-gray-500 outline-gray-700',
         },
         {
             name: 'twitter',
             icon: <FaTwitter></FaTwitter>,
             link: 'https://twitter.com/hassaku_0616',
-            color: 'bg-blue-500 text-white hover:bg-blue-400',
+            className:
+                'bg-blue-500 text-white hover:bg-blue-400 outline-blue-600',
         },
         {
             name: 'instagram',
             icon: <FaInstagram></FaInstagram>,
             link: 'https://instagram.com/hassaku_0616',
-            color: 'bg-pink-500 text-white hover:bg-pink-400',
+            className:
+                'bg-pink-500 text-white hover:bg-pink-400 outline-pink-600',
         },
         {
             name: 'threads',
@@ -37,38 +57,72 @@ const Profile = ({ ...props }: ProfileProps) => {
                 </svg>
             ),
             link: 'https://threads.net/@hassaku_0616',
-            color: 'bg-gray-600 text-white hover:bg-gray-500',
+            className:
+                'bg-gray-600 text-white hover:bg-gray-500 outline-gray-700',
         },
     ]
+
+    const age = () => {
+        const today = new Date()
+        const birthday = new Date(2002, 6, 16)
+        const age = today.getFullYear() - birthday.getFullYear()
+        const m = today.getMonth() - birthday.getMonth()
+        if (m < 0 || (m === 0 && today.getDate() < birthday.getDate())) {
+            return age - 1
+        }
+        return age
+    }
+
     return (
-        <div>
+        <div className='mx-auto w-fit max-w-full space-y-4 rounded-md border p-4'>
             <ImageBase
                 src='/profile_icon.png'
                 alt='著者のアイコン'
-                className='rounded-full w-24 h-24 mx-auto'
+                className='mx-auto h-24 w-24 rounded-full'
             ></ImageBase>
             <h4 className='text-center'>はっさく</h4>
-            <div className='flex'>
-                {snsIcons.map((snsIcon) => {
-                    return (
-                        <a
-                            key={snsIcon.name}
-                            href={snsIcon.link}
-                            target='_blank'
-                            rel='noreferrer'
-                            className='mr-2'
-                        >
-                            <div
-                                className={[
-                                    'rounded-full p-2',
-                                    snsIcon.color,
-                                ].join(' ')}
+            <BulletedList>
+                <BulletedListItem>
+                    <span>{`2002年生まれ（${age()}歳）`}</span>
+                </BulletedListItem>
+                <BulletedListItem>
+                    <span>京都大学経済学部3回生</span>
+                </BulletedListItem>
+                <BulletedListItem>
+                    <span>趣味</span>
+                    <BulletedList>
+                        <BulletedListItem>
+                            <span>旅行</span>
+                        </BulletedListItem>
+                        <BulletedListItem>
+                            <span>競技プログラミング</span>
+                        </BulletedListItem>
+                    </BulletedList>
+                </BulletedListItem>
+            </BulletedList>
+            <div className='space-y-2'>
+                <h5>SNSアカウント</h5>
+                <div className='flex justify-center gap-2'>
+                    {snsIcons.map((snsIcon) => {
+                        return (
+                            <a
+                                key={snsIcon.name}
+                                href={snsIcon.link}
+                                target='_blank'
+                                rel='noreferrer'
                             >
-                                {snsIcon.icon}
-                            </div>
-                        </a>
-                    )
-                })}
+                                <div
+                                    className={[
+                                        'flex aspect-square h-8 w-8 items-center justify-center rounded-full p-2 outline outline-offset-[-2px]',
+                                        snsIcon.className,
+                                    ].join(' ')}
+                                >
+                                    {snsIcon.icon}
+                                </div>
+                            </a>
+                        )
+                    })}
+                </div>
             </div>
         </div>
     )
