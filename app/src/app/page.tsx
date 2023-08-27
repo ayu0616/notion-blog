@@ -9,13 +9,24 @@ import Link from 'next/link'
 
 const NEXT_PUBLIC_URL = process.env.NEXT_PUBLIC_URL
 
+const getPageData = () => {
+    const pageData: Page[] = JSON.parse(
+        fs.readFileSync('./public/data/pages.json', 'utf-8'),
+    )
+    if (process.env.NODE_ENV === 'development') {
+        return pageData
+    } else {
+        return pageData.filter((page) => {
+            return page.status === 'published'
+        })
+    }
+}
+
 export default async function Home() {
     // const pageData: Page[] = await fetch(
     //     `${NEXT_PUBLIC_URL}/data/pages.json`,
     // ).then((res) => res.json())
-    const pageData: Page[] = JSON.parse(
-        fs.readFileSync('./public/data/pages.json', 'utf-8'),
-    )
+    const pageData: Page[] = getPageData()
     pageData.sort((a, b) => {
         return (
             new Date(b.publishDate ?? '1970-01-01').getTime() -
