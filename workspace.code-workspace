@@ -11,6 +11,7 @@
         "files.associations": {
             "*.css": "postcss"
         },
-        "files.autoSave": "off"
+        "files.autoSave": "off",
+        "cSpell.words": ["datas"]
     }
 }

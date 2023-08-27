@@ -1,4 +1,4 @@
-import Block from '@/components/block/Block'
+import { Blocks } from '@/components/block/Block'
 import Profile from '@/components/common/profile/Profile'
 import PageInfo from '@/components/page/blog/pageInfo/PageInfo'
 import { Page as PageData } from '@/type/page/page'
@@ -20,9 +20,10 @@ const Page = async ({ params: { slug } }: { params: { slug: string } }) => {
                 publishDate={pageData.publishDate ?? '1970'}
                 image={pageData.image ?? '/no_image.jpg'}
             />
-            {pageData.blocks.map((block, index) => {
+            {/* {pageData.blocks.map((block, index) => {
                 return <Block key={index} data={block} />
-            })}
+            })} */}
+            <Blocks datas={pageData.blocks} />
             <Profile />
         </main>
     )

@@ -41,34 +41,34 @@ const RichTexts = ({ datas }: { datas?: RichTextData[] | null }) => {
 const richToText = (data: RichTextData[]) =>
     data.reduce((acc, cur) => acc + cur.text, '')
 
-const Block = ({ data, ...props }: BlockProps) => {
+export const Block = ({ data, ...props }: BlockProps) => {
     switch (data.type) {
         case 'paragraph':
             return (
                 <Paragraph>
                     <RichTexts datas={data.richTexts} />
-                    <Children datas={data.children} />
+                    <Blocks datas={data.children} />
                 </Paragraph>
             )
         case 'heading_1':
             return (
                 <Heading level={3} color={data.color}>
                     <RichTexts datas={data.richTexts} />
-                    <Children datas={data.children} />
+                    <Blocks datas={data.children} />
                 </Heading>
             )
         case 'heading_2':
             return (
                 <Heading level={4} color={data.color}>
                     <RichTexts datas={data.richTexts} />
-                    <Children datas={data.children} />
+                    <Blocks datas={data.children} />
                 </Heading>
             )
         case 'heading_3':
             return (
                 <Heading level={5} color={data.color}>
                     <RichTexts datas={data.richTexts} />
-                    <Children datas={data.children} />
+                    <Blocks datas={data.children} />
                 </Heading>
             )
         case 'callout':
@@ -78,7 +78,7 @@ const Block = ({ data, ...props }: BlockProps) => {
                     color={data.color}
                     content={<RichTexts datas={data.richTexts} />}
                 >
-                    <Children datas={data.children} />
+                    <Blocks datas={data.children} />
                 </Callout>
             )
         case 'bulleted_list':
@@ -93,7 +93,7 @@ const Block = ({ data, ...props }: BlockProps) => {
             return (
                 <BulletedListItem>
                     <RichTexts datas={data.richTexts} />
-                    <Children datas={data.children} />
+                    <Blocks datas={data.children} />
                 </BulletedListItem>
             )
         case 'numbered_list':
@@ -108,7 +108,7 @@ const Block = ({ data, ...props }: BlockProps) => {
             return (
                 <NumberedListItem>
                     <RichTexts datas={data.richTexts} />
-                    <Children datas={data.children} />
+                    <Blocks datas={data.children} />
                 </NumberedListItem>
             )
         case 'bookmark':
@@ -137,4 +137,12 @@ const Block = ({ data, ...props }: BlockProps) => {
     }
 }
 
-export default Block
+export const Blocks = ({ datas }: { datas?: BlockData[] | null }) => {
+    return (
+        <>
+            {datas?.map((data, i) => {
+                return <Block key={i} data={data}></Block>
+            })}
+        </>
+    )
+}
