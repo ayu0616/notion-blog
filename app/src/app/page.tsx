@@ -4,8 +4,8 @@ import Carousel from '@/components/common/carousel/Carousel'
 import TagList from '@/components/common/tag/TagList'
 import { Page } from '@/type/page/page'
 import dateToStr from '@/util/dateToStr'
-import Link from 'next/link'
 import fs from 'fs'
+import Link from 'next/link'
 
 const NEXT_PUBLIC_URL = process.env.NEXT_PUBLIC_URL
 
@@ -16,6 +16,12 @@ export default async function Home() {
     const pageData: Page[] = JSON.parse(
         fs.readFileSync('./public/data/pages.json', 'utf-8'),
     )
+    pageData.sort((a, b) => {
+        return (
+            new Date(b.publishDate ?? '1970-01-01').getTime() -
+            new Date(a.publishDate ?? '1970-01-01').getTime()
+        )
+    })
     const carouselData = pageData.map((page) => {
         return {
             image: page.image ?? '/no_image.jpg',
