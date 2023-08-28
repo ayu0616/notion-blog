@@ -11,25 +11,25 @@ const Tag = ({ name, color, isLink = false, ...props }: TagProps) => {
     const bg = (() => {
         switch (color) {
             case 'red':
-                return 'bg-red-300/50 text-red-800'
+                return 'bg-red-300/50 text-red-950'
             case 'blue':
-                return 'bg-blue-300/50 text-blue-800'
+                return 'bg-blue-300/50 text-blue-950'
             case 'green':
-                return 'bg-green-400/50 text-green-800'
+                return 'bg-green-400/50 text-green-950'
             case 'yellow':
-                return 'bg-yellow-300/50 text-yellow-800'
+                return 'bg-yellow-300/50 text-yellow-950'
             case 'purple':
-                return 'bg-purple-300/50 text-purple-800'
+                return 'bg-purple-300/50 text-purple-950'
             case 'pink':
-                return 'bg-pink-300/50 text-pink-800'
+                return 'bg-pink-300/50 text-pink-950'
             case 'gray':
-                return 'bg-gray-300/50 text-gray-800'
+                return 'bg-gray-300/50 text-gray-950'
             case 'brown':
-                return 'bg-amber-600/50 text-amber-800'
+                return 'bg-amber-600/50 text-amber-950'
             case 'orange':
-                return 'bg-orange-300/50 text-orange-800'
+                return 'bg-orange-300/50 text-orange-950'
             default:
-                return 'bg-slate-300/50 text-slate-800'
+                return 'bg-slate-300/50 text-slate-950'
         }
     })()
     if (isLink) {
