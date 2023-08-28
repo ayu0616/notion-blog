@@ -15,11 +15,12 @@ const ImageBase = ({
 }: ImageProps) => {
     const objectFitClass = setObjectFitClass(objectFit)
     return (
-        <div className={'image-container ' + className}>
+        <div className={'image-container relative ' + className}>
             <NextImage
                 {...props}
-                layout='fill'
                 // objectFit={objectFit}
+                fill
+                sizes='100%'
                 className={['rounded-[inherit]', objectFitClass].join(' ')}
             />
         </div>
