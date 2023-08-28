@@ -6,7 +6,7 @@ interface EquationProps {
 
 const Equation = ({ math, ...props }: EquationProps) => {
     return (
-        <div>
+        <div className='text-lg'>
             <BlockMath>{math}</BlockMath>
         </div>
     )
