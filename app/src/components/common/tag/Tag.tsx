@@ -32,19 +32,16 @@ const Tag = ({ name, color, isLink = false, ...props }: TagProps) => {
                 return 'bg-slate-300/50 text-slate-950'
         }
     })()
-    if (isLink) {
-        return (
-            <Link href={`/tag/${name}`} className=''>
-                <span
-                    className={['rounded-sm p-1 hover:underline', bg].join(' ')}
-                >
-                    {name}
-                </span>
-            </Link>
-        )
-    } else {
-        return <span className={['rounded-sm p-1', bg].join(' ')}>{name}</span>
-    }
+    const tagBody = (
+        <span className={['rounded-sm p-1', bg].join(' ')}>{name}</span>
+    )
+    return isLink ? (
+        <Link href={`/tag/${name}`} className='hover:underline'>
+            {tagBody}
+        </Link>
+    ) : (
+        tagBody
+    )
 }
 
 export default Tag
