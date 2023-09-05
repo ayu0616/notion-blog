@@ -74,6 +74,17 @@ const RichText = ({
                 {text}
             </a>
         )
+    } else if (annotations.code) {
+        return (
+            <code
+                className={[
+                    'rounded-sm bg-gray-200 px-1 text-red-600',
+                    ...annotationClass,
+                ].join(' ')}
+            >
+                {text}
+            </code>
+        )
     } else {
         return <span className={annotationClass.join(' ')}>{text}</span>
     }
