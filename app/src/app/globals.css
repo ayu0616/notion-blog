@@ -4,6 +4,14 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+    font-family: 'Monaco';
+    src: url('https://gnjo.github.io/monaco-webfont.eot');
+    src:
+        url('https://gnjo.github.io/monaco-webfont.woff') format('woff'),
+        url('https://gnjo.github.io/monaco-webfont.woff2') format('woff2');
+}
+
 .drag-none {
     -webkit-user-drag: none;
     -khtml-user-drag: none;
@@ -20,27 +28,31 @@ body {
 }
 
 h1 {
-    @apply text-3xl md:text-4xl font-bold;
+    @apply text-3xl font-bold md:text-4xl;
 }
 
 h2 {
-    @apply text-2xl md:text-3xl font-bold;
+    @apply text-2xl font-bold md:text-3xl;
 }
 
 h3 {
-    @apply text-xl md:text-2xl font-bold;
+    @apply text-xl font-bold md:text-2xl;
 }
 
 h4 {
-    @apply text-lg md:text-xl font-bold;
+    @apply text-lg font-bold md:text-xl;
 }
 
 h5 {
-    @apply text-base md:text-lg font-bold;
+    @apply text-base font-bold md:text-lg;
 }
 
 h6 {
-    @apply text-sm md:text-base font-bold;
+    @apply text-sm font-bold md:text-base;
+}
+
+code {
+    font-family: Monaco, 'BIZ UDPGothic', monospace !important;
 }
 
 /* 整形された数式の下に整形前の数式が表示されるので、それを消す */
