@@ -51,7 +51,8 @@ export type Block =
     | Divider
     | Image
     | BulletedList
-    | NumberedList;
+    | NumberedList
+    | Video;
 
 export interface BlockBase {
     id: string;
@@ -152,5 +153,11 @@ export interface Divider extends BlockBase {
 /** 画像 */
 export interface Image extends BlockBase, WithCaption {
     type: "image";
+    url: string;
+}
+
+/** 動画 */
+export interface Video extends BlockBase, WithCaption {
+    type: "video";
     url: string;
 }
