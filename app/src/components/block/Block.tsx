@@ -13,6 +13,7 @@ import Divider from './divider/Divider'
 import Image from './image/Image'
 import NumberedList from './numberedList/NumberedList'
 import NumberedListItem from './numberedList/NumberedListItem'
+import Video from './video/Video'
 
 interface BlockProps {
     data: BlockData
@@ -132,6 +133,8 @@ export const Block = ({ data, ...props }: BlockProps) => {
                 }
             })()
             return <Image src={data.url} alt={alt}></Image>
+        case 'video':
+            return <Video url={data.url} />
         default:
             return <></>
     }
