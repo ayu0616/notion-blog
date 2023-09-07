@@ -7,7 +7,7 @@ import TagList from '@/components/common/tag/TagList'
 import { Page } from '@/type/page/page'
 import dateToStr from '@/util/dateToStr'
 import Link from 'next/link'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 interface BlogPageProps {
     pageData: Page[]
@@ -17,11 +17,36 @@ interface BlogPageProps {
 const BlogPages = ({ pageData, ...props }: BlogPageProps) => {
     const [showPageData, setPageData] = useState<Page[]>(pageData)
     const tagData = getTagData(pageData)
+    const [checkedTag, setCheckedTag] = useState<string[]>([])
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const checked = e.target.checked
+        const value = e.target.value
+        setCheckedTag((prev) => {
+            if (checked) {
+                return [...prev, value]
+            } else {
+                return prev.filter((tag) => tag !== value)
+            }
+        })
+    }
+    useEffect(() => {
+        if (checkedTag.length === 0) {
+            setPageData(pageData)
+        } else {
+            setPageData(
+                pageData.filter((page) => {
+                    return page.tags.some((tag) => {
+                        return checkedTag.includes(tag.name)
+                    })
+                }),
+            )
+        }
+    }, [checkedTag, pageData])
     return (
         <>
             <div className='flex gap-2 px-4'>
                 {tagData.map((tag, i) => {
-                    return <Checkbox {...tag} key={i} />
+                    return <Checkbox {...tag} key={i} onChange={handleChange} />
                 })}
             </div>
             <div className='grid gap-4 px-4'>
