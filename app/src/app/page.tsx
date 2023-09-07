@@ -43,6 +43,9 @@ export default async function Home() {
             slug: page.slug,
         }
     })
+
+    const tagData = getTagData(pageData)
+
     return (
         <main className='mx-auto max-w-4xl space-y-4 pb-4'>
             <Carousel data={carouselData}></Carousel>
@@ -82,4 +85,23 @@ export default async function Home() {
             </div>
         </main>
     )
+}
+
+/** ページにふされているすべてのタグの取得する */
+const getTagData = (pageData: Page[]): CheckboxProps[] => {
+    const tagSet = new Set<string>()
+    pageData.forEach((page) => {
+        page.tags.forEach((tag) => {
+            tagSet.add(JSON.stringify(tag))
+        })
+    })
+    const tagData: CheckboxProps[] = []
+    tagSet.forEach((tag) => {
+        const t = JSON.parse(tag)
+        tagData.push({
+            value: t.name,
+            color: t.color,
+        })
+    })
+    return tagData
 }
