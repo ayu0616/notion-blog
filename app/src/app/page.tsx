@@ -1,6 +1,7 @@
 import Card from '@/components/common/Card'
 import Image from '@/components/common/ImageBase'
 import Carousel from '@/components/common/carousel/Carousel'
+import Checkbox, { CheckboxProps } from '@/components/common/checkbox/Checkbox'
 import TagList from '@/components/common/tag/TagList'
 import { Page } from '@/type/page/page'
 import dateToStr from '@/util/dateToStr'
@@ -46,36 +47,9 @@ export default async function Home() {
         <main className='mx-auto max-w-4xl space-y-4 pb-4'>
             <Carousel data={carouselData}></Carousel>
             <div className='flex gap-2 px-4'>
-                <div>
-                    <input
-                        className='peer hidden'
-                        type='checkbox'
-                        name='tag-search'
-                        id='プログラミング'
-                        value='プログラミング'
-                    />
-                    <label
-                        className='block rounded bg-orange-500 px-2 py-1 text-white opacity-75 peer-checked:opacity-100'
-                        htmlFor='プログラミング'
-                    >
-                        プログラミング
-                    </label>
-                </div>
-                <div>
-                    <input
-                        className='peer hidden'
-                        type='checkbox'
-                        name='tag-search'
-                        id='勉強'
-                        value='勉強'
-                    />
-                    <label
-                        className='block rounded bg-orange-500 px-2 py-1 text-white opacity-75 peer-checked:opacity-100'
-                        htmlFor='勉強'
-                    >
-                        勉強
-                    </label>
-                </div>
+                {tagData.map((tag, i) => {
+                    return <Checkbox {...tag} key={i} />
+                })}
             </div>
             <div className='grid gap-4 px-4'>
                 {pageData.map((page, i) => {
