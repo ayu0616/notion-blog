@@ -28,6 +28,7 @@ const Header = () => {
         {
             icon: <FaList />,
             title: 'タグ別',
+            href: '/tag',
         },
     ]
     const navHeight = 45 * menu.length

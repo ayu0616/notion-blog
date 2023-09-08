@@ -19,6 +19,7 @@ import {
     NumberedList,
     NumberedListItem,
     Paragraph,
+    Video,
 } from "./type/block/block";
 import { RichText } from "./type/block/richText";
 import { Page } from "./type/page";
@@ -240,6 +241,15 @@ const convertToBlocks = async (data: any) => {
                     url,
                 };
                 blocks.push(image);
+                break;
+            case "video":
+                const video: Video = {
+                    ...blockBase,
+                    type: "video",
+                    caption: convertToRichTexts(b.video.caption),
+                    url: b.video[b.video.type].url,
+                };
+                blocks.push(video);
                 break;
             default:
                 break;

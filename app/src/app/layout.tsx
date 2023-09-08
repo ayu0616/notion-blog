@@ -13,6 +13,7 @@ export const metadata: Metadata = {
             type: 'image/x-icon',
         },
     ],
+    manifest: '/manifest.json',
 }
 
 export default function RootLayout({

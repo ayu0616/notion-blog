@@ -5,17 +5,17 @@
         // border-radius: 50%;
     }
 
-    > ul.bulleted-list > li {
+    ul.bulleted-list li {
         &::before {
             content: '◦';
         }
 
-        > ul.bulleted-list > li {
+        ul.bulleted-list li {
             &::before {
                 content: '▪';
             }
 
-            > ul.bulleted-list > li {
+            ul.bulleted-list li {
                 @if $nest_num > 0 {
                     @include bulletedList($nest_num - 1);
                 }
@@ -24,8 +24,15 @@
     }
 }
 
-ul.bulleted-list > li {
+ul.bulleted-list li {
     @include bulletedList(3);
+
+    &:not(:first-child) {
+        @apply mt-2;
+    }
+    li{
+        @apply mt-2;
+    }
 
     &::before {
         $size: calc(1rem / 3);
@@ -40,12 +47,8 @@ ul.bulleted-list > li {
         vertical-align: middle;
     }
 
-    > span,
+    span,
     a {
         vertical-align: middle;
-    }
-
-    > ul.bulleted-list {
-        @apply ml-4;
     }
 }

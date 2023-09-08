@@ -2,8 +2,12 @@ interface BulletedListItemProps {
     children?: React.ReactNode
 }
 
-const BulletedListItem = ({ ...props }: BulletedListItemProps) => {
-    return <li {...props}></li>
+const BulletedListItem = ({ children, ...props }: BulletedListItemProps) => {
+    return (
+        <li className='flex'>
+            <div>{children}</div>
+        </li>
+    )
 }
 
 export default BulletedListItem
