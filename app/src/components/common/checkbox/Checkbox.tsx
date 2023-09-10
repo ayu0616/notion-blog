@@ -9,6 +9,7 @@ export interface CheckboxProps {
 }
 
 const Checkbox = ({ value, color = 'default', ...props }: CheckboxProps) => {
+    const uuid = crypto.randomUUID()
     const colorClass = getColorClass(color)
     return (
         <div>
@@ -16,7 +17,7 @@ const Checkbox = ({ value, color = 'default', ...props }: CheckboxProps) => {
                 {...props}
                 className='peer hidden'
                 type='checkbox'
-                id={value}
+                id={uuid}
                 value={value}
             />
             <label
@@ -24,7 +25,7 @@ const Checkbox = ({ value, color = 'default', ...props }: CheckboxProps) => {
                     'block rounded-full px-2 py-1 opacity-40 peer-checked:opacity-100',
                     colorClass,
                 ].join(' ')}
-                htmlFor={value}
+                htmlFor={uuid}
             >
                 {value}
             </label>
