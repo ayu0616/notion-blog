@@ -330,6 +330,7 @@ const wrapListItems = (blocks: Block[]) => {
                 continue;
             }
         }
+        fs.mkdirSync(path.join(DATA_PATH, "page"), { recursive: true });
         fs.writeFile(path.join(DATA_PATH, "page", `${page.slug}.json`), JSON.stringify(page), (err) => {
             if (err) throw err;
             console.log(path.join(DATA_PATH, "page", `${page.slug}.json`));
