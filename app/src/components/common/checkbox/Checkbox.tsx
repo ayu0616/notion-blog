@@ -1,4 +1,5 @@
 import { TagColor } from '@/type/page/page'
+import { useId } from 'react'
 
 export interface CheckboxProps {
     value?: string
@@ -9,7 +10,7 @@ export interface CheckboxProps {
 }
 
 const Checkbox = ({ value, color = 'default', ...props }: CheckboxProps) => {
-    const uuid = crypto.randomUUID()
+    const uuid = useId()
     const colorClass = getColorClass(color)
     return (
         <div>
