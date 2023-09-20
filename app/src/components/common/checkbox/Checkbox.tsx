@@ -1,4 +1,5 @@
 import { TagColor } from '@/type/page/page'
+import { useId } from 'react'
 
 export interface CheckboxProps {
     value?: string
@@ -9,6 +10,7 @@ export interface CheckboxProps {
 }
 
 const Checkbox = ({ value, color = 'default', ...props }: CheckboxProps) => {
+    const uuid = useId()
     const colorClass = getColorClass(color)
     return (
         <div>
@@ -16,15 +18,15 @@ const Checkbox = ({ value, color = 'default', ...props }: CheckboxProps) => {
                 {...props}
                 className='peer hidden'
                 type='checkbox'
-                id={value}
+                id={uuid}
                 value={value}
             />
             <label
                 className={[
-                    'block rounded-full px-2 py-1 opacity-40 peer-checked:opacity-100',
+                    'block cursor-pointer select-none rounded-full px-2 py-1 opacity-40 peer-checked:opacity-100',
                     colorClass,
                 ].join(' ')}
-                htmlFor={value}
+                htmlFor={uuid}
             >
                 {value}
             </label>
