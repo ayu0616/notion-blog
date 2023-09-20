@@ -320,6 +320,17 @@ const wrapListItems = (blocks: Block[]) => {
     return res;
 };
 
+/** ファイルに書き込む関数（ディレクトリが存在しない場合は作成する） */
+const writeFile = (path: string, data: string) => {
+    return fs.writeFile(path, data, (err) => {
+        if (err && err.code === "ENOENT") {
+            const dir = path.split("/").slice(0, -1).join("/");
+            fs.mkdirSync(dir, { recursive: true });
+            writeFile(path, data);
+        }
+    });
+};
+
 // メインの処理
 (async () => {
     const pages = await getPages();
@@ -330,11 +341,8 @@ const wrapListItems = (blocks: Block[]) => {
                 continue;
             }
         }
-        fs.mkdirSync(path.join(DATA_PATH, "page"), { recursive: true });
-        fs.writeFile(path.join(DATA_PATH, "page", `${page.slug}.json`), JSON.stringify(page), (err) => {
-            if (err) throw err;
-            console.log(path.join(DATA_PATH, "page", `${page.slug}.json`));
-        });
+        writeFile(path.join(DATA_PATH, "page", `${page.slug}.json`), JSON.stringify(page));
+        console.log(path.join(DATA_PATH, "page", `${page.slug}.json`));
     }
     // ページのデータからブロックのデータを削除したもの
     const pagesWithoutBlocks = pages.map((p) => {
@@ -345,8 +353,6 @@ const wrapListItems = (blocks: Block[]) => {
         });
         return pageWithoutBlocks;
     });
-    fs.writeFile(path.join(DATA_PATH, "pages.json"), JSON.stringify(pagesWithoutBlocks), (err) => {
-        if (err) throw err;
-        console.log(path.join(DATA_PATH, "pages.json"));
-    });
+    writeFile(path.join(DATA_PATH, "pages.json"), JSON.stringify(pagesWithoutBlocks));
+    console.log(path.join(DATA_PATH, "pages.json"));
 })();
