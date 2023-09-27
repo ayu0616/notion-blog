@@ -1,3 +1,4 @@
+import LinkButton from '@/components/block/LinkButton'
 import Carousel from '@/components/common/carousel/Carousel'
 import { Page } from '@/type/page/page'
 import fs from 'fs'

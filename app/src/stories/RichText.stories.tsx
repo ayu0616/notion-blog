@@ -33,3 +33,19 @@ export const Default: Story = {
         },
     },
 }
+
+export const Link: Story = {
+    args: {
+        type: 'text',
+        text: 'https://www.google.com',
+        href: 'https://www.google.com',
+        annotations: {
+            bold: false,
+            italic: false,
+            strikethrough: false,
+            underline: false,
+            code: false,
+            color: 'default',
+        },
+    },
+}
