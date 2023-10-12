@@ -1,5 +1,6 @@
 import { RichText as RichTextType } from '@/type/page/block/richText'
 import { Color } from '@/type/page/color'
+import LinkButton from './LinkButton'
 
 function colorToClass(color: Color) {
     switch (color) {
@@ -60,7 +61,9 @@ const RichText = ({
         annotations.underline ? 'underline' : '',
         colorToClass(annotations.color),
     ]
-    if (href) {
+    if (href && href === text) {
+        return <LinkButton href={href} />
+    } else if (href) {
         return (
             <a
                 className={[
