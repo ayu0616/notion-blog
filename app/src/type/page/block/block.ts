@@ -52,7 +52,8 @@ export type Block =
     | Image
     | BulletedList
     | NumberedList
-    | Video;
+    | Video
+    | TableOfContents;
 
 export interface BlockBase {
     id: string;
@@ -160,4 +161,9 @@ export interface Image extends BlockBase, WithCaption {
 export interface Video extends BlockBase, WithCaption {
     type: "video";
     url: string;
+}
+
+/** 目次 */
+export interface TableOfContents extends BlockBase {
+    type: "table_of_contents";
 }
