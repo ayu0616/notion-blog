@@ -2,16 +2,17 @@ import { ReactNode, useState } from 'react'
 
 interface AccordionButtonProps {
     children?: ReactNode
+    open?: boolean
 }
 
-const AccordionButton = ({ ...props }: AccordionButtonProps) => {
-    const [open, setOpen] = useState(false)
+const AccordionButton = ({ open = false, ...props }: AccordionButtonProps) => {
+    const [isOpen, setOpen] = useState(open)
 
     return (
         <div
             {...props}
             className='accordion-button group cursor-pointer border-b hover:bg-slate-50 active:bg-slate-100'
-            data-open={open}
+            data-open={isOpen}
             onClick={() => setOpen((p) => !p)}
         ></div>
     )
