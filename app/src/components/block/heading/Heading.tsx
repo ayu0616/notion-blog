@@ -1,4 +1,5 @@
 import { Color } from '@/type/page/color'
+import { useId } from 'react'
 
 interface HeadingProps {
     children?: React.ReactNode
@@ -58,21 +59,22 @@ const Heading = ({
 }: HeadingProps) => {
     const colorClass = colorToClass(color)
     const cn = [colorClass, className].join(' ')
+    const id = useId()
     switch (level) {
         case 1:
-            return <h1 {...props} className={cn}></h1>
+            return <h1 {...props} id={id} className={cn}></h1>
         case 2:
-            return <h2 {...props} className={cn}></h2>
+            return <h2 {...props} id={id} className={cn}></h2>
         case 3:
-            return <h3 {...props} className={cn}></h3>
+            return <h3 {...props} id={id} className={cn}></h3>
         case 4:
-            return <h4 {...props} className={cn}></h4>
+            return <h4 {...props} id={id} className={cn}></h4>
         case 5:
-            return <h5 {...props} className={cn}></h5>
+            return <h5 {...props} id={id} className={cn}></h5>
         case 6:
-            return <h6 {...props} className={cn}></h6>
+            return <h6 {...props} id={id} className={cn}></h6>
         default:
-            return <h1 {...props} className={cn}></h1>
+            return <h1 {...props} id={id} className={cn}></h1>
     }
 }
 
