@@ -7,6 +7,7 @@ interface TableOfContentProps {}
 interface HeadingData {
     text: string
     level: number
+    id: string
 }
 
 const TableOfContent = ({ ...props }: TableOfContentProps) => {
@@ -21,7 +22,8 @@ const TableOfContent = ({ ...props }: TableOfContentProps) => {
                 h.classList.value.match(/heading-(\d)/)?.[1] || '1',
             )
             const text = h.textContent || ''
-            return { level, text }
+            const id = h.id
+            return { level, text, id }
         })
         setHeadings(headingDatas)
     }, [])
@@ -30,7 +32,13 @@ const TableOfContent = ({ ...props }: TableOfContentProps) => {
         <div>
             {headings.map((h, i) => (
                 <p key={i} className={plClass(h.level)}>
-                    {h.text}
+                    <a
+                        onClick={() => {
+                            smoothScroll(h.id)
+                        }}
+                    >
+                        {h.text}
+                    </a>
                 </p>
             ))}
         </div>
@@ -50,4 +58,13 @@ const plClass = (level: number) => {
         default:
             return 'pl-0'
     }
+}
+
+const smoothScroll = (id: string) => {
+    const target = document.getElementById(id)
+    if (!target) return
+    target.scrollIntoView({
+        behavior: 'smooth',
+        block: 'center',
+    })
 }
