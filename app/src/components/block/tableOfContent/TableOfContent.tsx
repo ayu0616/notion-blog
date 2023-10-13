@@ -29,9 +29,9 @@ const TableOfContent = ({ ...props }: TableOfContentProps) => {
     }, [])
 
     return (
-        <div>
+        <ul>
             {headings.map((h, i) => (
-                <p key={i} className={plClass(h.level)}>
+                <li key={i} className={plClass(h.level)}>
                     <a
                         onClick={() => {
                             smoothScroll(h.id)
@@ -39,9 +39,9 @@ const TableOfContent = ({ ...props }: TableOfContentProps) => {
                     >
                         {h.text}
                     </a>
-                </p>
+                </li>
             ))}
-        </div>
+        </ul>
     )
 }
 
