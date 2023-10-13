@@ -1,5 +1,4 @@
 import { Blocks } from '@/components/block/Block'
-import LinkButton from '@/components/block/LinkButton'
 import Profile from '@/components/common/profile/Profile'
 import PageInfo from '@/components/page/blog/pageInfo/PageInfo'
 import { Page as PageData } from '@/type/page/page'
@@ -21,9 +20,6 @@ const Page = async ({ params: { slug } }: { params: { slug: string } }) => {
                 publishDate={pageData.publishDate ?? '1970'}
                 image={pageData.image ?? '/no_image.jpg'}
             />
-            <div>
-                <LinkButton href='https://zenn.dev/yoshimok/articles/176be565d030b3'></LinkButton>
-            </div>
             {/* {pageData.blocks.map((block, index) => {
                 return <Block key={index} data={block} />
             })} */}
