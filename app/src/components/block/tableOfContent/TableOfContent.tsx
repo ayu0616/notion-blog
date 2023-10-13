@@ -1,6 +1,8 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import { FaAngleDown } from 'react-icons/fa'
+import Heading from '../heading/Heading'
 
 interface TableOfContentProps {}
 
@@ -29,20 +31,30 @@ const TableOfContent = ({ ...props }: TableOfContentProps) => {
     }, [])
 
     return (
-        <ul>
-            {headings.map((h, i) => (
-                <li key={i} className={plClass(h.level)}>
-                    <a
-                        onClick={() => {
-                            smoothScroll(h.id)
-                        }}
-                        className='cursor-pointer hover:underline'
-                    >
-                        {h.text}
-                    </a>
-                </li>
-            ))}
-        </ul>
+        <div>
+            <Heading level={3}>
+                <div className='flex justify-between'>
+                    <div className='flex-1 text-center'>〜目次〜</div>
+                    <div>
+                        <FaAngleDown></FaAngleDown>
+                    </div>
+                </div>
+            </Heading>
+            <ul>
+                {headings.map((h, i) => (
+                    <li key={i} className={plClass(h.level)}>
+                        <a
+                            onClick={() => {
+                                smoothScroll(h.id)
+                            }}
+                            className='cursor-pointer hover:underline'
+                        >
+                            {h.text}
+                        </a>
+                    </li>
+                ))}
+            </ul>
+        </div>
     )
 }
 
