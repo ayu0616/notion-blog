@@ -13,6 +13,7 @@ import Divider from './divider/Divider'
 import Image from './image/Image'
 import NumberedList from './numberedList/NumberedList'
 import NumberedListItem from './numberedList/NumberedListItem'
+import TableOfContent from './tableOfContent/TableOfContent'
 import Video from './video/Video'
 
 interface BlockProps {
@@ -53,21 +54,21 @@ export const Block = ({ data, ...props }: BlockProps) => {
             )
         case 'heading_1':
             return (
-                <Heading level={3} color={data.color}>
+                <Heading className='heading-1' level={3} color={data.color}>
                     <RichTexts datas={data.richTexts} />
                     <Blocks datas={data.children} />
                 </Heading>
             )
         case 'heading_2':
             return (
-                <Heading level={4} color={data.color}>
+                <Heading className='heading-2' level={4} color={data.color}>
                     <RichTexts datas={data.richTexts} />
                     <Blocks datas={data.children} />
                 </Heading>
             )
         case 'heading_3':
             return (
-                <Heading level={5} color={data.color}>
+                <Heading className='heading-3' level={5} color={data.color}>
                     <RichTexts datas={data.richTexts} />
                     <Blocks datas={data.children} />
                 </Heading>
@@ -135,6 +136,8 @@ export const Block = ({ data, ...props }: BlockProps) => {
             return <Image src={data.url} alt={alt}></Image>
         case 'video':
             return <Video url={data.url} />
+        case 'table_of_contents':
+            return <TableOfContent></TableOfContent>
         default:
             return <></>
     }
