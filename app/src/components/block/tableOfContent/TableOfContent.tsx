@@ -36,6 +36,7 @@ const TableOfContent = ({ ...props }: TableOfContentProps) => {
                         onClick={() => {
                             smoothScroll(h.id)
                         }}
+                        className='cursor-pointer hover:underline'
                     >
                         {h.text}
                     </a>
