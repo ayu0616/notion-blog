@@ -19,6 +19,7 @@ import {
     NumberedList,
     NumberedListItem,
     Paragraph,
+    TableOfContents,
     Video,
 } from "./type/block/block";
 import { RichText } from "./type/block/richText";
@@ -250,6 +251,13 @@ const convertToBlocks = async (data: any) => {
                     url: b.video[b.video.type].url,
                 };
                 blocks.push(video);
+                break;
+            case "table_of_contents":
+                const tableOfContents: TableOfContents = {
+                    ...blockBase,
+                    type: "table_of_contents",
+                };
+                blocks.push(tableOfContents);
                 break;
             default:
                 break;
