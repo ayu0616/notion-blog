@@ -4,6 +4,7 @@ interface HeadingProps {
     children?: React.ReactNode
     level?: 1 | 2 | 3 | 4 | 5 | 6
     color?: Color
+    className?: string
 }
 
 function colorToClass(color: Color) {
@@ -49,23 +50,29 @@ function colorToClass(color: Color) {
     }
 }
 
-const Heading = ({ level = 1, color = "default", ...props }: HeadingProps) => {
+const Heading = ({
+    level = 1,
+    color = 'default',
+    className = '',
+    ...props
+}: HeadingProps) => {
     const colorClass = colorToClass(color)
+    const cn = [colorClass, className].join(' ')
     switch (level) {
         case 1:
-            return <h1 {...props} className={colorClass}></h1>
+            return <h1 {...props} className={cn}></h1>
         case 2:
-            return <h2 {...props} className={colorClass}></h2>
+            return <h2 {...props} className={cn}></h2>
         case 3:
-            return <h3 {...props} className={colorClass}></h3>
+            return <h3 {...props} className={cn}></h3>
         case 4:
-            return <h4 {...props} className={colorClass}></h4>
+            return <h4 {...props} className={cn}></h4>
         case 5:
-            return <h5 {...props} className={colorClass}></h5>
+            return <h5 {...props} className={cn}></h5>
         case 6:
-            return <h6 {...props} className={colorClass}></h6>
+            return <h6 {...props} className={cn}></h6>
         default:
-            return <h1 {...props} className={colorClass}></h1>
+            return <h1 {...props} className={cn}></h1>
     }
 }
 
