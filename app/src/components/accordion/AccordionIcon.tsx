@@ -1,4 +1,4 @@
-import { FaAngleDown } from 'react-icons/fa'
+import { FaAngleUp } from 'react-icons/fa'
 
 interface AccordionIconProps {}
 
@@ -8,7 +8,7 @@ const AccordionIcon = ({ ...props }: AccordionIconProps) => {
             className='transition-all duration-300 ease-in-out group-data-[open="true"]:rotate-180'
             {...props}
         >
-            <FaAngleDown />
+            <FaAngleUp />
         </div>
     )
 }
