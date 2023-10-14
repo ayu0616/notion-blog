@@ -27,13 +27,13 @@ export const DefaultClose: Story = {
         <div className='w-[600px]'>
             <Accordion>
                 <AccordionButton>
-                    <div className='flex items-center justify-between bg-white hover:bg-inherit active:bg-inherit'>
+                    <div className='flex items-center justify-between'>
                         <h3 className='flex-1'>見出し</h3>
                         <AccordionIcon />
                     </div>
                 </AccordionButton>
                 <AccordionContent>
-                    <div className='bg-white'>
+                    <div>
                         <p>
                             hoge hoge hoge hoge hoge hoge hoge hoge hoge hoge
                             hoge hoge
@@ -71,13 +71,13 @@ export const DefaultOpen: Story = {
         <div className='w-[600px]'>
             <Accordion>
                 <AccordionButton open={true}>
-                    <div className='flex items-center justify-between bg-white hover:bg-inherit active:bg-inherit'>
+                    <div className='flex items-center justify-between'>
                         <h3 className='flex-1'>見出し</h3>
                         <AccordionIcon />
                     </div>
                 </AccordionButton>
                 <AccordionContent>
-                    <div className='bg-white'>
+                    <div>
                         <p>
                             hoge hoge hoge hoge hoge hoge hoge hoge hoge hoge
                             hoge hoge
