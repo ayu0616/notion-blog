@@ -27,13 +27,13 @@ export const Default: Story = {
         <div className='w-[600px]'>
             <Accordion>
                 <AccordionButton>
-                    <div className='flex items-center justify-between'>
+                    <div className='flex items-center justify-between bg-white hover:bg-inherit active:bg-inherit'>
                         <h3 className='flex-1'>見出し</h3>
                         <AccordionIcon />
                     </div>
                 </AccordionButton>
                 <AccordionContent>
-                    <div>
+                    <div className='bg-white'>
                         <p>
                             hoge hoge hoge hoge hoge hoge hoge hoge hoge hoge
                             hoge hoge
