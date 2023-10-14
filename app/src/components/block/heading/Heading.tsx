@@ -1,9 +1,13 @@
 import { Color } from '@/type/page/color'
+import { useId } from 'react'
+
+type HeadingLevel = 1 | 2 | 3 | 4 | 5 | 6
 
 interface HeadingProps {
     children?: React.ReactNode
-    level?: 1 | 2 | 3 | 4 | 5 | 6
+    level?: HeadingLevel
     color?: Color
+    className?: string
 }
 
 function colorToClass(color: Color) {
@@ -49,24 +53,48 @@ function colorToClass(color: Color) {
     }
 }
 
-const Heading = ({ level = 1, color = "default", ...props }: HeadingProps) => {
-    const colorClass = colorToClass(color)
+const HeadingTag = ({
+    level = 1,
+    ...props
+}: { level: HeadingLevel } & React.DetailedHTMLProps<
+    React.HTMLAttributes<HTMLHeadingElement>,
+    HTMLHeadingElement
+>) => {
     switch (level) {
         case 1:
-            return <h1 {...props} className={colorClass}></h1>
+            return <h1 {...props} />
         case 2:
-            return <h2 {...props} className={colorClass}></h2>
+            return <h2 {...props} />
         case 3:
-            return <h3 {...props} className={colorClass}></h3>
+            return <h3 {...props} />
         case 4:
-            return <h4 {...props} className={colorClass}></h4>
+            return <h4 {...props} />
         case 5:
-            return <h5 {...props} className={colorClass}></h5>
+            return <h5 {...props} />
         case 6:
-            return <h6 {...props} className={colorClass}></h6>
+            return <h6 {...props} />
         default:
-            return <h1 {...props} className={colorClass}></h1>
+            return <h1 {...props} />
     }
+}
+
+const Heading = ({
+    level = 1,
+    color = 'default',
+    className = '',
+    ...props
+}: HeadingProps) => {
+    const colorClass = colorToClass(color)
+    const cn = [colorClass, className].join(' ')
+    const id = useId()
+    return (
+        <HeadingTag
+            {...props}
+            level={level}
+            id={id}
+            className={cn}
+        ></HeadingTag>
+    )
 }
 
 export default Heading

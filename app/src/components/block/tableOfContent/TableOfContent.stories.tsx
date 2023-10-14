@@ -1,11 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
-import Heading from './Heading'
+import TableOfContent from './TableOfContent'
 
 // More on how to set up stories at: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 const meta = {
-    title: 'Example/Heading',
-    component: Heading,
+    title: 'Example/TableOfContent',
+    component: TableOfContent,
     parameters: {
         // Optional parameter to center the component in the Canvas. More info: https://storybook.js.org/docs/react/configure/story-layout
         layout: 'centered',
@@ -14,7 +14,7 @@ const meta = {
     tags: ['autodocs'],
     // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
     argTypes: {},
-} satisfies Meta<typeof Heading>
+} satisfies Meta<typeof TableOfContent>
 
 export default meta
 type Story = StoryObj<typeof meta>
@@ -22,13 +22,17 @@ type Story = StoryObj<typeof meta>
 export const Default: Story = {
     args: {},
     render: () => (
-        <>
-            <Heading level={1}>Heading 1</Heading>
-            <Heading level={2}>Heading 2</Heading>
-            <Heading level={3}>Heading 3</Heading>
-            <Heading level={4}>Heading 4</Heading>
-            <Heading level={5}>Heading 5</Heading>
-            <Heading level={6}>Heading 6</Heading>
-        </>
+        <div className='w-[400px]'>
+            <TableOfContent />
+            <h3 className='heading-1' id='1'>
+                hoge
+            </h3>
+            <h4 className='heading-2' id='2'>
+                hoge fuga
+            </h4>
+            <h6 className='heading-3' id='3'>
+                hoge fuga piyo
+            </h6>
+        </div>
     ),
 }
