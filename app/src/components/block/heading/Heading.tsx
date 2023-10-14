@@ -1,5 +1,6 @@
-import { Color } from '@/type/page/color'
 import { useId } from 'react'
+
+import { Color } from '@/type/page/color'
 
 type HeadingLevel = 1 | 2 | 3 | 4 | 5 | 6
 

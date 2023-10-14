@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+
 import Image from '../common/ImageBase'
 
 interface BookMarkProps {

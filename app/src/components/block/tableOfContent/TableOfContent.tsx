@@ -1,10 +1,12 @@
 'use client'
 
+import { useEffect, useState } from 'react'
+
 import Accordion from '@/components/accordion/Accordion'
 import AccordionButton from '@/components/accordion/AccordionButton'
 import AccordionContent from '@/components/accordion/AccordionContent'
 import AccordionIcon from '@/components/accordion/AccordionIcon'
-import { useEffect, useState } from 'react'
+
 import Heading from '../heading/Heading'
 
 interface TableOfContentProps {}

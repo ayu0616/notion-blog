@@ -1,6 +1,7 @@
+import Profile from './Profile'
+
 import type { Meta, StoryObj } from '@storybook/react'
 
-import Profile from './Profile'
 
 // More on how to set up stories at: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 const meta = {

@@ -1,5 +1,6 @@
-import { getUrlData } from '@/util/getUrlData'
 import Image from 'next/image'
+
+import { getUrlData } from '@/util/getUrlData'
 
 interface LinkButtonProps {
     href: string

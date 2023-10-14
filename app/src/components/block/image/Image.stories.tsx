@@ -1,6 +1,7 @@
+import Image from './Image'
+
 import type { Meta, StoryObj } from '@storybook/react'
 
-import Image from './Image'
 
 // More on how to set up stories at: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 const meta = {

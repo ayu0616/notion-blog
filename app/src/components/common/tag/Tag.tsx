@@ -1,5 +1,6 @@
-import { TagColor } from '@/type/page/page'
 import Link from 'next/link'
+
+import { TagColor } from '@/type/page/page'
 
 export interface TagProps {
     color: TagColor

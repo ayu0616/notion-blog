@@ -1,9 +1,11 @@
 'use client'
 
-import { Tag as TagType } from '@/type/page/page'
 import Link from 'next/link'
 import { useCallback, useEffect, useRef } from 'react'
 import { FaAngleLeft, FaAngleRight } from 'react-icons/fa'
+
+import { Tag as TagType } from '@/type/page/page'
+
 import dateToStr from '../../../util/dateToStr'
 import Image from '../ImageBase'
 import TagList from '../tag/TagList'

@@ -1,5 +1,6 @@
-import { TagColor } from '@/type/page/page'
 import { useId } from 'react'
+
+import { TagColor } from '@/type/page/page'
 
 export interface CheckboxProps {
     value?: string

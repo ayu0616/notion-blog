@@ -1,6 +1,7 @@
+import Tag from '../components/common/tag/Tag'
+
 import type { Meta, StoryObj } from '@storybook/react'
 
-import Tag from '../components/common/tag/Tag'
 
 // More on how to set up stories at: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 const meta = {

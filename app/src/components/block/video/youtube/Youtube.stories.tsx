@@ -1,6 +1,7 @@
+import Youtube from './Youtube'
+
 import type { Meta, StoryObj } from '@storybook/react'
 
-import Youtube from './Youtube'
 
 // More on how to set up stories at: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 const meta = {

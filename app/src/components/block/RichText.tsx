@@ -1,5 +1,6 @@
 import { RichText as RichTextType } from '@/type/page/block/richText'
 import { Color } from '@/type/page/color'
+
 import LinkButton from './LinkButton'
 
 function colorToClass(color: Color) {
