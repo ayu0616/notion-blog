@@ -14,14 +14,9 @@ const Accordion = ({ ...props }: AccordionProps) => {
         const content =
             elem.current.querySelector<HTMLDivElement>('.accordion-content')
         if (!button || !content) return
-        const contentHeight = content.clientHeight
-        content.style.height = '0px'
+        toggleContent(button, content)
         button.addEventListener('click', () => {
-            if (button.dataset.open === 'true') {
-                content.style.height = `${contentHeight}px`
-            } else {
-                content.style.height = '0px'
-            }
+            toggleContent(button, content)
         })
     }, [])
 
@@ -35,3 +30,15 @@ const Accordion = ({ ...props }: AccordionProps) => {
 }
 
 export default Accordion
+
+const toggleContent = (button: HTMLDivElement, content: HTMLDivElement) => {
+    content.style.height = '0px'
+    const contentHeight = (content.firstChild as HTMLDivElement).clientHeight
+    if (button.dataset.open === 'true') {
+        content.style.height = `${contentHeight}px`
+        button.dataset.open = 'false'
+    } else {
+        content.style.height = '0px'
+        button.dataset.open = 'true'
+    }
+}

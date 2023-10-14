@@ -6,10 +6,9 @@ interface AccordionContentProps {
 
 const AccordionContent = ({ ...props }: AccordionContentProps) => {
     return (
-        <div
-            className='accordion-content overflow-hidden transition-all duration-300 ease-in-out'
-            {...props}
-        ></div>
+        <div className='accordion-content overflow-hidden transition-all duration-300 ease-in-out'>
+            <div {...props}></div>
+        </div>
     )
 }
 
