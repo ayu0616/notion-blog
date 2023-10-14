@@ -21,12 +21,56 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-export const Default: Story = {
+export const DefaultClose: Story = {
     args: {},
     render: () => (
         <div className='w-[600px]'>
             <Accordion>
                 <AccordionButton>
+                    <div className='flex items-center justify-between bg-white hover:bg-inherit active:bg-inherit'>
+                        <h3 className='flex-1'>見出し</h3>
+                        <AccordionIcon />
+                    </div>
+                </AccordionButton>
+                <AccordionContent>
+                    <div className='bg-white'>
+                        <p>
+                            hoge hoge hoge hoge hoge hoge hoge hoge hoge hoge
+                            hoge hoge
+                        </p>
+                        <p>
+                            hoge hoge hoge hoge hoge hoge hoge hoge hoge hoge
+                            hoge hoge
+                        </p>
+                        <p>
+                            hoge hoge hoge hoge hoge hoge hoge hoge hoge hoge
+                            hoge hoge
+                        </p>
+                        <p>
+                            hoge hoge hoge hoge hoge hoge hoge hoge hoge hoge
+                            hoge hoge
+                        </p>
+                        <p>
+                            hoge hoge hoge hoge hoge hoge hoge hoge hoge hoge
+                            hoge hoge
+                        </p>
+                        <p>
+                            hoge hoge hoge hoge hoge hoge hoge hoge hoge hoge
+                            hoge hoge
+                        </p>
+                    </div>
+                </AccordionContent>
+            </Accordion>
+        </div>
+    ),
+}
+
+export const DefaultOpen: Story = {
+    args: {},
+    render: () => (
+        <div className='w-[600px]'>
+            <Accordion>
+                <AccordionButton open={true}>
                     <div className='flex items-center justify-between bg-white hover:bg-inherit active:bg-inherit'>
                         <h3 className='flex-1'>見出し</h3>
                         <AccordionIcon />
