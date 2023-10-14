@@ -1,12 +1,14 @@
-import Header from '../components/layout/Header'
+import { useState } from 'react'
+
+import Modal from './Modal'
+import Card from '../card/Card'
 
 import type { Meta, StoryObj } from '@storybook/react'
 
-
 // More on how to set up stories at: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 const meta = {
-    title: 'Example/Header',
-    component: Header,
+    title: 'Example/Modal',
+    component: Modal,
     parameters: {
         // Optional parameter to center the component in the Canvas. More info: https://storybook.js.org/docs/react/configure/story-layout
         layout: 'centered',
@@ -15,20 +17,26 @@ const meta = {
     tags: ['autodocs'],
     // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
     argTypes: {},
-} satisfies Meta<typeof Header>
+} satisfies Meta<typeof Modal>
 
 export default meta
 type Story = StoryObj<typeof meta>
 
-// More on writing stories with args: https://storybook.js.org/docs/react/writing-stories/args
 export const Default: Story = {
-    args: {},
+    args: {
+        children: 'Hello Modal',
+        show: true,
+        setShow: () => {},
+    },
     render() {
+        const [show, setShow] = useState(true)
         return (
-            <div>
-                <meta.component></meta.component>
-                <main>{new Array(1000).fill(0).map((v, i) => `${i} `)}</main>
-            </div>
+            <>
+                <div>{'hoge '.repeat(10000)}</div>
+                <meta.component show={show} setShow={setShow}>
+                    <Card></Card>
+                </meta.component>
+            </>
         )
     },
 }

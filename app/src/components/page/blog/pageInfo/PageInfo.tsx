@@ -1,7 +1,7 @@
+import ImageBase from '@/components/common/imageBase/ImageBase'
 import { Tag as TagType } from '@/type/page/page'
 
 import dateToStr from '../../../../util/dateToStr'
-import ImageBase from '../../../common/ImageBase'
 import TagList from '../../../common/tag/TagList'
 
 interface PageInfoProps {

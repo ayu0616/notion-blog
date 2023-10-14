@@ -3,7 +3,7 @@ import { FaGithub, FaInstagram, FaTwitter } from 'react-icons/fa'
 
 import BulletedList from '../..//block/bulletedList/BulletedList'
 import BulletedListItem from '../..//block/bulletedList/BulletedListItem'
-import ImageBase from '../ImageBase'
+import ImageBase from '../imageBase/ImageBase'
 
 interface ProfileProps {}
 

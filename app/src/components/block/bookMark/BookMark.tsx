@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react'
 
-import Image from '../common/ImageBase'
+import ImageBase from '@/components/common/imageBase/ImageBase'
 
 interface BookMarkProps {
     href: string
@@ -35,7 +35,7 @@ const BookMark = ({ href, ...props }: BookMarkProps) => {
                         {description}
                     </p>
                     <p className='flex items-center justify-end text-right text-xs text-gray-500 md:text-sm'>
-                        <Image
+                        <ImageBase
                             src={iconUrl}
                             alt={`icon of ${href}`}
                             className='mr-1 inline-block h-[12px] w-[12px] md:mr-2 md:h-4 md:w-4'

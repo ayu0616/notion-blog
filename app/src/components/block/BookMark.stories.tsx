@@ -1,12 +1,11 @@
-import { Button } from '../components/common/Button'
+import Equation from './equation/Equation'
 
 import type { Meta, StoryObj } from '@storybook/react'
 
-
 // More on how to set up stories at: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 const meta = {
-    title: 'Example/Button',
-    component: Button,
+    title: 'Example/Equation',
+    component: Equation,
     parameters: {
         // Optional parameter to center the component in the Canvas. More info: https://storybook.js.org/docs/react/configure/story-layout
         layout: 'centered',
@@ -14,33 +13,14 @@ const meta = {
     // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/react/writing-docs/autodocs
     tags: ['autodocs'],
     // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
-    argTypes: {
-        mode: {
-            control: 'select',
-            options: ['primary', 'secondary', 'orange'],
-        },
-    },
-} satisfies Meta<typeof Button>
+    argTypes: {},
+} satisfies Meta<typeof Equation>
 
 export default meta
 type Story = StoryObj<typeof meta>
 
-// More on writing stories with args: https://storybook.js.org/docs/react/writing-stories/args
-export const Primary: Story = {
+export const Default: Story = {
     args: {
-        mode: 'primary',
-        children: 'Button',
-    },
-}
-export const Secondary: Story = {
-    args: {
-        mode: 'secondary',
-        children: 'Button',
-    },
-}
-export const Orange: Story = {
-    args: {
-        mode: 'orange',
-        children: 'Button',
+        math: 'x^2 + y^2 = z^2',
     },
 }
