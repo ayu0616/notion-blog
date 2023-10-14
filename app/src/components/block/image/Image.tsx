@@ -1,4 +1,4 @@
-import ImageBase from '../../common/ImageBase'
+import ImageBase from '@/components/common/ImageBase/ImageBase'
 
 interface ImageProps {
     src: string

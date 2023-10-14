@@ -3,10 +3,10 @@
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
 
-import Card from '@/components/common/Card'
-import Checkbox, { CheckboxProps } from '@/components/common/checkbox/Checkbox'
-import Image from '@/components/common/ImageBase'
-import TagList from '@/components/common/tag/TagList'
+import Card from '@/components/common/Card/Card'
+import Checkbox, { CheckboxProps } from '@/components/common/Checkbox/Checkbox'
+import ImageBase from '@/components/common/ImageBase/ImageBase'
+import TagList from '@/components/common/Tag/TagList'
 import { Page } from '@/type/page/page'
 import dateToStr from '@/util/dateToStr'
 
@@ -55,12 +55,12 @@ const BlogPages = ({ pageData, ...props }: BlogPageProps) => {
                     return (
                         <Link href={`/blog/${page.slug}`} key={i}>
                             <Card horizontal className=''>
-                                <Image
+                                <ImageBase
                                     src={page.image ?? '/no_image.jpg'}
                                     alt=''
                                     className='w-1/3 rounded-l-md'
                                     objectFit='cover'
-                                ></Image>
+                                ></ImageBase>
                                 <div className='flex flex-1 flex-col gap-2 p-3'>
                                     <h3>{page.title}</h3>
                                     <TagList

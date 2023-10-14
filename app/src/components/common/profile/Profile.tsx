@@ -1,9 +1,9 @@
 import Image from 'next/image'
 import { FaGithub, FaInstagram, FaTwitter } from 'react-icons/fa'
 
-import BulletedList from '../..//block/bulletedList/BulletedList'
-import BulletedListItem from '../..//block/bulletedList/BulletedListItem'
-import ImageBase from '../ImageBase'
+import BulletedList from '../../block/BulletedList/BulletedList'
+import BulletedListItem from '../../block/BulletedList/BulletedListItem'
+import ImageBase from '../ImageBase/ImageBase'
 
 interface ProfileProps {}
 

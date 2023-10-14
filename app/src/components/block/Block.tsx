@@ -1,21 +1,23 @@
-import Heading from '@/components/block/heading/Heading'
+
+import Heading from '@/components/block/Heading/Heading'
 import Paragraph from '@/components/block/Paragraph'
 import { Block as BlockData } from '@/type/page/block/block'
 import { RichText as RichTextData } from '@/type/page/block/richText'
 
-import BookMark from './BookMark'
-import BulletedList from './bulletedList/BulletedList'
-import BulletedListItem from './bulletedList/BulletedListItem'
-import Callout from './callout/Callout'
-import Code from './code/Code'
-import Divider from './divider/Divider'
-import Equation from './Equation'
-import Image from './image/Image'
-import NumberedList from './numberedList/NumberedList'
-import NumberedListItem from './numberedList/NumberedListItem'
+import BookMark from './BookMark/BookMark'
+import BulletedList from './BulletedList/BulletedList'
+import BulletedListItem from './BulletedList/BulletedListItem'
+import Callout from './Callout/Callout'
+import Code from './Code/Code'
+import Divider from './Divider/Divider'
+import Equation from './Equation/Equation'
+import Image from './Image/Image'
+import NumberedList from './NumberedList/NumberedList'
+import NumberedListItem from './NumberedList/NumberedListItem'
 import RichText from './RichText'
-import TableOfContent from './tableOfContent/TableOfContent'
-import Video from './video/Video'
+import TableOfContent from './TableOfContent/TableOfContent'
+import Video from './Video/Video'
+
 
 interface BlockProps {
     data: BlockData

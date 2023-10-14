@@ -1,4 +1,4 @@
-import Youtube from './youtube/Youtube'
+import Youtube from './Youtube/Youtube'
 
 export interface VideoProps {
     url: string

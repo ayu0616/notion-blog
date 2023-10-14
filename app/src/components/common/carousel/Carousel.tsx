@@ -7,8 +7,8 @@ import { FaAngleLeft, FaAngleRight } from 'react-icons/fa'
 import { Tag as TagType } from '@/type/page/page'
 
 import dateToStr from '../../../util/dateToStr'
-import Image from '../ImageBase'
-import TagList from '../tag/TagList'
+import ImageBase from '../ImageBase/ImageBase'
+import TagList from '../Tag/TagList'
 import './Carousel.style.scss'
 
 interface CarouselProps {
@@ -128,12 +128,12 @@ const Carousel = ({ data, ...props }: CarouselProps) => {
                             key={index}
                             className='relative min-w-full'
                         >
-                            <Image
+                            <ImageBase
                                 src={d.image}
                                 alt={`image of ${d.title}`}
                                 className='aspect-video h-full snap-center'
                                 objectFit='cover'
-                            ></Image>
+                            ></ImageBase>
                             <div className='absolute bottom-0 flex w-full flex-col gap-2 bg-black/25 p-3 text-sm text-white md:px-4'>
                                 <p>{d.title}</p>
                                 <div className='flex items-end justify-between gap-4'>

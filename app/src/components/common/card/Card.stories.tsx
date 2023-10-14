@@ -1,15 +1,10 @@
-
-import { useState } from 'react'
-
-import Card from '../components/common/Card'
-import Modal from '../components/common/Modal'
+import Card from './Card'
 
 import type { Meta, StoryObj } from '@storybook/react'
 
 // More on how to set up stories at: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 const meta = {
-    title: 'Example/Modal',
-    component: Modal,
+    component: Card,
     parameters: {
         // Optional parameter to center the component in the Canvas. More info: https://storybook.js.org/docs/react/configure/story-layout
         layout: 'centered',
@@ -18,26 +13,19 @@ const meta = {
     tags: ['autodocs'],
     // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
     argTypes: {},
-} satisfies Meta<typeof Modal>
+} satisfies Meta<typeof Card>
 
 export default meta
 type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
-    args: {
-        children: 'Hello Modal',
-        show: true,
-        setShow: () => {},
-    },
+    args: {},
     render() {
-        const [show, setShow] = useState(true)
         return (
-            <>
-                <div>{'hoge '.repeat(10000)}</div>
-                <meta.component show={show} setShow={setShow}>
-                    <Card></Card>
-                </meta.component>
-            </>
+            <meta.component>
+                <h3>hogehoge</h3>
+                <p>fugafuga fugafuga</p>
+            </meta.component>
         )
     },
 }

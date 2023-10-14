@@ -1,12 +1,10 @@
-import Header from '../components/layout/Header'
+import ImageBase from './ImageBase'
 
 import type { Meta, StoryObj } from '@storybook/react'
 
-
 // More on how to set up stories at: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 const meta = {
-    title: 'Example/Header',
-    component: Header,
+    component: ImageBase,
     parameters: {
         // Optional parameter to center the component in the Canvas. More info: https://storybook.js.org/docs/react/configure/story-layout
         layout: 'centered',
@@ -15,20 +13,14 @@ const meta = {
     tags: ['autodocs'],
     // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
     argTypes: {},
-} satisfies Meta<typeof Header>
+} satisfies Meta<typeof ImageBase>
 
 export default meta
 type Story = StoryObj<typeof meta>
 
-// More on writing stories with args: https://storybook.js.org/docs/react/writing-stories/args
 export const Default: Story = {
-    args: {},
-    render() {
-        return (
-            <div>
-                <meta.component></meta.component>
-                <main>{new Array(1000).fill(0).map((v, i) => `${i} `)}</main>
-            </div>
-        )
+    args: {
+        src: 'https://upload.wikimedia.org/wikipedia/commons/9/92/Ja-fukushima-ohuchijuku-7.jpg',
+        alt: 'ImageBase alt text',
     },
 }
