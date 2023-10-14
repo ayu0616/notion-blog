@@ -1,7 +1,10 @@
 'use client'
 
+import Accordion from '@/components/accordion/Accordion'
+import AccordionButton from '@/components/accordion/AccordionButton'
+import AccordionContent from '@/components/accordion/AccordionContent'
+import AccordionIcon from '@/components/accordion/AccordionIcon'
 import { useEffect, useState } from 'react'
-import { FaAngleDown } from 'react-icons/fa'
 import Heading from '../heading/Heading'
 
 interface TableOfContentProps {}
@@ -31,30 +34,32 @@ const TableOfContent = ({ ...props }: TableOfContentProps) => {
     }, [])
 
     return (
-        <div>
+        <Accordion>
             <Heading level={3}>
-                <div className='flex justify-between'>
-                    <div className='flex-1 text-center'>〜目次〜</div>
-                    <div>
-                        <FaAngleDown></FaAngleDown>
+                <AccordionButton>
+                    <div className='hover:inherit active:inherit flex cursor-pointer items-center justify-between  px-4 py-2'>
+                        <div className='flex-1 text-center'>〜目次〜</div>
+                        <AccordionIcon />
                     </div>
-                </div>
+                </AccordionButton>
             </Heading>
-            <ul>
-                {headings.map((h, i) => (
-                    <li key={i} className={plClass(h.level)}>
-                        <a
-                            onClick={() => {
-                                smoothScroll(h.id)
-                            }}
-                            className='cursor-pointer hover:underline'
-                        >
-                            {h.text}
-                        </a>
-                    </li>
-                ))}
-            </ul>
-        </div>
+            <AccordionContent>
+                <ul className='px-4 py-2'>
+                    {headings.map((h, i) => (
+                        <li key={i} className={plClass(h.level)}>
+                            <a
+                                onClick={() => {
+                                    smoothScroll(h.id)
+                                }}
+                                className='cursor-pointer hover:underline'
+                            >
+                                {h.text}
+                            </a>
+                        </li>
+                    ))}
+                </ul>
+            </AccordionContent>
+        </Accordion>
     )
 }
 
