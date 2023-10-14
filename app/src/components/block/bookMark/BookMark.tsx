@@ -2,7 +2,8 @@
 
 import { useEffect, useState } from 'react'
 
-import ImageBase from '@/components/common/imageBase/ImageBase'
+import ImageBase from '@/components/common/ImageBase/ImageBase'
+
 
 interface BookMarkProps {
     href: string

@@ -7,8 +7,8 @@ import { FaAngleLeft, FaAngleRight } from 'react-icons/fa'
 import { Tag as TagType } from '@/type/page/page'
 
 import dateToStr from '../../../util/dateToStr'
-import ImageBase from '../imageBase/ImageBase'
-import TagList from '../tag/TagList'
+import ImageBase from '../ImageBase/ImageBase'
+import TagList from '../Tag/TagList'
 import './Carousel.style.scss'
 
 interface CarouselProps {

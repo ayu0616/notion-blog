@@ -1,8 +1,10 @@
-import ImageBase from '@/components/common/imageBase/ImageBase'
+import ImageBase from '@/components/common/ImageBase/ImageBase'
 import { Tag as TagType } from '@/type/page/page'
 
 import dateToStr from '../../../../util/dateToStr'
-import TagList from '../../../common/tag/TagList'
+import TagList from '../../../common/Tag/TagList'
+
+
 
 interface PageInfoProps {
     title: string

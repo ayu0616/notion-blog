@@ -1,7 +1,7 @@
 import { useState } from 'react'
 
 import Modal from './Modal'
-import Card from '../card/Card'
+import Card from '../Card/Card'
 
 import type { Meta, StoryObj } from '@storybook/react'
 

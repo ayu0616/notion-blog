@@ -1,10 +1,11 @@
 import fs from 'fs'
 
-import LinkButton from '@/components/block/LinkButton'
-import Carousel from '@/components/common/carousel/Carousel'
+
+import Carousel from '@/components/common/Carousel/Carousel'
 import { Page } from '@/type/page/page'
 
 import BlogPages from './BlogPages'
+
 
 const NEXT_PUBLIC_URL = process.env.NEXT_PUBLIC_URL
 

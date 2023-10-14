@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 
 import Tooltip from './Tooltip'
-import { Button } from '../button/Button'
+import { Button } from '../Button/Button'
 
 import type { Meta, StoryObj } from '@storybook/react'
 

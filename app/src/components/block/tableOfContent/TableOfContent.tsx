@@ -2,12 +2,14 @@
 
 import { useEffect, useState } from 'react'
 
-import Accordion from '@/components/common/accordion/Accordion'
-import AccordionButton from '@/components/common/accordion/AccordionButton'
-import AccordionContent from '@/components/common/accordion/AccordionContent'
-import AccordionIcon from '@/components/common/accordion/AccordionIcon'
 
-import Heading from '../heading/Heading'
+import Accordion from '@/components/common/Accordion/Accordion'
+import AccordionButton from '@/components/common/Accordion/AccordionButton'
+import AccordionContent from '@/components/common/Accordion/AccordionContent'
+import AccordionIcon from '@/components/common/Accordion/AccordionIcon'
+
+import Heading from '../Heading/Heading'
+
 
 interface TableOfContentProps {}
 

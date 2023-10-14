@@ -3,10 +3,10 @@
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
 
-import Card from '@/components/common/card/Card'
-import Checkbox, { CheckboxProps } from '@/components/common/checkbox/Checkbox'
-import ImageBase from '@/components/common/imageBase/ImageBase'
-import TagList from '@/components/common/tag/TagList'
+import Card from '@/components/common/Card/Card'
+import Checkbox, { CheckboxProps } from '@/components/common/Checkbox/Checkbox'
+import ImageBase from '@/components/common/ImageBase/ImageBase'
+import TagList from '@/components/common/Tag/TagList'
 import { Page } from '@/type/page/page'
 import dateToStr from '@/util/dateToStr'
 

@@ -1,4 +1,4 @@
-import BookMark from '../bookMark/BookMark'
+import BookMark from '../BookMark/BookMark'
 
 import type { Meta, StoryObj } from '@storybook/react'
 

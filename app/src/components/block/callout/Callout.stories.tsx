@@ -1,6 +1,6 @@
 import Callout from './Callout'
-import BulletedList from '../bulletedList/BulletedList'
-import BulletedListItem from '../bulletedList/BulletedListItem'
+import BulletedList from '../BulletedList/BulletedList'
+import BulletedListItem from '../BulletedList/BulletedListItem'
 
 import type { Meta, StoryObj } from '@storybook/react'
 
