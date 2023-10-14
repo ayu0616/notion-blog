@@ -21,4 +21,18 @@ type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
     args: {},
+    render: () => (
+        <div className='w-[400px]'>
+            <TableOfContent />
+            <h3 className='heading-1' id='1'>
+                hoge
+            </h3>
+            <h4 className='heading-2' id='2'>
+                hoge fuga
+            </h4>
+            <h6 className='heading-3' id='3'>
+                hoge fuga piyo
+            </h6>
+        </div>
+    ),
 }
