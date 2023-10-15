@@ -6,16 +6,22 @@ import { useEffect, useState } from 'react'
 import Card from '@/components/common/Card/Card'
 import Checkbox, { CheckboxProps } from '@/components/common/Checkbox/Checkbox'
 import ImageBase from '@/components/common/ImageBase/ImageBase'
+import { SearchForm } from '@/components/common/SearchForm'
 import TagList from '@/components/common/Tag/TagList'
 import { Page } from '@/type/page/page'
 import dateToStr from '@/util/dateToStr'
 
 interface BlogPageProps {
     pageData: Page[]
+    searchDefaultValue?: string
 }
 
 /** ブログのページ一覧とタグによる検索を表示するコンポーネント */
-const BlogPages = ({ pageData, ...props }: BlogPageProps) => {
+const BlogPages = ({
+    pageData,
+    searchDefaultValue,
+    ...props
+}: BlogPageProps) => {
     const [showPageData, setPageData] = useState<Page[]>(pageData)
     const tagData = getTagData(pageData)
     const [checkedTag, setCheckedTag] = useState<string[]>([])
@@ -45,6 +51,16 @@ const BlogPages = ({ pageData, ...props }: BlogPageProps) => {
     }, [checkedTag, pageData])
     return (
         <>
+            <div className='px-4'>
+                <p>ページを検索</p>
+                <SearchForm
+                    siz='lg'
+                    placeholder='ブログタイトル'
+                    action='/search'
+                    name='query'
+                    defaultValue={searchDefaultValue}
+                />
+            </div>
             <div className='flex gap-2 px-4'>
                 {tagData.map((tag, i) => {
                     return <Checkbox {...tag} key={i} onChange={handleChange} />

@@ -1,25 +1,10 @@
-import fs from 'fs'
-
 import Carousel from '@/components/common/Carousel/Carousel'
-import { SearchForm } from '@/components/common/SearchForm'
 import { Page } from '@/type/page/page'
+import getPageData from '@/util/getPageData'
 
 import BlogPages from './BlogPages'
 
 const NEXT_PUBLIC_URL = process.env.NEXT_PUBLIC_URL
-
-const getPageData = () => {
-    const pageData: Page[] = JSON.parse(
-        fs.readFileSync('./public/data/pages.json', 'utf-8'),
-    )
-    if (process.env.NODE_ENV === 'development') {
-        return pageData
-    } else {
-        return pageData.filter((page) => {
-            return page.status === 'published'
-        })
-    }
-}
 
 export default async function Home() {
     // const pageData: Page[] = await fetch(
@@ -45,15 +30,6 @@ export default async function Home() {
     return (
         <main className='mx-auto max-w-4xl space-y-4 pb-4'>
             <Carousel data={carouselData}></Carousel>
-            <div>
-                <p>ページを検索</p>
-                <SearchForm
-                    siz='lg'
-                    placeholder='ブログタイトル'
-                    action='/search'
-                    name='query'
-                />
-            </div>
             <BlogPages pageData={pageData} />
         </main>
     )
