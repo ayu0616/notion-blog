@@ -1,4 +1,3 @@
-
 import Heading from '@/components/block/Heading/Heading'
 import Paragraph from '@/components/block/Paragraph'
 import { Block as BlockData } from '@/type/page/block/block'
@@ -15,9 +14,13 @@ import Image from './Image/Image'
 import NumberedList from './NumberedList/NumberedList'
 import NumberedListItem from './NumberedList/NumberedListItem'
 import RichText from './RichText'
+import Table from './Table/Table'
+import TableBody from './Table/TableBody'
+import TableCell from './Table/TableCell'
+import TableHead from './Table/TableHead'
+import TableRow from './Table/TableRow'
 import TableOfContent from './TableOfContent/TableOfContent'
 import Video from './Video/Video'
-
 
 interface BlockProps {
     data: BlockData
@@ -141,6 +144,39 @@ export const Block = ({ data, ...props }: BlockProps) => {
             return <Video url={data.url} />
         case 'table_of_contents':
             return <TableOfContent></TableOfContent>
+        case 'table':
+            return (
+                <Table
+                    hasRowHeader={data.has_row_header}
+                    hasColHeader={data.has_column_header}
+                >
+                    {/* <Blocks datas={data.children} /> */}
+                    {data.children && data.has_row_header ? (
+                        <>
+                            <TableHead>
+                                <Block data={data.children[0]} />
+                            </TableHead>
+                            <TableBody>
+                                <Blocks datas={data.children.slice(1)} />
+                            </TableBody>
+                        </>
+                    ) : (
+                        <TableBody>
+                            <Blocks datas={data.children} />
+                        </TableBody>
+                    )}
+                </Table>
+            )
+        case 'table_row':
+            return (
+                <TableRow>
+                    {data.cells.map((cell, i) => (
+                        <TableCell key={i}>
+                            <RichTexts datas={cell} />
+                        </TableCell>
+                    ))}
+                </TableRow>
+            )
         default:
             return <></>
     }
