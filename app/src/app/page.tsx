@@ -1,11 +1,10 @@
 import fs from 'fs'
 
-
 import Carousel from '@/components/common/Carousel/Carousel'
+import { SearchForm } from '@/components/common/SearchForm'
 import { Page } from '@/type/page/page'
 
 import BlogPages from './BlogPages'
-
 
 const NEXT_PUBLIC_URL = process.env.NEXT_PUBLIC_URL
 
@@ -46,6 +45,15 @@ export default async function Home() {
     return (
         <main className='mx-auto max-w-4xl space-y-4 pb-4'>
             <Carousel data={carouselData}></Carousel>
+            <div>
+                <p>ページを検索</p>
+                <SearchForm
+                    siz='lg'
+                    placeholder='ブログタイトル'
+                    action='/search'
+                    name='query'
+                />
+            </div>
             <BlogPages pageData={pageData} />
         </main>
     )
