@@ -1,6 +1,9 @@
 import Heading from '@/components/block/Heading/Heading'
 import Paragraph from '@/components/block/Paragraph'
-import { Block as BlockData } from '@/type/page/block/block'
+import {
+    Block as BlockData,
+    TableRow as TableRowData,
+} from '@/type/page/block/block'
 import { RichText as RichTextData } from '@/type/page/block/richText'
 
 import BookMark from './BookMark/BookMark'
@@ -150,19 +153,58 @@ export const Block = ({ data, ...props }: BlockProps) => {
                     hasRowHeader={data.has_row_header}
                     hasColHeader={data.has_column_header}
                 >
-                    {/* <Blocks datas={data.children} /> */}
                     {data.children && data.has_row_header ? (
                         <>
                             <TableHead>
-                                <Block data={data.children[0]} />
+                                <TableRow>
+                                    {(
+                                        data.children[0] as TableRowData
+                                    ).cells.map((cell, i) => (
+                                        <TableCell isHead key={i}>
+                                            <RichTexts datas={cell} />
+                                        </TableCell>
+                                    ))}
+                                </TableRow>
                             </TableHead>
                             <TableBody>
-                                <Blocks datas={data.children.slice(1)} />
+                                {data.children.slice(1).map((row, i) => (
+                                    <TableRow key={i}>
+                                        {(row as TableRowData).cells.map(
+                                            (cell, j) => (
+                                                <TableCell
+                                                    isHead={
+                                                        data.has_column_header &&
+                                                        j === 0
+                                                    }
+                                                    key={j}
+                                                >
+                                                    <RichTexts datas={cell} />
+                                                </TableCell>
+                                            ),
+                                        )}
+                                    </TableRow>
+                                ))}
                             </TableBody>
                         </>
                     ) : (
                         <TableBody>
-                            <Blocks datas={data.children} />
+                            {data.children?.map((row, i) => (
+                                <TableRow key={i}>
+                                    {(row as TableRowData).cells.map(
+                                        (cell, j) => (
+                                            <TableCell
+                                                isHead={
+                                                    data.has_column_header &&
+                                                    j === 0
+                                                }
+                                                key={j}
+                                            >
+                                                <RichTexts datas={cell} />
+                                            </TableCell>
+                                        ),
+                                    )}
+                                </TableRow>
+                            ))}
                         </TableBody>
                     )}
                 </Table>
