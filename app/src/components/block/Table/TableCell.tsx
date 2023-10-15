@@ -20,7 +20,12 @@ const Th = ({ ...props }: TdThProps) => {
 const TableCell = ({ isHead = false, className, ...props }: TableCellProps) => {
     const cn = 'border-r last:border-r-0 px-4 py-3'
     if (isHead) {
-        return <Th className={[cn, className].join(' ')} {...props} />
+        return (
+            <Th
+                className={['bg-slate-50', cn, className].join(' ')}
+                {...props}
+            />
+        )
     } else {
         return <Td className={[cn, className].join(' ')} {...props} />
     }
