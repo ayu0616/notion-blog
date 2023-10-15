@@ -25,7 +25,7 @@ const SearchForm = ({
                 <input
                     {...props}
                     className={[
-                        'flex-1 rounded-l-full focus:outline-none focus:ring-2 focus:ring-orange-600/75',
+                        'flex-1 rounded-l-full transition-all focus:outline-none focus:ring-2 focus:ring-orange-600/75',
                         sizeClass,
                         className,
                     ].join(' ')}
@@ -35,7 +35,7 @@ const SearchForm = ({
                     title='検索ボタン'
                     type='submit'
                     className={[
-                        'rounded-r-full bg-orange-600 text-white focus:outline-none focus:ring-2 focus:ring-orange-600/75',
+                        'rounded-r-full bg-orange-600 text-white transition-all hover:bg-orange-500 focus:outline-none focus:ring-2 focus:ring-orange-600/75 active:bg-orange-400',
                         sizeButtonClass,
                     ].join(' ')}
                 >
