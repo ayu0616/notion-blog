@@ -1,7 +1,11 @@
-interface TableProps {}
+import { ReactNode } from 'react'
 
-const Table = ({ ...props }: TableProps) => {
-    return <table></table>
+interface TableProps {
+    children?: ReactNode
+}
+
+const Table = ({ children, ...props }: TableProps) => {
+    return <table className='max-w-full border'>{children}</table>
 }
 
 export default Table

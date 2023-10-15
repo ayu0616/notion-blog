@@ -1,4 +1,8 @@
 import Table from './Table'
+import TableBody from './TableBody'
+import TableCell from './TableCell'
+import TableHead from './TableHead'
+import TableRow from './TableRow'
 
 import type { Meta, StoryObj } from '@storybook/react'
 
@@ -20,4 +24,36 @@ type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
     args: {},
+    render: (args) => (
+        <Table>
+            <TableHead>
+                <TableRow>
+                    <TableCell isHead>head</TableCell>
+                    <TableCell isHead>head head</TableCell>
+                    <TableCell isHead>head head head</TableCell>
+                    <TableCell isHead>head head head head</TableCell>
+                </TableRow>
+            </TableHead>
+            <TableBody>
+                <TableRow>
+                    <TableCell isHead>head</TableCell>
+                    <TableCell>body</TableCell>
+                    <TableCell>body</TableCell>
+                    <TableCell>body</TableCell>
+                </TableRow>
+                <TableRow>
+                    <TableCell isHead>head head head</TableCell>
+                    <TableCell>body</TableCell>
+                    <TableCell>body</TableCell>
+                    <TableCell>body</TableCell>
+                </TableRow>
+                <TableRow>
+                    <TableCell isHead>head</TableCell>
+                    <TableCell>body</TableCell>
+                    <TableCell>body</TableCell>
+                    <TableCell>body</TableCell>
+                </TableRow>
+            </TableBody>
+        </Table>
+    ),
 }

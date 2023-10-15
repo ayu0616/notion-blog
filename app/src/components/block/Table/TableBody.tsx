@@ -1,7 +1,11 @@
-interface TableBodyProps {}
+import { ReactNode } from 'react'
 
-const TableBody = ({ ...props }: TableBodyProps) => {
-    return <tbody></tbody>
+interface TableBodyProps {
+    children?: ReactNode
+}
+
+const TableBody = ({ children, ...props }: TableBodyProps) => {
+    return <tbody>{children}</tbody>
 }
 
 export default TableBody
