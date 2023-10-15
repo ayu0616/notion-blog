@@ -52,13 +52,14 @@ const BlogPages = ({
     return (
         <>
             <div className='px-4'>
-                <p>ページを検索</p>
+                <label htmlFor='search-query'>ページを検索</label>
                 <SearchForm
                     siz='lg'
                     placeholder='ブログタイトル'
                     action='/search'
                     name='query'
                     defaultValue={searchDefaultValue}
+                    id='search-query'
                 />
             </div>
             <div className='flex gap-2 px-4'>
