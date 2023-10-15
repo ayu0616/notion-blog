@@ -1,3 +1,5 @@
+import { InlineMath } from 'react-katex'
+
 import { RichText as RichTextType } from '@/type/page/block/richText'
 import { Color } from '@/type/page/color'
 
@@ -62,35 +64,39 @@ const RichText = ({
         annotations.underline ? 'underline' : '',
         colorToClass(annotations.color),
     ]
-    if (href && href === text) {
-        return <LinkButton href={href} />
-    } else if (href) {
-        return (
-            <a
-                className={[
-                    'text-blue-600 hover:text-blue-700 hover:underline active:text-blue-800',
-                    ...annotationClass,
-                ].join(' ')}
-                href={href}
-                target='_blank'
-                rel='noreferrer'
-            >
-                {text}
-            </a>
-        )
-    } else if (annotations.code) {
-        return (
-            <code
-                className={[
-                    'rounded-sm bg-gray-200 px-1 text-red-600',
-                    ...annotationClass,
-                ].join(' ')}
-            >
-                {text}
-            </code>
-        )
+    if (type === 'text') {
+        if (href && href === text) {
+            return <LinkButton href={href} />
+        } else if (href) {
+            return (
+                <a
+                    className={[
+                        'text-blue-600 hover:text-blue-700 hover:underline active:text-blue-800',
+                        ...annotationClass,
+                    ].join(' ')}
+                    href={href}
+                    target='_blank'
+                    rel='noreferrer'
+                >
+                    {text}
+                </a>
+            )
+        } else if (annotations.code) {
+            return (
+                <code
+                    className={[
+                        'rounded-sm bg-gray-200 px-1 text-red-600',
+                        ...annotationClass,
+                    ].join(' ')}
+                >
+                    {text}
+                </code>
+            )
+        } else {
+            return <span className={annotationClass.join(' ')}>{text}</span>
+        }
     } else {
-        return <span className={annotationClass.join(' ')}>{text}</span>
+        return <InlineMath math={text} />
     }
 }
 
