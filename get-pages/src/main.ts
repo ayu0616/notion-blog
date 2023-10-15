@@ -19,7 +19,9 @@ import {
     NumberedList,
     NumberedListItem,
     Paragraph,
+    Table,
     TableOfContents,
+    TableRow,
     Video,
 } from "./type/block/block";
 import { RichText } from "./type/block/richText";
@@ -258,6 +260,23 @@ const convertToBlocks = async (data: any) => {
                     type: "table_of_contents",
                 };
                 blocks.push(tableOfContents);
+                break;
+            case "table":
+                const table: Table = {
+                    ...blockBase,
+                    type: "table",
+                    has_column_header: b.table.has_column_header,
+                    has_row_header: b.table.has_row_header,
+                };
+                blocks.push(table);
+                break;
+            case "table_row":
+                const tableRow: TableRow = {
+                    ...blockBase,
+                    type: "table_row",
+                    cells: b.table_row.cells.map((c: any[]) => convertToRichTexts(c)),
+                };
+                blocks.push(tableRow);
                 break;
             default:
                 break;
