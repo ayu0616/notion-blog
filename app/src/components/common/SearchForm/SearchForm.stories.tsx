@@ -23,6 +23,7 @@ export const Default: Story = {
         placeholder: '検索',
         action: 'https://www.google.com/search',
         name: 'q',
+        className: 'border border-r-0',
     },
 }
 
