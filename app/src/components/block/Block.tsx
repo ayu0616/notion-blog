@@ -146,8 +146,8 @@ export const Block = ({ data, ...props }: BlockProps) => {
         case 'table':
             return (
                 <Table
-                    hasRowHeader={data.has_row_header}
-                    hasColHeader={data.has_column_header}
+                // hasRowHeader={data.has_row_header}
+                // hasColHeader={data.has_column_header}
                 >
                     {data.children && data.has_row_header ? (
                         <>
