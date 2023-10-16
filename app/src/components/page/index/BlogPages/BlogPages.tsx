@@ -32,6 +32,10 @@ const BlogPages = ({
     const [showPageData, setPageData] = useState<Page[]>(pageData)
     const tagData = getTagData(pageData)
     const [checkedTag, setCheckedTag] = useState<string[]>([])
+    const [searchValue, setSearchValue] = useState<string>(
+        searchDefaultValue ?? '',
+    )
+    const [composing, setComposing] = useState(false)
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const checked = e.target.checked
         const value = e.target.value
@@ -56,6 +60,19 @@ const BlogPages = ({
             )
         }
     }, [checkedTag, pageData])
+
+    useEffect(() => {
+        if (composing) return
+        if (searchValue === '') {
+            setPageData(pageData)
+        } else {
+            setPageData(
+                pageData.filter((page) => {
+                    return page.title.includes(searchValue)
+                }),
+            )
+        }
+    }, [composing, pageData, searchValue])
     return (
         <div className='space-y-4 px-4'>
             <Accordion>
@@ -79,7 +96,14 @@ const BlogPages = ({
                                     placeholder='ブログタイトル'
                                     action='/search'
                                     name='query'
-                                    defaultValue={searchDefaultValue}
+                                    value={searchValue}
+                                    onChange={(e) =>
+                                        setSearchValue(e.target.value)
+                                    }
+                                    onCompositionStart={() =>
+                                        setComposing(true)
+                                    }
+                                    onCompositionEnd={() => setComposing(false)}
                                     id='search-query'
                                 />
                             </div>
