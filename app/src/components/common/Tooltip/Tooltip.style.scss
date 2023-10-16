@@ -1,0 +1,52 @@
+.tooltip-container {
+    $w: 0.75rem;
+    $h: calc($w / 2 * tan(60deg));
+
+    &::before {
+        width: $w;
+        height: $h;
+
+        clip-path: polygon(50% 0, 100% 100%, 0 100%);
+
+        content: '';
+    }
+
+    &[data-placement='top'] {
+        margin-bottom: $h;
+        &::before {
+            top: calc(100% - 1px);
+            left: 50%;
+            transform: translateX(50%);
+            rotate: 180deg;
+        }
+    }
+
+    &[data-placement='right'] {
+        margin-left: $h;
+        &::before {
+            top: 50%;
+            left: calc(1px - $h);
+            transform: translateX(calc(50% / $w * $h));
+            rotate: -90deg;
+        }
+    }
+
+    &[data-placement='bottom'] {
+        margin-top: $h;
+        &::before {
+            top: calc(1px - $h);
+            left: 50%;
+            transform: translateX(-50%);
+        }
+    }
+
+    &[data-placement='left'] {
+        margin-right: $h;
+        &::before {
+            top: 50%;
+            left: calc(100% - 1px);
+            transform: translateX(calc(-50% / $w * $h));
+            rotate: 90deg;
+        }
+    }
+}
