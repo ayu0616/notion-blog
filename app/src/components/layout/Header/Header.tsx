@@ -32,8 +32,11 @@ const Header = () => {
     ]
 
     return (
-        <header className='sticky left-0 top-0 z-50 w-full items-center justify-between bg-orange-500 text-white md:flex'>
-            <Accordion variant='unstyled'>
+        <header className='sticky left-0 top-0 z-50 w-full bg-orange-500 text-white'>
+            <Accordion
+                variant='unstyled'
+                className='items-center justify-between md:flex'
+            >
                 <div className='flex items-center justify-between'>
                     <h1 className='px-6 py-4 text-2xl'>
                         <Link href='/'>はっさくの旅ブログ</Link>
@@ -54,8 +57,8 @@ const Header = () => {
                         </div>
                     </AccordionButton>
                 </div>
-                <AccordionContent>
-                    <nav className='bg-orange-500 md:block md:h-[auto!important]'>
+                <AccordionContent className='md:h-[auto!important]'>
+                    <nav className='bg-orange-500 md:block'>
                         <ul className='md:flex md:pr-3'>
                             {menu.map((item, index) => (
                                 <li

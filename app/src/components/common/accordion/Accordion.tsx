@@ -7,9 +7,14 @@ import './style.scss'
 interface AccordionProps {
     children?: ReactNode
     variant?: 'default' | 'unstyled'
+    className?: string
 }
 
-const Accordion = ({ variant = 'default', ...props }: AccordionProps) => {
+const Accordion = ({
+    variant = 'default',
+    className,
+    ...props
+}: AccordionProps) => {
     const elem = useRef<HTMLDivElement>(null)
     const styleClass = variant === 'default' ? 'rounded-md border' : ''
 
@@ -31,7 +36,7 @@ const Accordion = ({ variant = 'default', ...props }: AccordionProps) => {
         <div
             {...props}
             ref={elem}
-            className={['accordion group', styleClass].join(' ')}
+            className={['accordion group', styleClass, className].join(' ')}
             data-variant={variant}
         ></div>
     )
