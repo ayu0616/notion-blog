@@ -12,7 +12,11 @@ const Table = ({
     // hasColHeader = false,
     ...props
 }: TableProps) => {
-    return <table className='max-w-full border'>{children}</table>
+    return (
+        <div className='overflow-x-scroll'>
+            <table className='whitespace-nowrap border'>{children}</table>
+        </div>
+    )
 }
 
 export default Table
