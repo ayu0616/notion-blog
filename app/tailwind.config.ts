@@ -1,3 +1,5 @@
+import plugin from 'tailwindcss/plugin'
+
 import type { Config } from 'tailwindcss'
 
 const config: Config = {
@@ -16,6 +18,24 @@ const config: Config = {
             },
         },
     },
-    plugins: [],
+    plugins: [
+        plugin(({ addUtilities }) => {
+            addUtilities({
+                '.absolute-center': {
+                    position: 'absolute',
+                    top: '50%',
+                    left: '50%',
+                    transform: 'translate(-50%, -50%)',
+                },
+                '.drag-none': {
+                    '-webkit-user-drag': 'none',
+                    '-khtml-user-drag': 'none',
+                    '-moz-user-drag': 'none',
+                    '-o-user-drag': 'none',
+                    'user-drag': 'none',
+                },
+            })
+        }),
+    ],
 }
 export default config

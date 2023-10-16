@@ -1,12 +1,14 @@
 import { ReactNode } from 'react'
 
+import './style.scss'
+
 interface AccordionContentProps {
     children?: ReactNode
 }
 
 const AccordionContent = ({ ...props }: AccordionContentProps) => {
     return (
-        <div className='accordion-content overflow-hidden rounded-b-md bg-white transition-all duration-300 ease-in-out'>
+        <div className='accordion-content overflow-hidden transition-all duration-300 ease-in-out'>
             <div {...props}></div>
         </div>
     )
