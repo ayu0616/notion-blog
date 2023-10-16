@@ -2,10 +2,12 @@ import { ReactNode, useEffect, useRef } from 'react'
 
 interface AccordionProps {
     children?: ReactNode
+    variant?: 'default' | 'unstyled'
 }
 
-const Accordion = ({ ...props }: AccordionProps) => {
+const Accordion = ({ variant = 'default', ...props }: AccordionProps) => {
     const elem = useRef<HTMLDivElement>(null)
+    const styleClass = variant === 'default' ? 'rounded-md border' : ''
 
     useEffect(() => {
         if (!elem.current) return
@@ -25,7 +27,8 @@ const Accordion = ({ ...props }: AccordionProps) => {
         <div
             {...props}
             ref={elem}
-            className='accordion rounded-md border'
+            className={['accordion group', styleClass].join(' ')}
+            data-variant={variant}
         ></div>
     )
 }
