@@ -2,7 +2,7 @@ import Heading from '@/components/block/Heading/Heading'
 import { Page } from '@/type/page/page'
 import getPageData from '@/util/getPageData'
 
-import BlogPages from '../BlogPages'
+import BlogPages from '../../components/page/index/BlogPages/BlogPages'
 
 const Page = async ({
     searchParams: { query },
