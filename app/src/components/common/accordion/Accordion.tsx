@@ -1,5 +1,7 @@
 import { ReactNode, useEffect, useRef } from 'react'
 
+import './style.scss'
+
 interface AccordionProps {
     children?: ReactNode
     variant?: 'default' | 'unstyled'
