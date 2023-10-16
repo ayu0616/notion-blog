@@ -12,14 +12,6 @@
         url('https://gnjo.github.io/monaco-webfont.woff2') format('woff2');
 }
 
-.drag-none {
-    -webkit-user-drag: none;
-    -khtml-user-drag: none;
-    -moz-user-drag: none;
-    -o-user-drag: none;
-    user-drag: none;
-}
-
 body {
     font-family: 'BIZ UDPGothic', sans-serif; /* フォントを設定 */
     @apply text-sm md:text-base;
