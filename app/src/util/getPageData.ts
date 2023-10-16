@@ -1,11 +1,9 @@
-import fs from 'fs'
-
 import { Page } from '@/type/page/page'
 
+import _pageData from '../../public/data/pages.json'
+
 const getPageData = () => {
-    const pageData: Page[] = JSON.parse(
-        fs.readFileSync('./public/data/pages.json', 'utf-8'),
-    )
+    const pageData = _pageData as Page[]
     if (process.env.NODE_ENV === 'development') {
         return pageData
     } else {
