@@ -1,3 +1,6 @@
+import pageData from '@/../public/data/pages.json'
+import { Page } from '@/type/page/page'
+
 import BlogPages from './BlogPages'
 
 import type { Meta, StoryObj } from '@storybook/react'
@@ -19,5 +22,10 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
-    args: {},
+    args: { pageData: pageData as Page[] },
+    render: (args) => (
+        <div className='space-y-4 bg-orange-50 p-2'>
+            <BlogPages {...args} />
+        </div>
+    ),
 }
