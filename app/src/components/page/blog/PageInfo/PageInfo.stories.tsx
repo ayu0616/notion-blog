@@ -1,3 +1,5 @@
+import image from '@/../public/no_image.jpg'
+
 import PageInfo from './PageInfo'
 
 import type { Meta, StoryObj } from '@storybook/react'
@@ -27,6 +29,6 @@ export const Default: Story = {
             { name: 'JavaScript', color: 'yellow' },
         ],
         publishDate: '2023-08-11',
-        image: '/no_image.jpg',
+        image: image as unknown as string,
     },
 }

@@ -1,10 +1,9 @@
-import ImageBase from '@/components/common/ImageBase/ImageBase'
+import Image from 'next/image'
+
 import { Tag as TagType } from '@/type/page/page'
 
 import dateToStr from '../../../../util/dateToStr'
 import TagList from '../../../common/Tag/TagList'
-
-
 
 interface PageInfoProps {
     title: string
@@ -27,7 +26,15 @@ const PageInfo = ({
             <p className='text-end text-sm text-gray-600'>
                 {dateToStr(publishDate)}
             </p>
-            <ImageBase src={image} alt={'ヘッダ画像'}></ImageBase>
+            <div className='flex max-h-[50vh] justify-center'>
+                <Image
+                    className='max-h-[50vh] object-scale-down'
+                    width={4000}
+                    height={4000}
+                    src={image}
+                    alt={'ヘッダ画像'}
+                ></Image>
+            </div>
         </div>
     )
 }
