@@ -24,7 +24,7 @@ const Checkbox = ({ value, color = 'default', ...props }: CheckboxProps) => {
             />
             <label
                 className={[
-                    'block cursor-pointer select-none rounded-full px-2 py-1 opacity-40 peer-checked:opacity-100',
+                    'block cursor-pointer select-none rounded-full px-2 py-1 opacity-40 transition-opacity duration-300 ease-in-out hover:opacity-60 peer-checked:opacity-100',
                     colorClass,
                 ].join(' ')}
                 htmlFor={uuid}
