@@ -88,6 +88,7 @@ const Carousel = ({ data, ...props }: CarouselProps) => {
         <div className='relative bg-gray-50'>
             {/* 進む・戻るボタン */}
             <button
+                title='前へ'
                 className='absolute left-0 top-0 z-10 flex h-full items-center justify-center px-2 text-3xl text-white md:px-4 md:text-4xl'
                 onClick={() => {
                     stopInterval()
@@ -100,6 +101,7 @@ const Carousel = ({ data, ...props }: CarouselProps) => {
                 </span>
             </button>
             <button
+                title='次へ'
                 className='absolute right-0 top-0 z-10 flex h-full items-center justify-center px-2 text-3xl text-white md:px-4 md:text-4xl'
                 onClick={() => {
                     stopInterval()
