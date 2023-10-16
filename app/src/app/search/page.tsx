@@ -24,7 +24,11 @@ const Page = async ({
             <Heading className='px-4' level={3}>
                 「{query}」の検索結果
             </Heading>
-            <BlogPages searchDefaultValue={query} pageData={pageData} />
+            <BlogPages
+                searchDefaultValue={query}
+                searchDefaultOpen
+                pageData={pageData}
+            />
         </main>
     )
 }

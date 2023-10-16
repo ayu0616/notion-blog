@@ -21,12 +21,15 @@ import dateToStr from '@/util/dateToStr'
 interface BlogPageProps {
     pageData: Page[]
     searchDefaultValue?: string
+    /** 検索欄がデフォルトで開いているかどうか */
+    searchDefaultOpen?: boolean
 }
 
 /** ブログのページ一覧とタグによる検索を表示するコンポーネント */
 const BlogPages = ({
     pageData,
     searchDefaultValue,
+    searchDefaultOpen,
     ...props
 }: BlogPageProps) => {
     const [showPageData, setPageData] = useState<Page[]>(pageData)
@@ -76,7 +79,7 @@ const BlogPages = ({
     return (
         <div className='space-y-4 px-4'>
             <Accordion>
-                <AccordionButton>
+                <AccordionButton open={searchDefaultOpen}>
                     <div className='flex items-center justify-between px-4 py-2'>
                         <Heading className='flex-1' level={3}>
                             ページを絞り込む
