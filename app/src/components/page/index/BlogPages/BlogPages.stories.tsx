@@ -21,6 +21,12 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
+;(pageData as Page[]).sort((a, b) => {
+    const dateA = new Date(a.publishDate ?? 0)
+    const dateB = new Date(b.publishDate ?? 0)
+    return dateB.getTime() - dateA.getTime()
+})
+
 export const Default: Story = {
     args: { pageData: pageData as Page[] },
     render: (args) => (
