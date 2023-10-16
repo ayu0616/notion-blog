@@ -9,10 +9,10 @@ const Page = async ({
 }: {
     searchParams: { query: string }
 }) => {
-    let pageData: Page[] = getPageData()
-    pageData = pageData.filter((page) => {
-        return page.title.includes(query)
-    })
+    const pageData: Page[] = getPageData()
+    // pageData = pageData.filter((page) => {
+    //     return page.title.includes(query)
+    // })
     pageData.sort((a, b) => {
         return (
             new Date(b.publishDate ?? '1970-01-01').getTime() -
