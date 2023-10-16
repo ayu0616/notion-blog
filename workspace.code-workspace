@@ -12,7 +12,7 @@
             "*.css": "postcss"
         },
         "files.autoSave": "off",
-        "cSpell.words": ["datas"]
+        "cSpell.words": ["Autodocs", "datas"]
     },
     "launch": {
         "configurations": [
