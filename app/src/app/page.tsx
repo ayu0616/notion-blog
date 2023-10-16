@@ -2,7 +2,7 @@ import Carousel from '@/components/common/Carousel/Carousel'
 import { Page } from '@/type/page/page'
 import getPageData from '@/util/getPageData'
 
-import BlogPages from './BlogPages'
+import BlogPages from '../components/page/index/BlogPages/BlogPages'
 
 const NEXT_PUBLIC_URL = process.env.NEXT_PUBLIC_URL
 

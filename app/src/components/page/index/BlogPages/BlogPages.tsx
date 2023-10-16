@@ -3,6 +3,13 @@
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
 
+import Heading from '@/components/block/Heading/Heading'
+import {
+    Accordion,
+    AccordionButton,
+    AccordionContent,
+    AccordionIcon,
+} from '@/components/common/Accordion'
 import Card from '@/components/common/Card/Card'
 import Checkbox, { CheckboxProps } from '@/components/common/Checkbox/Checkbox'
 import ImageBase from '@/components/common/ImageBase/ImageBase'
@@ -25,6 +32,10 @@ const BlogPages = ({
     const [showPageData, setPageData] = useState<Page[]>(pageData)
     const tagData = getTagData(pageData)
     const [checkedTag, setCheckedTag] = useState<string[]>([])
+    const [searchValue, setSearchValue] = useState<string>(
+        searchDefaultValue ?? '',
+    )
+    const [composing, setComposing] = useState(false)
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const checked = e.target.checked
         const value = e.target.value
@@ -49,25 +60,72 @@ const BlogPages = ({
             )
         }
     }, [checkedTag, pageData])
+
+    useEffect(() => {
+        if (composing) return
+        if (searchValue === '') {
+            setPageData(pageData)
+        } else {
+            setPageData(
+                pageData.filter((page) => {
+                    return page.title.includes(searchValue)
+                }),
+            )
+        }
+    }, [composing, pageData, searchValue])
     return (
-        <>
-            <div className='px-4'>
-                <label htmlFor='search-query'>ページを検索</label>
-                <SearchForm
-                    siz='lg'
-                    placeholder='ブログタイトル'
-                    action='/search'
-                    name='query'
-                    defaultValue={searchDefaultValue}
-                    id='search-query'
-                />
-            </div>
-            <div className='flex gap-2 px-4'>
-                {tagData.map((tag, i) => {
-                    return <Checkbox {...tag} key={i} onChange={handleChange} />
-                })}
-            </div>
-            <div className='grid gap-4 px-4'>
+        <div className='space-y-4 px-4'>
+            <Accordion>
+                <AccordionButton>
+                    <div className='flex items-center justify-between px-4 py-2'>
+                        <Heading className='flex-1' level={3}>
+                            ページを絞り込む
+                        </Heading>
+                        <AccordionIcon />
+                    </div>
+                </AccordionButton>
+                <AccordionContent>
+                    <div className='space-y-4 p-4'>
+                        <div className='space-y-2'>
+                            <label htmlFor='search-query'>
+                                <Heading level={4}>ページを検索</Heading>
+                            </label>
+                            <div className='rounded-full border border-orange-600'>
+                                <SearchForm
+                                    siz='lg'
+                                    placeholder='ブログタイトル'
+                                    action='/search'
+                                    name='query'
+                                    value={searchValue}
+                                    onChange={(e) =>
+                                        setSearchValue(e.target.value)
+                                    }
+                                    onCompositionStart={() =>
+                                        setComposing(true)
+                                    }
+                                    onCompositionEnd={() => setComposing(false)}
+                                    id='search-query'
+                                />
+                            </div>
+                        </div>
+                        <div className='space-y-2'>
+                            <Heading level={4}>タグで絞り込む</Heading>
+                            <div className='flex gap-2'>
+                                {tagData.map((tag, i) => {
+                                    return (
+                                        <Checkbox
+                                            {...tag}
+                                            key={i}
+                                            onChange={handleChange}
+                                        />
+                                    )
+                                })}
+                            </div>
+                        </div>
+                    </div>
+                </AccordionContent>
+            </Accordion>
+            <div className='grid gap-4'>
                 {showPageData.map((page, i) => {
                     return (
                         <Link href={`/blog/${page.slug}`} key={i}>
@@ -96,7 +154,7 @@ const BlogPages = ({
                     )
                 })}
             </div>
-        </>
+        </div>
     )
 }
 
