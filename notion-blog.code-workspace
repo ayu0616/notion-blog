@@ -12,7 +12,8 @@
             "*.css": "postcss"
         },
         "files.autoSave": "off",
-        "cSpell.words": ["Autodocs", "datas"]
+        "cSpell.words": ["Autodocs", "datas"],
+        "liveServer.settings.multiRootWorkspaceName": "app"
     },
     "launch": {
         "configurations": [
