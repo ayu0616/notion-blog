@@ -28,14 +28,16 @@ import {
 import { RichText } from "./type/block/richText";
 import { Page } from "./type/page";
 
-Dotenv.config({ path: path.join(__dirname, "../.env") });
+if (fs.existsSync(path.join(__dirname, "../.env"))) {
+    Dotenv.config({ path: path.join(__dirname, "../.env") });
 
-fs.readFileSync(path.join(__dirname, "../.env"), "utf-8")
-    .split("\n")
-    .forEach((line) => {
-        const [key, value] = line.split("=");
-        process.env[key] = value.replace(/["']/g, "");
-    });
+    fs.readFileSync(path.join(__dirname, "../.env"), "utf-8")
+        .split("\n")
+        .forEach((line) => {
+            const [key, value] = line.split("=");
+            process.env[key] = value.replace(/["']/g, "");
+        });
+}
 
 // envs
 const NOTION_API_KEY = process.env.NOTION_API_KEY;
