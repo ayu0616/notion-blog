@@ -1,22 +1,10 @@
-import Carousel from '@/components/common/carousel/Carousel'
+import Carousel from '@/components/common/Carousel/Carousel'
 import { Page } from '@/type/page/page'
-import fs from 'fs'
-import BlogPages from './BlogPages'
+import getPageData from '@/util/getPageData'
+
+import BlogPages from '../components/page/index/BlogPages/BlogPages'
 
 const NEXT_PUBLIC_URL = process.env.NEXT_PUBLIC_URL
-
-const getPageData = () => {
-    const pageData: Page[] = JSON.parse(
-        fs.readFileSync('./public/data/pages.json', 'utf-8'),
-    )
-    if (process.env.NODE_ENV === 'development') {
-        return pageData
-    } else {
-        return pageData.filter((page) => {
-            return page.status === 'published'
-        })
-    }
-}
 
 export default async function Home() {
     // const pageData: Page[] = await fetch(

@@ -1,7 +1,9 @@
-import { Page } from '@/type/page/page'
 import fs from 'fs'
+
 import { glob } from 'glob'
 import { NextApiRequest, NextApiResponse } from 'next'
+
+import { Page } from '@/type/page/page'
 
 export default async function handler(
     req: NextApiRequest,

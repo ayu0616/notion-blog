@@ -1,19 +1,25 @@
+import Heading from '@/components/block/Heading/Heading'
 import Paragraph from '@/components/block/Paragraph'
-import Heading from '@/components/block/heading/Heading'
-import { Block as BlockData } from '@/type/page/block/block'
+import {
+    Block as BlockData,
+    TableRow as TableRowData,
+} from '@/type/page/block/block'
 import { RichText as RichTextData } from '@/type/page/block/richText'
-import BookMark from './BookMark'
-import Equation from './Equation'
-import RichText from './RichText'
-import BulletedList from './bulletedList/BulletedList'
-import BulletedListItem from './bulletedList/BulletedListItem'
-import Callout from './callout/Callout'
-import Code from './code/Code'
-import Divider from './divider/Divider'
-import Image from './image/Image'
-import NumberedList from './numberedList/NumberedList'
-import NumberedListItem from './numberedList/NumberedListItem'
-import Video from './video/Video'
+
+import BookMark from './BookMark/BookMark'
+import BulletedList from './BulletedList/BulletedList'
+import BulletedListItem from './BulletedList/BulletedListItem'
+import Callout from './Callout/Callout'
+import Code from './Code/Code'
+import Divider from './Divider/Divider'
+import Equation from './Equation/Equation'
+import Image from './Image/Image'
+import NumberedList from './NumberedList/NumberedList'
+import NumberedListItem from './NumberedList/NumberedListItem'
+import { RichText } from './RichText'
+import { Table, TableBody, TableCell, TableHead, TableRow } from './Table'
+import TableOfContent from './TableOfContent/TableOfContent'
+import Video from './Video/Video'
 
 interface BlockProps {
     data: BlockData
@@ -53,21 +59,21 @@ export const Block = ({ data, ...props }: BlockProps) => {
             )
         case 'heading_1':
             return (
-                <Heading level={3} color={data.color}>
+                <Heading className='heading-1' level={3} color={data.color}>
                     <RichTexts datas={data.richTexts} />
                     <Blocks datas={data.children} />
                 </Heading>
             )
         case 'heading_2':
             return (
-                <Heading level={4} color={data.color}>
+                <Heading className='heading-2' level={4} color={data.color}>
                     <RichTexts datas={data.richTexts} />
                     <Blocks datas={data.children} />
                 </Heading>
             )
         case 'heading_3':
             return (
-                <Heading level={5} color={data.color}>
+                <Heading className='heading-3' level={5} color={data.color}>
                     <RichTexts datas={data.richTexts} />
                     <Blocks datas={data.children} />
                 </Heading>
@@ -135,6 +141,80 @@ export const Block = ({ data, ...props }: BlockProps) => {
             return <Image src={data.url} alt={alt}></Image>
         case 'video':
             return <Video url={data.url} />
+        case 'table_of_contents':
+            return <TableOfContent></TableOfContent>
+        case 'table':
+            return (
+                <Table
+                // hasRowHeader={data.has_row_header}
+                // hasColHeader={data.has_column_header}
+                >
+                    {data.children && data.has_row_header ? (
+                        <>
+                            <TableHead>
+                                <TableRow>
+                                    {(
+                                        data.children[0] as TableRowData
+                                    ).cells.map((cell, i) => (
+                                        <TableCell isHead key={i}>
+                                            <RichTexts datas={cell} />
+                                        </TableCell>
+                                    ))}
+                                </TableRow>
+                            </TableHead>
+                            <TableBody>
+                                {data.children.slice(1).map((row, i) => (
+                                    <TableRow key={i}>
+                                        {(row as TableRowData).cells.map(
+                                            (cell, j) => (
+                                                <TableCell
+                                                    isHead={
+                                                        data.has_column_header &&
+                                                        j === 0
+                                                    }
+                                                    key={j}
+                                                >
+                                                    <RichTexts datas={cell} />
+                                                </TableCell>
+                                            ),
+                                        )}
+                                    </TableRow>
+                                ))}
+                            </TableBody>
+                        </>
+                    ) : (
+                        <TableBody>
+                            {data.children?.map((row, i) => (
+                                <TableRow key={i}>
+                                    {(row as TableRowData).cells.map(
+                                        (cell, j) => (
+                                            <TableCell
+                                                isHead={
+                                                    data.has_column_header &&
+                                                    j === 0
+                                                }
+                                                key={j}
+                                            >
+                                                <RichTexts datas={cell} />
+                                            </TableCell>
+                                        ),
+                                    )}
+                                </TableRow>
+                            ))}
+                        </TableBody>
+                    )}
+                </Table>
+            )
+        case 'table_row':
+            return (
+                <TableRow>
+                    {data.cells.map((cell, i) => (
+                        <TableCell key={i}>
+                            <RichTexts datas={cell} />
+                        </TableCell>
+                    ))}
+                </TableRow>
+            )
         default:
             return <></>
     }

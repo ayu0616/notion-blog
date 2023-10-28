@@ -1,3 +1,4 @@
+import Dotenv from "dotenv";
 import fs from "fs";
 import path from "path";
 import { imgToUri } from "./imgToUri";
@@ -19,12 +20,22 @@ import {
     NumberedList,
     NumberedListItem,
     Paragraph,
+    Table,
+    TableOfContents,
+    TableRow,
     Video,
 } from "./type/block/block";
 import { RichText } from "./type/block/richText";
 import { Page } from "./type/page";
 
-require("dotenv").config();
+Dotenv.config({ path: path.join(__dirname, "../.env") });
+
+fs.readFileSync(path.join(__dirname, "../.env"), "utf-8")
+    .split("\n")
+    .forEach((line) => {
+        const [key, value] = line.split("=");
+        process.env[key] = value.replace(/["']/g, "");
+    });
 
 // envs
 const NOTION_API_KEY = process.env.NOTION_API_KEY;
@@ -250,6 +261,30 @@ const convertToBlocks = async (data: any) => {
                     url: b.video[b.video.type].url,
                 };
                 blocks.push(video);
+                break;
+            case "table_of_contents":
+                const tableOfContents: TableOfContents = {
+                    ...blockBase,
+                    type: "table_of_contents",
+                };
+                blocks.push(tableOfContents);
+                break;
+            case "table":
+                const table: Table = {
+                    ...blockBase,
+                    type: "table",
+                    has_column_header: b.table.has_column_header,
+                    has_row_header: b.table.has_row_header,
+                };
+                blocks.push(table);
+                break;
+            case "table_row":
+                const tableRow: TableRow = {
+                    ...blockBase,
+                    type: "table_row",
+                    cells: b.table_row.cells.map((c: any[]) => convertToRichTexts(c)),
+                };
+                blocks.push(tableRow);
                 break;
             default:
                 break;

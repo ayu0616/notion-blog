@@ -52,7 +52,10 @@ export type Block =
     | Image
     | BulletedList
     | NumberedList
-    | Video;
+    | Video
+    | TableOfContents
+    | Table
+    | TableRow;
 
 export interface BlockBase {
     id: string;
@@ -160,4 +163,22 @@ export interface Image extends BlockBase, WithCaption {
 export interface Video extends BlockBase, WithCaption {
     type: "video";
     url: string;
+}
+
+/** 目次 */
+export interface TableOfContents extends BlockBase {
+    type: "table_of_contents";
+}
+
+/** 表の行 */
+export interface TableRow extends BlockBase {
+    type: "table_row";
+    cells: RichText[][];
+}
+
+/** 表 */
+export interface Table extends BlockBase {
+    type: "table";
+    has_column_header: boolean;
+    has_row_header: boolean;
 }
