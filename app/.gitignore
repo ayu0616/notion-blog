@@ -36,3 +36,5 @@ next-env.d.ts
 
 # blogdata
 public/data/**/*
+
+storybook-static
