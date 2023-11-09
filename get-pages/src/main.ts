@@ -60,11 +60,20 @@ const deepCopy = <T>(obj: T): T => {
 };
 
 /** 日付を比較する
- * 前者が小さければfalse
- * 後者が小さければtrue
+ * 前者が小さければ -1
+ * 後者が小さければ 1
+ * それ以外は 0
  */
 const compareDate = (date1: string, date2: string) => {
-    return new Date(date1).getTime() < new Date(date2).getTime();
+    const d1 = new Date(date1);
+    const d2 = new Date(date2);
+    if (d1.getTime() < d2.getTime()) {
+        return -1;
+    } else if (d1.getTime() > d2.getTime()) {
+        return 1;
+    } else {
+        return 0;
+    }
 };
 
 /** データベース上にあるページの情報をAPIから取得する */
@@ -94,7 +103,7 @@ const convertToPages = async (data: any) => {
         let isUpdated = true;
         if (fs.existsSync(path.join(DATA_PATH, "page", `${slug}.json`))) {
             const prevData: Page = JSON.parse(fs.readFileSync(path.join(DATA_PATH, "page", `${slug}.json`), "utf-8"));
-            isUpdated = compareDate(prevData.lastEditedTime, lastEditedTime);
+            isUpdated = compareDate(prevData.lastEditedTime, lastEditedTime) <= 0;
         }
         let image: null | string = null;
         if (p.properties.image.files[0]) {
@@ -144,7 +153,7 @@ const convertToBlocks = async (data: any, lastEditedTime: string) => {
             type: b.type,
             hasChildren: b.has_children,
             lastEditedTime: b.last_edited_time,
-            children: b.has_children && compareDate(lastEditedTime, b.last_edited_time) ? await getBlocks(b.id, lastEditedTime) : null,
+            children: b.has_children && compareDate(lastEditedTime, b.last_edited_time) <= 0 ? await getBlocks(b.id, lastEditedTime) : null,
         };
         switch (b.type as BlockType) {
             case "paragraph":
@@ -383,7 +392,10 @@ const writeFile = (path: string, data: string) => {
     for (const page of pages) {
         if (fs.existsSync(path.join(DATA_PATH, "page", `${page.slug}.json`))) {
             const prevData: Page = JSON.parse(fs.readFileSync(path.join(DATA_PATH, "page", `${page.slug}.json`), "utf-8"));
-            if (new Date(prevData.lastEditedTime).getTime() === new Date(page.lastEditedTime).getTime()) {
+            if (
+                new Date(prevData.lastEditedTime).getTime() === new Date(page.lastEditedTime).getTime() ||
+                compareDate(prevData.lastEditedTime, page.lastEditedTime)
+            ) {
                 continue;
             }
         }
