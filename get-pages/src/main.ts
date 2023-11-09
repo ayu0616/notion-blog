@@ -27,6 +27,7 @@ import {
 } from "./type/block/block";
 import { RichText } from "./type/block/richText";
 import { Page } from "./type/page";
+import { sleep } from "./util";
 
 if (fs.existsSync(path.join(__dirname, "../.env"))) {
     Dotenv.config({ path: path.join(__dirname, "../.env") });
@@ -304,6 +305,7 @@ const getPages = async () => {
 
 /** ブロックの情報を取得する */
 const getBlocks = async (id: string) => {
+    await sleep(1000);
     const data = await getBlockData(id);
     const blocks = await convertToBlocks(data);
     return wrapListItems(blocks);
