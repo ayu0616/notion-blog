@@ -138,6 +138,7 @@ const convertToBlocks = async (data: any) => {
             type: b.type,
             hasChildren: b.has_children,
             children: b.has_children ? await getBlocks(b.id) : null,
+            lastEditedTime: b.last_edited_time,
         };
         switch (b.type as BlockType) {
             case "paragraph":

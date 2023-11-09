@@ -62,6 +62,7 @@ export interface BlockBase {
     hasChildren: boolean;
     type: BlockType;
     children: Block[] | null;
+    lastEditedTime: string;
 }
 
 /** リッチテキストつきのコンテンツ */
