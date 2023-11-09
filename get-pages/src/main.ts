@@ -59,6 +59,14 @@ const deepCopy = <T>(obj: T): T => {
     return JSON.parse(JSON.stringify(obj));
 };
 
+/** 日付を比較する
+ * 前者が小さければfalse
+ * 後者が小さければtrue
+ */
+const compareDate = (date1: string, date2: string) => {
+    return new Date(date1).getTime() < new Date(date2).getTime();
+};
+
 /** データベース上にあるページの情報をAPIから取得する */
 const getPageData = async () => {
     const data = await fetch(`${BASE_URL}/databases/${NOTION_DATABASE_ID}/query`, {
@@ -82,13 +90,11 @@ const convertToPages = async (data: any) => {
     const pages: Page[] = [];
     for (let p of data.results) {
         const slug = p.properties.slug.rich_text[0] ? p.properties.slug.rich_text[0].plain_text : "";
-        const lastEditedTime = p.last_edited_time; //最終更新日時
+        const lastEditedTime: string = p.last_edited_time; //最終更新日時
         let isUpdated = true;
         if (fs.existsSync(path.join(DATA_PATH, "page", `${slug}.json`))) {
             const prevData: Page = JSON.parse(fs.readFileSync(path.join(DATA_PATH, "page", `${slug}.json`), "utf-8"));
-            if (new Date(prevData.lastEditedTime).getTime() === new Date(lastEditedTime).getTime()) {
-                isUpdated = false;
-            }
+            isUpdated = compareDate(prevData.lastEditedTime, lastEditedTime);
         }
         let image: null | string = null;
         if (p.properties.image.files[0]) {
@@ -108,7 +114,7 @@ const convertToPages = async (data: any) => {
             slug,
             status: p.properties.status.status.name,
             publishDate: p.properties.publish_date.date?.start ?? null,
-            blocks: isUpdated ? await getBlocks(p.id) : [],
+            blocks: isUpdated ? await getBlocks(p.id, lastEditedTime) : [],
             image,
             description: p.properties.description.rich_text.map((text: any) => text.plain_text).join(""),
         };
@@ -130,15 +136,15 @@ const convertToRichTexts = (data: any[]) => {
 };
 
 /** APIから帰ってきたブロックのデータを整形する */
-const convertToBlocks = async (data: any) => {
+const convertToBlocks = async (data: any, lastEditedTime: string) => {
     const blocks: Block[] = [];
     for (let b of data.results) {
         const blockBase: BlockBase = {
             id: b.id,
             type: b.type,
             hasChildren: b.has_children,
-            children: b.has_children ? await getBlocks(b.id) : null,
             lastEditedTime: b.last_edited_time,
+            children: b.has_children && compareDate(lastEditedTime, b.last_edited_time) ? await getBlocks(b.id, lastEditedTime) : null,
         };
         switch (b.type as BlockType) {
             case "paragraph":
@@ -305,10 +311,10 @@ const getPages = async () => {
 };
 
 /** ブロックの情報を取得する */
-const getBlocks = async (id: string) => {
+const getBlocks = async (id: string, lastEditedTime: string) => {
     await sleep(1000);
     const data = await getBlockData(id);
-    const blocks = await convertToBlocks(data);
+    const blocks = await convertToBlocks(data, lastEditedTime);
     return wrapListItems(blocks);
 };
 
