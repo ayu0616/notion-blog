@@ -392,10 +392,7 @@ const writeFile = (path: string, data: string) => {
     for (const page of pages) {
         if (fs.existsSync(path.join(DATA_PATH, "page", `${page.slug}.json`))) {
             const prevData: Page = JSON.parse(fs.readFileSync(path.join(DATA_PATH, "page", `${page.slug}.json`), "utf-8"));
-            if (
-                new Date(prevData.lastEditedTime).getTime() === new Date(page.lastEditedTime).getTime() ||
-                compareDate(prevData.lastEditedTime, page.lastEditedTime)
-            ) {
+            if (compareDate(prevData.lastEditedTime, page.lastEditedTime) <= 0) {
                 continue;
             }
         }
