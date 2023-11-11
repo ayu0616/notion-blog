@@ -1,3 +1,5 @@
+import sharp from "sharp";
+
 export const fetchImg = async (imageUrl: string) => {
     // fetchメソッドで画像を取得する
     const res = await fetch(imageUrl);
@@ -18,4 +20,10 @@ export const imgToUri = async (imageUrl: string) => {
     // data URIとして完成させる
     const dataUri = `data:${type};base64,${base64}`;
     return dataUri;
+};
+
+export const imgToWebp = async (buffer: Buffer, quality: number = 50) => {
+    // sharpで画像を変換する
+    const webp = await sharp(buffer).webp({ quality }).toBuffer();
+    return webp;
 };
