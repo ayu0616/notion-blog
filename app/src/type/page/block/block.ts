@@ -56,6 +56,8 @@ export type Block =
     | TableOfContents
     | Table
     | TableRow
+    | Column
+    | ColumnList
 
 export interface BlockBase {
     id: string
@@ -181,4 +183,14 @@ export interface Table extends BlockBase {
     type: 'table'
     has_column_header: boolean
     has_row_header: boolean
+}
+
+/** 段組みのコンテンツ */
+export interface Column extends BlockBase {
+    type: 'column'
+}
+
+/** 段組み */
+export interface ColumnList extends BlockBase {
+    type: 'column_list'
 }

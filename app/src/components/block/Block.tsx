@@ -11,6 +11,7 @@ import BulletedList from './BulletedList/BulletedList'
 import BulletedListItem from './BulletedList/BulletedListItem'
 import Callout from './Callout/Callout'
 import Code from './Code/Code'
+import { Column, ColumnList } from './Column'
 import Divider from './Divider/Divider'
 import Equation from './Equation/Equation'
 import Image from './Image/Image'
@@ -219,6 +220,18 @@ export const Block = ({ data, ...props }: BlockProps) => {
                         </TableCell>
                     ))}
                 </TableRow>
+            )
+        case 'column_list':
+            return (
+                <ColumnList>
+                    <Blocks datas={data.children} />
+                </ColumnList>
+            )
+        case 'column':
+            return (
+                <Column>
+                    <Blocks datas={data.children} />
+                </Column>
             )
         default:
             return <></>
