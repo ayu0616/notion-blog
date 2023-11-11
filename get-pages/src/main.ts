@@ -243,9 +243,9 @@ const convertToBlocks = async (data: any, slug: string) => {
                     // 画像を取得する
                     const { buffer, type } = await fetchImg(b.image.file.url);
                     // 画像を保存するパス
-                    const id = b.image.file.url.split("/").pop().split("?")[0].split(".")[0];
+                    const fname = b.id;
                     const ext = type.split("/").pop();
-                    const savePath = path.join(pageDirPath(slug), `${id}.${ext}`);
+                    const savePath = path.join(pageDirPath(slug), `${fname}.${ext}`);
                     // 画像を保存する
                     writeFile(savePath, buffer);
                     // 画像のURLをローカルのパスに変更する
