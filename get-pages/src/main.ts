@@ -78,8 +78,8 @@ const convertToPages = async (data: any) => {
         const slug = p.properties.slug.rich_text[0] ? p.properties.slug.rich_text[0].plain_text : "";
         const lastEditedTime = p.last_edited_time; //最終更新日時
         let isUpdated = true;
-        if (fs.existsSync(path.join(DATA_PATH, "page", `${slug}.json`))) {
-            const prevData: Page = JSON.parse(fs.readFileSync(path.join(DATA_PATH, "page", `${slug}.json`), "utf-8"));
+        if (fs.existsSync(pageJsonPath(slug))) {
+            const prevData: Page = JSON.parse(fs.readFileSync(pageJsonPath(slug), "utf-8"));
             if (new Date(prevData.lastEditedTime).getTime() === new Date(lastEditedTime).getTime()) {
                 isUpdated = false;
             }
