@@ -1,7 +1,6 @@
 import Dotenv from "dotenv";
 import fs from "fs";
 import path from "path";
-import { imgToUri } from "./imgToUri";
 import {
     Block,
     BlockBase,
@@ -27,6 +26,7 @@ import {
 } from "./type/block/block";
 import { RichText } from "./type/block/richText";
 import { Page } from "./type/page";
+import { deepCopy, imgToUri, writeFile } from "./util";
 
 if (fs.existsSync(path.join(__dirname, "../.env"))) {
     Dotenv.config({ path: path.join(__dirname, "../.env") });
@@ -52,11 +52,6 @@ const HEADERS = {
 
 // データを格納するパス
 const DATA_PATH = "../app/public/data";
-
-/** ディープコピーを作成する */
-const deepCopy = <T>(obj: T): T => {
-    return JSON.parse(JSON.stringify(obj));
-};
 
 /** データベース上にあるページの情報をAPIから取得する */
 const getPageData = async () => {
@@ -355,17 +350,6 @@ const wrapListItems = (blocks: Block[]) => {
         nWrapper.length = 0;
     }
     return res;
-};
-
-/** ファイルに書き込む関数（ディレクトリが存在しない場合は作成する） */
-const writeFile = (path: string, data: string) => {
-    return fs.writeFile(path, data, (err) => {
-        if (err && err.code === "ENOENT") {
-            const dir = path.split("/").slice(0, -1).join("/");
-            fs.mkdirSync(dir, { recursive: true });
-            writeFile(path, data);
-        }
-    });
 };
 
 /** ページデータのディレクトリのパス */
