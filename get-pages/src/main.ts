@@ -10,6 +10,8 @@ import {
     BulletedListItem,
     Callout,
     Code,
+    Column,
+    ColumnList,
     Divider,
     Equation,
     Heading1,
@@ -300,6 +302,20 @@ const convertToBlocks = async (data: any, slug: string) => {
                     cells: b.table_row.cells.map((c: any[]) => convertToRichTexts(c)),
                 };
                 blocks.push(tableRow);
+                break;
+            case "column":
+                const column: Column = {
+                    ...blockBase,
+                    type: "column",
+                };
+                blocks.push(column);
+                break;
+            case "column_list":
+                const columnList: ColumnList = {
+                    ...blockBase,
+                    type: "column_list",
+                };
+                blocks.push(columnList);
                 break;
             default:
                 break;
