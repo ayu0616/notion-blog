@@ -26,7 +26,7 @@ import {
 } from "./type/block/block";
 import { RichText } from "./type/block/richText";
 import { Page } from "./type/page";
-import { deepCopy, fetchImg, imgToUri, writeFile } from "./util";
+import { deepCopy, fetchImg, writeFile } from "./util";
 
 if (fs.existsSync(path.join(__dirname, "../.env"))) {
     Dotenv.config({ path: path.join(__dirname, "../.env") });
@@ -89,7 +89,15 @@ const convertToPages = async (data: any) => {
             if (p.properties.image.files[0].type === "external") {
                 image = p.properties.image.files[0].external.url;
             } else {
-                image = await imgToUri(p.properties.image.files[0].file.url);
+                // 画像を取得する
+                const { buffer, type } = await fetchImg(p.properties.image.files[0].file.url);
+                // 画像を保存するパス
+                const ext = type.split("/").pop();
+                const savePath = path.join(DATA_PATH, "thumbnail", `${slug}.${ext}`);
+                // 画像を保存する
+                writeFile(savePath, buffer);
+                // 画像のURLをローカルのパスに変更する
+                image = path.join("/", "data", "thumbnail", `${slug}.${ext}`);
             }
         }
         const page: Page = {
