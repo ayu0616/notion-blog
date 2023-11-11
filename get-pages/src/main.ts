@@ -368,18 +368,24 @@ const writeFile = (path: string, data: string) => {
     });
 };
 
+/** ページデータのディレクトリのパス */
+const pageDirPath = (slug: string) => path.join(DATA_PATH, "pages", slug);
+
+/** ページコンテンツを記載したjsonファイルのパス */
+const pageJsonPath = (slug: string) => path.join(pageDirPath(slug), "data.json");
+
 // メインの処理
 (async () => {
     const pages = await getPages();
     for (const page of pages) {
-        if (fs.existsSync(path.join(DATA_PATH, "page", `${page.slug}.json`))) {
-            const prevData: Page = JSON.parse(fs.readFileSync(path.join(DATA_PATH, "page", `${page.slug}.json`), "utf-8"));
+        if (fs.existsSync(pageJsonPath(page.slug))) {
+            const prevData: Page = JSON.parse(fs.readFileSync(pageJsonPath(page.slug), "utf-8"));
             if (new Date(prevData.lastEditedTime).getTime() === new Date(page.lastEditedTime).getTime()) {
                 continue;
             }
         }
-        writeFile(path.join(DATA_PATH, "page", `${page.slug}.json`), JSON.stringify(page));
-        console.log(path.join(DATA_PATH, "page", `${page.slug}.json`));
+        writeFile(pageJsonPath(page.slug), JSON.stringify(page));
+        console.log(pageJsonPath(page.slug));
     }
     // ページのデータからブロックのデータを削除したもの
     const pagesWithoutBlocks = pages.map((p) => {
