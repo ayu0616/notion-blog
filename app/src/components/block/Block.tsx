@@ -138,7 +138,12 @@ export const Block = ({ data, ...props }: BlockProps) => {
                     return data.url //なければ画像のURLをaltにする
                 }
             })()
-            return <Image src={data.url} alt={alt}></Image>
+            return (
+                <Image
+                    src={data.url.replace('../app/public', '')}
+                    alt={alt}
+                ></Image>
+            )
         case 'video':
             return <Video url={data.url} />
         case 'table_of_contents':

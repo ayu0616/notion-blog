@@ -1,7 +1,6 @@
 import Dotenv from "dotenv";
 import fs from "fs";
 import path from "path";
-import { imgToUri } from "./imgToUri";
 import {
     Block,
     BlockBase,
@@ -27,6 +26,7 @@ import {
 } from "./type/block/block";
 import { RichText } from "./type/block/richText";
 import { Page } from "./type/page";
+import { deepCopy, fetchImg, imgToWebp, writeFile } from "./util";
 
 if (fs.existsSync(path.join(__dirname, "../.env"))) {
     Dotenv.config({ path: path.join(__dirname, "../.env") });
@@ -53,11 +53,6 @@ const HEADERS = {
 // データを格納するパス
 const DATA_PATH = "../app/public/data";
 
-/** ディープコピーを作成する */
-const deepCopy = <T>(obj: T): T => {
-    return JSON.parse(JSON.stringify(obj));
-};
-
 /** データベース上にあるページの情報をAPIから取得する */
 const getPageData = async () => {
     const data = await fetch(`${BASE_URL}/databases/${NOTION_DATABASE_ID}/query`, {
@@ -83,8 +78,8 @@ const convertToPages = async (data: any) => {
         const slug = p.properties.slug.rich_text[0] ? p.properties.slug.rich_text[0].plain_text : "";
         const lastEditedTime = p.last_edited_time; //最終更新日時
         let isUpdated = true;
-        if (fs.existsSync(path.join(DATA_PATH, "page", `${slug}.json`))) {
-            const prevData: Page = JSON.parse(fs.readFileSync(path.join(DATA_PATH, "page", `${slug}.json`), "utf-8"));
+        if (fs.existsSync(pageJsonPath(slug))) {
+            const prevData: Page = JSON.parse(fs.readFileSync(pageJsonPath(slug), "utf-8"));
             if (new Date(prevData.lastEditedTime).getTime() === new Date(lastEditedTime).getTime()) {
                 isUpdated = false;
             }
@@ -94,7 +89,16 @@ const convertToPages = async (data: any) => {
             if (p.properties.image.files[0].type === "external") {
                 image = p.properties.image.files[0].external.url;
             } else {
-                image = await imgToUri(p.properties.image.files[0].file.url);
+                // 画像を取得する
+                const { buffer, type } = await fetchImg(p.properties.image.files[0].file.url);
+                // 画像を保存するパス
+                const ext = "webp";
+                const fname = `${slug}.${ext}`;
+                const savePath = path.join(DATA_PATH, "thumbnail", fname);
+                // 画像を保存する
+                writeFile(savePath, await imgToWebp(buffer));
+                // 画像のURLをローカルのパスに変更する
+                image = path.join("/", "data", "thumbnail", fname);
             }
         }
         const page: Page = {
@@ -107,7 +111,7 @@ const convertToPages = async (data: any) => {
             slug,
             status: p.properties.status.status.name,
             publishDate: p.properties.publish_date.date?.start ?? null,
-            blocks: isUpdated ? await getBlocks(p.id) : [],
+            blocks: isUpdated ? await getBlocks(p.id, slug) : [],
             image,
             description: p.properties.description.rich_text.map((text: any) => text.plain_text).join(""),
         };
@@ -129,14 +133,14 @@ const convertToRichTexts = (data: any[]) => {
 };
 
 /** APIから帰ってきたブロックのデータを整形する */
-const convertToBlocks = async (data: any) => {
+const convertToBlocks = async (data: any, slug: string) => {
     const blocks: Block[] = [];
     for (let b of data.results) {
         const blockBase: BlockBase = {
             id: b.id,
             type: b.type,
             hasChildren: b.has_children,
-            children: b.has_children ? await getBlocks(b.id) : null,
+            children: b.has_children ? await getBlocks(b.id, slug) : null,
         };
         switch (b.type as BlockType) {
             case "paragraph":
@@ -245,7 +249,16 @@ const convertToBlocks = async (data: any) => {
                 if (b.image.type === "external") {
                     url = b.image.external.url;
                 } else {
-                    url = await imgToUri(b.image.file.url);
+                    // 画像を取得する
+                    const { buffer, type } = await fetchImg(b.image.file.url);
+                    // 画像を保存するパス
+                    const ext = "webp";
+                    const fname = `${b.id}.${ext}`;
+                    const savePath = path.join(pageDirPath(slug), fname);
+                    // 画像を保存する
+                    writeFile(savePath, await imgToWebp(buffer));
+                    // 画像のURLをローカルのパスに変更する
+                    url = savePath.replace("../app/public", "");
                 }
                 const image: Image = {
                     ...blockBase,
@@ -303,9 +316,9 @@ const getPages = async () => {
 };
 
 /** ブロックの情報を取得する */
-const getBlocks = async (id: string) => {
+const getBlocks = async (id: string, slug: string) => {
     const data = await getBlockData(id);
-    const blocks = await convertToBlocks(data);
+    const blocks = await convertToBlocks(data, slug);
     return wrapListItems(blocks);
 };
 
@@ -357,29 +370,24 @@ const wrapListItems = (blocks: Block[]) => {
     return res;
 };
 
-/** ファイルに書き込む関数（ディレクトリが存在しない場合は作成する） */
-const writeFile = (path: string, data: string) => {
-    return fs.writeFile(path, data, (err) => {
-        if (err && err.code === "ENOENT") {
-            const dir = path.split("/").slice(0, -1).join("/");
-            fs.mkdirSync(dir, { recursive: true });
-            writeFile(path, data);
-        }
-    });
-};
+/** ページデータのディレクトリのパス */
+const pageDirPath = (slug: string) => path.join(DATA_PATH, "pages", slug);
+
+/** ページコンテンツを記載したjsonファイルのパス */
+const pageJsonPath = (slug: string) => path.join(pageDirPath(slug), "data.json");
 
 // メインの処理
 (async () => {
     const pages = await getPages();
     for (const page of pages) {
-        if (fs.existsSync(path.join(DATA_PATH, "page", `${page.slug}.json`))) {
-            const prevData: Page = JSON.parse(fs.readFileSync(path.join(DATA_PATH, "page", `${page.slug}.json`), "utf-8"));
+        if (fs.existsSync(pageJsonPath(page.slug))) {
+            const prevData: Page = JSON.parse(fs.readFileSync(pageJsonPath(page.slug), "utf-8"));
             if (new Date(prevData.lastEditedTime).getTime() === new Date(page.lastEditedTime).getTime()) {
                 continue;
             }
         }
-        writeFile(path.join(DATA_PATH, "page", `${page.slug}.json`), JSON.stringify(page));
-        console.log(path.join(DATA_PATH, "page", `${page.slug}.json`));
+        writeFile(pageJsonPath(page.slug), JSON.stringify(page));
+        console.log(pageJsonPath(page.slug));
     }
     // ページのデータからブロックのデータを削除したもの
     const pagesWithoutBlocks = pages.map((p) => {

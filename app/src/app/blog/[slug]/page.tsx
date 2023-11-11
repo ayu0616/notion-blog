@@ -12,7 +12,7 @@ const Page = async ({ params: { slug } }: { params: { slug: string } }) => {
     //     `${NEXT_PUBLIC_URL}/data/page/${slug}.json`,
     // ).then((res) => res.json())
     const pageData: PageData = JSON.parse(
-        fs.readFileSync(`./public/data/page/${slug}.json`, 'utf-8'),
+        fs.readFileSync(`./public/data/pages/${slug}/data.json`, 'utf-8'),
     )
     return (
         <main className='mx-auto max-w-4xl space-y-4 bg-white p-6'>
