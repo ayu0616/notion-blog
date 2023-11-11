@@ -26,7 +26,7 @@ import {
 } from "./type/block/block";
 import { RichText } from "./type/block/richText";
 import { Page } from "./type/page";
-import { deepCopy, fetchImg, writeFile } from "./util";
+import { deepCopy, fetchImg, imgToWebp, writeFile } from "./util";
 
 if (fs.existsSync(path.join(__dirname, "../.env"))) {
     Dotenv.config({ path: path.join(__dirname, "../.env") });
@@ -92,12 +92,13 @@ const convertToPages = async (data: any) => {
                 // 画像を取得する
                 const { buffer, type } = await fetchImg(p.properties.image.files[0].file.url);
                 // 画像を保存するパス
-                const ext = type.split("/").pop();
-                const savePath = path.join(DATA_PATH, "thumbnail", `${slug}.${ext}`);
+                const ext = "webp";
+                const fname = `${slug}.${ext}`;
+                const savePath = path.join(DATA_PATH, "thumbnail", fname);
                 // 画像を保存する
-                writeFile(savePath, buffer);
+                writeFile(savePath, await imgToWebp(buffer));
                 // 画像のURLをローカルのパスに変更する
-                image = path.join("/", "data", "thumbnail", `${slug}.${ext}`);
+                image = path.join("/", "data", "thumbnail", fname);
             }
         }
         const page: Page = {
@@ -251,13 +252,13 @@ const convertToBlocks = async (data: any, slug: string) => {
                     // 画像を取得する
                     const { buffer, type } = await fetchImg(b.image.file.url);
                     // 画像を保存するパス
-                    const fname = b.id;
-                    const ext = type.split("/").pop();
-                    const savePath = path.join(pageDirPath(slug), `${fname}.${ext}`);
+                    const ext = "webp";
+                    const fname = `${b.id}.${ext}`;
+                    const savePath = path.join(pageDirPath(slug), fname);
                     // 画像を保存する
-                    writeFile(savePath, buffer);
+                    writeFile(savePath, await imgToWebp(buffer));
                     // 画像のURLをローカルのパスに変更する
-                    url = savePath;
+                    url = savePath.replace("../app/public", "");
                 }
                 const image: Image = {
                     ...blockBase,
