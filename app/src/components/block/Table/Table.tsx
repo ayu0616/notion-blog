@@ -13,7 +13,7 @@ const Table = ({
     ...props
 }: TableProps) => {
     return (
-        <div className='overflow-x-scroll'>
+        <div className='overflow-x-auto'>
             <table className='whitespace-nowrap border'>{children}</table>
         </div>
     )
