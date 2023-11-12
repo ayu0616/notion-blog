@@ -21,6 +21,7 @@ import {
     NumberedList,
     NumberedListItem,
     Paragraph,
+    SyncedBlock,
     Table,
     TableOfContents,
     TableRow,
@@ -316,6 +317,13 @@ const convertToBlocks = async (data: any, slug: string) => {
                     type: "column_list",
                 };
                 blocks.push(columnList);
+                break;
+            case "synced_block":
+                const syncedBlock: SyncedBlock = {
+                    ...blockBase,
+                    type: "synced_block",
+                };
+                blocks.push(syncedBlock);
                 break;
             default:
                 break;

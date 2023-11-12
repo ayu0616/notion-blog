@@ -57,7 +57,8 @@ export type Block =
     | Table
     | TableRow
     | Column
-    | ColumnList;
+    | ColumnList
+    | SyncedBlock;
 
 export interface BlockBase {
     id: string;
@@ -193,4 +194,9 @@ export interface Column extends BlockBase {
 /** 段組み */
 export interface ColumnList extends BlockBase {
     type: "column_list";
+}
+
+/** 同期ブロック */
+export interface SyncedBlock extends BlockBase {
+    type: "synced_block";
 }
