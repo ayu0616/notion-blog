@@ -253,7 +253,7 @@ export const Blocks = ({ datas }: { datas?: BlockData[] | null }) => {
         <>
             {datas?.map((data, i) => {
                 return (
-                    <div className='mb-8 last:mb-0' key={i}>
+                    <div className='mb-10 last:mb-0 md:mb-12' key={i}>
                         <Block data={data}></Block>
                     </div>
                 )
