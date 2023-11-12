@@ -233,6 +233,12 @@ export const Block = ({ data, ...props }: BlockProps) => {
                     <Blocks datas={data.children} />
                 </Column>
             )
+        case 'synced_block':
+            return (
+                <>
+                    <Blocks datas={data.children}></Blocks>
+                </>
+            )
         default:
             return <></>
     }
