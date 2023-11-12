@@ -15,16 +15,15 @@ const Page = async ({ params: { slug } }: { params: { slug: string } }) => {
         fs.readFileSync(`./public/data/pages/${slug}/data.json`, 'utf-8'),
     )
     return (
-        <main className='mx-auto max-w-4xl space-y-4 bg-white p-6'>
+        <main className='mx-auto max-w-4xl space-y-12 bg-white p-6'>
             <PageInfo
                 {...pageData}
                 publishDate={pageData.publishDate ?? '1970'}
                 image={pageData.image ?? '/no_image.jpg'}
             />
-            {/* {pageData.blocks.map((block, index) => {
-                return <Block key={index} data={block} />
-            })} */}
-            <Blocks datas={pageData.blocks} />
+            <div>
+                <Blocks datas={pageData.blocks} />
+            </div>
             <Profile />
         </main>
     )

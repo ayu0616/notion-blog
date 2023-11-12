@@ -3,7 +3,7 @@ interface ParagraphProps {
 }
 
 const Paragraph = ({ children, ...props }: ParagraphProps) => {
-    return <p>{children}</p>
+    return <p className='space-y-4'>{children}</p>
 }
 
 export default Paragraph
