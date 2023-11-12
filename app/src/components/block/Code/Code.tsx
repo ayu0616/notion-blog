@@ -1,11 +1,10 @@
 'use client'
 import './Code.style.scss'
 
-import { CSSProperties, useEffect, useRef, useState } from 'react'
+import { CSSProperties, useState } from 'react'
+import { FaClipboard, FaClipboardCheck } from 'react-icons/fa'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 import { vscDarkPlus } from 'react-syntax-highlighter/dist/cjs/styles/prism'
-
-import Tooltip from '../../common/Tooltip/Tooltip'
 
 interface CodeProps {
     children: string
@@ -21,41 +20,46 @@ const Code = ({
     language: _language,
     ...props
 }: CodeProps) => {
-    const buttonRef = useRef<HTMLButtonElement>(null)
-    const [buttonElem, setButtonElem] = useState<HTMLButtonElement | null>(null)
-    useEffect(() => {
-        setButtonElem(buttonRef.current)
-    }, [buttonRef])
     const [tooltipShow, setTooltipShow] = useState(false)
-    const copyCode = () => {
+    const handleClick = () => {
         navigator.clipboard.writeText(props.children)
         setTooltipShow(true)
         setTimeout(() => {
             setTooltipShow(false)
-        }, 1000)
+        }, 2000)
     }
     const language = _language.replace('c++', 'cpp')
+
+    const clipOpacity = tooltipShow ? 'opacity-100' : 'opacity-0'
+    const clipCheckOpacity = tooltipShow ? 'opacity-0' : 'opacity-100'
     return (
         <div
             className='code-block-container rounded-md'
             style={{ background: style['pre[class*="language-"]'].background }}
         >
-            <div className='flex w-full justify-between border-b border-b-gray-300 p-2 text-sm text-white'>
+            <div className='flex w-full items-center justify-between border-b border-b-gray-300 px-3 py-2 text-sm text-white'>
                 <div className='p-1'>{language}</div>
                 <button
-                    ref={buttonRef}
-                    className='p-1 hover:text-yellow-300 hover:underline active:text-yellow-400'
-                    onClick={copyCode}
+                    className='relative h-5 w-5 hover:text-yellow-300 hover:underline active:text-yellow-400'
+                    onClick={handleClick}
                 >
-                    copy
+                    <div
+                        className={[
+                            'absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transform transition-opacity duration-300 ease-in-out',
+                            clipOpacity,
+                        ].join(' ')}
+                    >
+                        <FaClipboardCheck></FaClipboardCheck>
+                    </div>
+                    <div
+                        className={[
+                            'absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transform transition-opacity duration-300 ease-in-out',
+                            clipCheckOpacity,
+                        ].join(' ')}
+                    >
+                        <FaClipboard></FaClipboard>
+                    </div>
                 </button>
-                <Tooltip
-                    isShow={tooltipShow}
-                    elem={buttonElem}
-                    placement='left'
-                >
-                    コードがコピーされました！
-                </Tooltip>
             </div>
             <SyntaxHighlighter
                 {...props}
