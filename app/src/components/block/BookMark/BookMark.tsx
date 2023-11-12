@@ -1,31 +1,12 @@
-'use client'
-
-import { useEffect, useState } from 'react'
-
 import ImageBase from '@/components/common/ImageBase/ImageBase'
-
+import { getUrlData } from '@/util/getUrlData'
 
 interface BookMarkProps {
     href: string
 }
 
-const BookMark = ({ href, ...props }: BookMarkProps) => {
-    const [title, setTitle] = useState('')
-    const [description, setDescription] = useState('')
-    const [iconUrl, setIconUrl] = useState('')
-
-    useEffect(() => {
-        const getTitle = async () => {
-            const resData = await fetch('/api/bookmark-data?url=' + href).then(
-                (res) => res.json(),
-            )
-            const { title, description, iconUrl } = resData
-            setTitle(title)
-            setDescription(description)
-            setIconUrl(iconUrl)
-        }
-        getTitle()
-    }, [href])
+const BookMark = async ({ href, ...props }: BookMarkProps) => {
+    const { title, iconUrl, description } = await getUrlData(href)
 
     return (
         <div className='rounded-md bg-white drop-shadow-lg hover:drop-shadow-xl active:drop-shadow-md'>
