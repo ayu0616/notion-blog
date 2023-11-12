@@ -5,11 +5,13 @@ interface ImageProps {
     src: string
     alt: string
     className?: string
+    imgClassName?: string
     objectFit?: 'contain' | 'cover' | 'fill' | 'none' | 'scale-down'
 }
 
 const ImageBase = ({
-    className,
+    className = '',
+    imgClassName = '',
     objectFit = 'contain',
     ...props
 }: ImageProps) => {
@@ -21,7 +23,11 @@ const ImageBase = ({
                 // objectFit={objectFit}
                 fill
                 sizes='100%'
-                className={['rounded-[inherit]', objectFitClass].join(' ')}
+                className={[
+                    'rounded-[inherit]',
+                    objectFitClass,
+                    imgClassName,
+                ].join(' ')}
             />
         </div>
     )
