@@ -16,13 +16,13 @@ const BookMark = async ({ href, ...props }: BookMarkProps) => {
                     <p className='text-xs leading-3 text-gray-500 md:text-sm'>
                         {description}
                     </p>
-                    <p className='text-xs-1 flex items-center justify-end text-right md:text-sm'>
+                    <p className='text-xs-1 line-clamp-1 items-center justify-end whitespace-nowrap text-right md:text-sm'>
                         <ImageBase
                             src={iconUrl}
                             alt={`icon of ${href}`}
                             className='mr-1 inline-block h-[12px] w-[12px] md:mr-2 md:h-4 md:w-4'
                         />
-                        <p className='line-clamp-1 flex-1'>{href}</p>
+                        {href}
                     </p>
                 </div>
             </a>
