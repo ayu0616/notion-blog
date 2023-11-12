@@ -18,6 +18,7 @@ interface CodeProps {
 const Code = ({
     style = vscDarkPlus,
     showLineNumbers = true,
+    language: _language,
     ...props
 }: CodeProps) => {
     const buttonRef = useRef<HTMLButtonElement>(null)
@@ -33,13 +34,14 @@ const Code = ({
             setTooltipShow(false)
         }, 1000)
     }
+    const language = _language.replace('c++', 'cpp')
     return (
         <div
             className='code-block-container rounded-md'
             style={{ background: style['pre[class*="language-"]'].background }}
         >
             <div className='flex w-full justify-between border-b border-b-gray-300 p-2 text-sm text-white'>
-                <div className='p-1'>{props.language}</div>
+                <div className='p-1'>{language}</div>
                 <button
                     ref={buttonRef}
                     className='p-1 hover:text-yellow-300 hover:underline active:text-yellow-400'
@@ -58,6 +60,7 @@ const Code = ({
             <SyntaxHighlighter
                 {...props}
                 showLineNumbers={showLineNumbers}
+                language={language}
                 style={style}
                 customStyle={{ margin: 0 }}
             ></SyntaxHighlighter>
