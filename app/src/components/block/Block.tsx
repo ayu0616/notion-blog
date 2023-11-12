@@ -26,16 +26,6 @@ interface BlockProps {
     data: BlockData
 }
 
-const Children = ({ datas }: { datas?: BlockData[] | null }) => {
-    return (
-        <>
-            {datas?.map((data, i) => {
-                return <Block key={i} data={data}></Block>
-            })}
-        </>
-    )
-}
-
 const RichTexts = ({ datas }: { datas?: RichTextData[] | null }) => {
     return (
         <>
@@ -55,7 +45,7 @@ export const Block = ({ data, ...props }: BlockProps) => {
             return (
                 <Paragraph>
                     <RichTexts datas={data.richTexts} />
-                    <Blocks datas={data.children} />
+                    <Children datas={data.children} />
                 </Paragraph>
             )
         case 'heading_1':
@@ -101,7 +91,7 @@ export const Block = ({ data, ...props }: BlockProps) => {
             return (
                 <BulletedListItem>
                     <RichTexts datas={data.richTexts} />
-                    <Blocks datas={data.children} />
+                    <Children datas={data.children} />
                 </BulletedListItem>
             )
         case 'numbered_list':
@@ -116,7 +106,7 @@ export const Block = ({ data, ...props }: BlockProps) => {
             return (
                 <NumberedListItem>
                     <RichTexts datas={data.richTexts} />
-                    <Blocks datas={data.children} />
+                    <Children datas={data.children} />
                 </NumberedListItem>
             )
         case 'bookmark':
@@ -155,7 +145,7 @@ export const Block = ({ data, ...props }: BlockProps) => {
                 // hasRowHeader={data.has_row_header}
                 // hasColHeader={data.has_column_header}
                 >
-                    {data.children && data.has_row_header ? (
+                    {data.children && data.has_column_header ? (
                         <>
                             <TableHead>
                                 <TableRow>
@@ -175,7 +165,7 @@ export const Block = ({ data, ...props }: BlockProps) => {
                                             (cell, j) => (
                                                 <TableCell
                                                     isHead={
-                                                        data.has_column_header &&
+                                                        data.has_row_header &&
                                                         j === 0
                                                     }
                                                     key={j}
@@ -196,7 +186,7 @@ export const Block = ({ data, ...props }: BlockProps) => {
                                         (cell, j) => (
                                             <TableCell
                                                 isHead={
-                                                    data.has_column_header &&
+                                                    data.has_row_header &&
                                                     j === 0
                                                 }
                                                 key={j}
@@ -244,11 +234,29 @@ export const Block = ({ data, ...props }: BlockProps) => {
     }
 }
 
+/** 子ブロック
+ *
+ * `Blocks`との違い
+ *   - `<div></div>`で囲まれている
+ *   - インデントがついている
+ */
+const Children = ({ datas }: { datas?: BlockData[] | null }) => {
+    return (
+        <div className='pl-4'>
+            <Blocks datas={datas} />
+        </div>
+    )
+}
+
 export const Blocks = ({ datas }: { datas?: BlockData[] | null }) => {
     return (
         <>
             {datas?.map((data, i) => {
-                return <Block key={i} data={data}></Block>
+                return (
+                    <div className='mb-10 last:mb-0 md:mb-12' key={i}>
+                        <Block data={data}></Block>
+                    </div>
+                )
             })}
         </>
     )
