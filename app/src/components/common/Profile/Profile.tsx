@@ -1,6 +1,8 @@
 import Image from 'next/image'
 import { FaGithub, FaInstagram, FaTwitter } from 'react-icons/fa'
 
+import icon from '@/../public/profile_icon.png'
+
 import BulletedList from '../../block/BulletedList/BulletedList'
 import BulletedListItem from '../../block/BulletedList/BulletedListItem'
 import ImageBase from '../ImageBase/ImageBase'
@@ -77,7 +79,7 @@ const Profile = ({ ...props }: ProfileProps) => {
     return (
         <div className='mx-auto w-fit max-w-full space-y-4 rounded-md border p-4'>
             <ImageBase
-                src='/profile_icon.png'
+                src={icon}
                 alt='著者のアイコン'
                 className='mx-auto h-24 w-24 rounded-full'
             ></ImageBase>

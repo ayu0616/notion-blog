@@ -41,14 +41,14 @@ const TableOfContent = ({ ...props }: TableOfContentProps) => {
         <Accordion>
             <Heading className='border-none p-0' level={3}>
                 <AccordionButton>
-                    <div className='hover:inherit active:inherit flex cursor-pointer items-center justify-between  px-4 py-2'>
+                    <div className='hover:inherit active:inherit flex cursor-pointer items-center justify-between px-4 py-2'>
                         <div className='flex-1 text-center'>〜目次〜</div>
                         <AccordionIcon />
                     </div>
                 </AccordionButton>
             </Heading>
             <AccordionContent>
-                <ul className='px-4 py-2'>
+                <ul className='space-y-1 px-8 py-6'>
                     {headings.map((h, i) => (
                         <li key={i} className={plClass(h.level)}>
                             <a
@@ -74,9 +74,9 @@ const plClass = (level: number) => {
         case 1:
             return 'pl-0'
         case 2:
-            return 'pl-4'
+            return 'pl-6'
         case 3:
-            return 'pl-8'
+            return 'pl-10'
         default:
             return 'pl-0'
     }
