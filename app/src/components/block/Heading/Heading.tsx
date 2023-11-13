@@ -86,14 +86,17 @@ const Heading = ({
     ...props
 }: HeadingProps) => {
     const colorClass = colorToClass(color)
-    const cn = [colorClass, className].join(' ')
     const id = useId()
     return (
         <HeadingTag
             {...props}
             level={level}
             id={id}
-            className={cn}
+            className={[
+                'border-l-4 border-orange-600 pl-4',
+                colorClass,
+                className,
+            ].join(' ')}
         ></HeadingTag>
     )
 }
