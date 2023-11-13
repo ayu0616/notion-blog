@@ -1,13 +1,10 @@
-import pageData from '@/../public/data/pages.json'
-import { Page } from '@/type/page/page'
-
-import BlogPages from './BlogPages'
+import Embed from './Embed'
 
 import type { Meta, StoryObj } from '@storybook/react'
 
 // More on how to set up stories at: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 const meta = {
-    component: BlogPages,
+    component: Embed,
     parameters: {
         // Optional parameter to center the component in the Canvas. More info: https://storybook.js.org/docs/react/configure/story-layout
         layout: 'centered',
@@ -16,21 +13,18 @@ const meta = {
     tags: ['autodocs'],
     // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
     argTypes: {},
-} satisfies Meta<typeof BlogPages>
+} satisfies Meta<typeof Embed>
 
 export default meta
 type Story = StoryObj<typeof meta>
-;(pageData as Page[]).sort((a, b) => {
-    const dateA = new Date(a.publishDate ?? 0)
-    const dateB = new Date(b.publishDate ?? 0)
-    return dateB.getTime() - dateA.getTime()
-})
 
 export const Default: Story = {
-    args: { pageData: pageData as Page[] },
+    args: {
+        url: 'https://instagram.com/p/CpXuhUgPBeO/',
+    },
     render: (args) => (
-        <div className='space-y-4 bg-orange-50 p-2'>
-            <BlogPages {...args} />
+        <div className='h-[500px] w-[500px] bg-white p-4'>
+            <Embed {...args} />
         </div>
     ),
 }

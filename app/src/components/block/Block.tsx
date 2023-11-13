@@ -13,6 +13,7 @@ import Callout from './Callout/Callout'
 import Code from './Code/Code'
 import { Column, ColumnList } from './Column'
 import Divider from './Divider/Divider'
+import { Embed } from './Embed'
 import Equation from './Equation/Equation'
 import Image from './Image/Image'
 import NumberedList from './NumberedList/NumberedList'
@@ -229,6 +230,8 @@ export const Block = ({ data, ...props }: BlockProps) => {
                     <Blocks datas={data.children}></Blocks>
                 </>
             )
+        case 'embed':
+            return <Embed url={data.url}></Embed>
         default:
             return <></>
     }

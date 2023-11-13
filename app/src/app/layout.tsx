@@ -2,7 +2,6 @@ import Header from '@/components/layout/Header/Header'
 
 import type { Metadata } from 'next'
 
-
 import './globals.css'
 
 export const metadata: Metadata = {

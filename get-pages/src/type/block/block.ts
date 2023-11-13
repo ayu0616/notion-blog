@@ -58,7 +58,8 @@ export type Block =
     | TableRow
     | Column
     | ColumnList
-    | SyncedBlock;
+    | SyncedBlock
+    | Embed;
 
 export interface BlockBase {
     id: string;
@@ -199,4 +200,10 @@ export interface ColumnList extends BlockBase {
 /** 同期ブロック */
 export interface SyncedBlock extends BlockBase {
     type: "synced_block";
+}
+
+/** 埋め込みコンテンツ */
+export interface Embed extends BlockBase {
+    type: "embed";
+    url: string;
 }
