@@ -14,10 +14,7 @@ export default async function handler(
             const { slug } = req.query
             if (slug) {
                 const pageData = JSON.parse(
-                    fs.readFileSync(
-                        `../get-pages/data/${slug}.json`,
-                        'utf8',
-                    ),
+                    fs.readFileSync(`../get-pages/data/${slug}.json`, 'utf8'),
                 )
                 res.status(200).json({ pageData })
             } else {

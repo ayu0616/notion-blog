@@ -47,10 +47,10 @@ const Header = () => {
                                 <div className='opacity-0'>
                                     <BsX />
                                 </div>
-                                <div className='absolute-center opacity-0 transition-opacity duration-300 group-data-[open="true"]:opacity-100'>
+                                <div className='opacity-0 transition-opacity duration-300 absolute-center group-data-[open="true"]:opacity-100'>
                                     <BsX />
                                 </div>
-                                <div className='absolute-center opacity-0 transition-opacity duration-300 group-data-[open="false"]:opacity-100'>
+                                <div className='opacity-0 transition-opacity duration-300 absolute-center group-data-[open="false"]:opacity-100'>
                                     <BsList />
                                 </div>
                             </div>
