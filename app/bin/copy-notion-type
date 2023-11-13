@@ -10,4 +10,4 @@ dist_dir = os.path.join(os.path.dirname(__file__), "../src/type/page")
 
 subprocess.run(f"rm -rf {dist_dir}", shell=True)
 subprocess.run(f"cp -r {origin_dir} {dist_dir}", shell=True)
-subprocess.run("npm run lint", shell=True)
+subprocess.run("npm run format", shell=True)
