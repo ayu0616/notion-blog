@@ -54,25 +54,6 @@ function colorToClass(color: Color) {
     }
 }
 
-const levelToBorderClass = (level: HeadingLevel) => {
-    switch (level) {
-        case 1:
-            return ''
-        case 2:
-            return ''
-        case 3:
-            return ''
-        case 4:
-            return ''
-        case 5:
-            return ''
-        case 6:
-            return ''
-        default:
-            return ''
-    }
-}
-
 const HeadingTag = ({
     level = 1,
     ...props
@@ -105,7 +86,6 @@ const Heading = ({
     ...props
 }: HeadingProps) => {
     const colorClass = colorToClass(color)
-    const borderClass = levelToBorderClass(level)
     const id = useId()
     return (
         <HeadingTag
@@ -115,7 +95,6 @@ const Heading = ({
             className={[
                 'border-l-4 border-orange-600 pl-4',
                 colorClass,
-                borderClass,
                 className,
             ].join(' ')}
         ></HeadingTag>
