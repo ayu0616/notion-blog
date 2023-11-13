@@ -13,6 +13,9 @@
         },
         "files.autoSave": "off",
         "cSpell.words": ["Autodocs", "datas"],
-        "liveServer.settings.multiRootWorkspaceName": "app"
+        "liveServer.settings.multiRootWorkspaceName": "app",
+        "terminal.integrated.env.osx": {
+            "PATH": "${workspaceRoot}/bin:${env:PATH}"
+        }
     }
 }
