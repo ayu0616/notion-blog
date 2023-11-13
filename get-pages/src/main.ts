@@ -13,6 +13,7 @@ import {
     Column,
     ColumnList,
     Divider,
+    Embed,
     Equation,
     Heading1,
     Heading2,
@@ -324,6 +325,14 @@ const convertToBlocks = async (data: any, slug: string) => {
                     type: "synced_block",
                 };
                 blocks.push(syncedBlock);
+                break;
+            case "embed":
+                const embed: Embed = {
+                    ...blockBase,
+                    type: "embed",
+                    url: b.embed.url,
+                };
+                blocks.push(embed);
                 break;
             default:
                 break;
