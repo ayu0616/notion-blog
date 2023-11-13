@@ -1,8 +1,9 @@
+import { StaticImport } from 'next/dist/shared/lib/get-img-props'
 import NextImage from 'next/image'
 import './ImageBase.style.scss'
 
 interface ImageProps {
-    src: string
+    src: string | StaticImport
     alt: string
     className?: string
     imgClassName?: string
