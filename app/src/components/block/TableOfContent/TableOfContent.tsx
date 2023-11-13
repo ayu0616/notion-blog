@@ -5,8 +5,8 @@ import { useEffect, useState } from 'react'
 import {
     Accordion,
     AccordionButton,
-    AccordionIcon,
     AccordionContent,
+    AccordionIcon,
 } from '@/components/common/Accordion'
 
 import Heading from '../Heading/Heading'
@@ -39,7 +39,7 @@ const TableOfContent = ({ ...props }: TableOfContentProps) => {
 
     return (
         <Accordion>
-            <Heading level={3}>
+            <Heading className='border-none p-0' level={3}>
                 <AccordionButton>
                     <div className='hover:inherit active:inherit flex cursor-pointer items-center justify-between  px-4 py-2'>
                         <div className='flex-1 text-center'>〜目次〜</div>
