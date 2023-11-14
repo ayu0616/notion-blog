@@ -9,6 +9,7 @@ interface PageInfoProps {
     title: string
     tags: TagType[]
     publishDate: string
+    lastEditedTime: string
     image: string
 }
 
@@ -16,6 +17,7 @@ const PageInfo = ({
     title,
     tags,
     publishDate,
+    lastEditedTime,
     image,
     ...props
 }: PageInfoProps) => {
@@ -24,7 +26,10 @@ const PageInfo = ({
             <h2>{title}</h2>
             <TagList tagData={tags} isLink className='justify-end' />
             <p className='text-end text-sm text-gray-600'>
-                {dateToStr(publishDate)}
+                公開日：{dateToStr(publishDate)}
+            </p>
+            <p className='text-end text-sm text-gray-600'>
+                最終更新日：{dateToStr(lastEditedTime)}
             </p>
             <div className='flex max-h-[50vh] justify-center'>
                 <Image
