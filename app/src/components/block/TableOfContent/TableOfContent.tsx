@@ -52,10 +52,10 @@ const TableOfContent = ({ ...props }: TableOfContentProps) => {
                     {headings.map((h, i) => (
                         <li key={i} className={plClass(h.level)}>
                             <a
+                                className='cursor-pointer hover:underline'
                                 onClick={() => {
                                     smoothScroll(h.id)
                                 }}
-                                className='cursor-pointer hover:underline'
                             >
                                 {h.text}
                             </a>

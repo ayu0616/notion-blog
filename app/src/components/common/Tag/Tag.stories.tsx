@@ -29,8 +29,8 @@ export const WithLink: Story = {
     args: { name: 'タグ', color: 'blue' },
     render() {
         return (
-            <a href='#' className='hover:underline'>
-                <meta.component name='タグ' color='blue'></meta.component>
+            <a className='hover:underline' href='#'>
+                <meta.component color='blue' name='タグ'></meta.component>
             </a>
         )
     },

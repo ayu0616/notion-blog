@@ -25,9 +25,9 @@ const Page = async ({
                 「{query}」の検索結果
             </Heading>
             <BlogPages
-                searchDefaultValue={query}
                 searchDefaultOpen
                 pageData={pageData}
+                searchDefaultValue={query}
             />
         </main>
     )

@@ -18,8 +18,8 @@ const Checkbox = ({ value, color = 'default', ...props }: CheckboxProps) => {
             <input
                 {...props}
                 className='peer hidden'
-                type='checkbox'
                 id={uuid}
+                type='checkbox'
                 value={value}
             />
             <label

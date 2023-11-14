@@ -39,7 +39,7 @@ export const Default: Story = {
         }
         return (
             <>
-                <Button className='' ref={buttonRef} onClick={toggleShow}>
+                <Button ref={buttonRef} className='' onClick={toggleShow}>
                     これはボタンです
                 </Button>
                 <Tooltip {...args} elem={buttonElem} isShow={show} />

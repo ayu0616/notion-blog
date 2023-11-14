@@ -32,12 +32,12 @@ const SearchForm = ({
                     type='text'
                 />
                 <button
-                    title='検索ボタン'
-                    type='submit'
                     className={[
                         'rounded-r-full bg-orange-600 text-white transition-all hover:bg-orange-500 focus:outline-none focus:ring-2 focus:ring-orange-600/75 active:bg-orange-400',
                         sizeButtonClass,
                     ].join(' ')}
+                    title='検索ボタン'
+                    type='submit'
                 >
                     <FaSearch />
                 </button>

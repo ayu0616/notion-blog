@@ -20,8 +20,8 @@ const Anchor = ({
             <a
                 {...props}
                 className={classes}
-                target='_blank'
                 rel='noopener noreferrer'
+                target='_blank'
             ></a>
         )
     }

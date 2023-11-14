@@ -1,5 +1,5 @@
-import { Color } from '../color'
 import { RichText } from './richText'
+import { Color } from '../color'
 
 export type BlockType =
     | 'bookmark'

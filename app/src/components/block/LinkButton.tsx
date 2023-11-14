@@ -13,17 +13,17 @@ const LinkButton = async ({ href, ...props }: LinkButtonProps) => {
         <a
             className='inline-block items-center rounded bg-white p-1 drop-shadow hover:drop-shadow-sm'
             href={href}
-            target='_blank'
             rel='noopener noreferrer'
+            target='_blank'
         >
             <span className='whitespace-pre-wrap break-all'>
                 <span className='relative mr-1 inline-block h-3 w-3 md:h-4 md:w-4'>
                     <Image
-                        src={iconUrl}
-                        alt={`icon of ${href}`}
                         fill
-                        sizes='100%'
+                        alt={`icon of ${href}`}
                         className='absolute'
+                        sizes='100%'
+                        src={iconUrl}
                     />
                 </span>
                 <span>{title}</span>

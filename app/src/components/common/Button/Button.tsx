@@ -31,8 +31,8 @@ export const Button = forwardRef(function Button(
     })()
     return (
         <button
-            type='button'
             className={[baseClass, modeClass, className].join(' ')}
+            type='button'
             {...props}
             ref={ref}
         ></button>

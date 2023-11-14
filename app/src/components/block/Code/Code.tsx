@@ -63,10 +63,10 @@ const Code = ({
             </div>
             <SyntaxHighlighter
                 {...props}
-                showLineNumbers={showLineNumbers}
-                language={language}
-                style={style}
                 customStyle={{ margin: 0 }}
+                language={language}
+                showLineNumbers={showLineNumbers}
+                style={style}
             ></SyntaxHighlighter>
         </div>
     )

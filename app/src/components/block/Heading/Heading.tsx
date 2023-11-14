@@ -90,14 +90,14 @@ const Heading = ({
     return (
         <HeadingTag
             {...props}
-            level={level}
-            id={id}
             className={[
                 'border-l-4 border-orange-600 pl-4',
                 level >= 3 ? 'py-1' : 'py-2',
                 colorClass,
                 className,
             ].join(' ')}
+            id={id}
+            level={level}
         ></HeadingTag>
     )
 }

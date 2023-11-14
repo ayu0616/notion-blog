@@ -24,7 +24,7 @@ const Tag = ({ name, color, isLink = false, ...props }: TagProps) => {
         </span>
     )
     return isLink ? (
-        <Link href={`/tag/${name}`} className={[].join(' ')}>
+        <Link className={[].join(' ')} href={`/tag/${name}`}>
             {tagBody}
         </Link>
     ) : (

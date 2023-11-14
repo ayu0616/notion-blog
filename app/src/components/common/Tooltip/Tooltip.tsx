@@ -81,14 +81,14 @@ const Tooltip = ({
     }
     return (
         <div
-            data-placement={placement}
+            ref={container}
             className={[
                 'tooltip-container absolute flex items-center before:absolute',
                 isShowClass,
                 containerColorClass,
             ].join(' ')}
+            data-placement={placement}
             onClick={(e) => e.stopPropagation()}
-            ref={container}
         >
             <div
                 className={[

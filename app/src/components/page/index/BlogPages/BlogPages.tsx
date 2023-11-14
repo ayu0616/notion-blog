@@ -95,19 +95,19 @@ const BlogPages = ({
                             </label>
                             <div className='rounded-full border border-orange-600'>
                                 <SearchForm
-                                    siz='lg'
-                                    placeholder='ブログタイトル'
                                     action='/search'
+                                    id='search-query'
                                     name='query'
+                                    placeholder='ブログタイトル'
+                                    siz='lg'
                                     value={searchValue}
                                     onChange={(e) =>
                                         setSearchValue(e.target.value)
                                     }
+                                    onCompositionEnd={() => setComposing(false)}
                                     onCompositionStart={() =>
                                         setComposing(true)
                                     }
-                                    onCompositionEnd={() => setComposing(false)}
-                                    id='search-query'
                                 />
                             </div>
                         </div>
@@ -131,13 +131,13 @@ const BlogPages = ({
             <div className='grid gap-4'>
                 {showPageData.map((page, i) => {
                     return (
-                        <Link href={`/blog/${page.slug}`} key={i}>
+                        <Link key={i} href={`/blog/${page.slug}`}>
                             <Card horizontal className=''>
                                 <ImageBase
-                                    src={page.image ?? '/no_image.jpg'}
                                     alt=''
                                     className='w-1/3 rounded-l-md'
                                     objectFit='cover'
+                                    src={page.image ?? '/no_image.jpg'}
                                 ></ImageBase>
                                 <div className='flex flex-1 flex-col gap-2 p-3'>
                                     <h3>{page.title}</h3>

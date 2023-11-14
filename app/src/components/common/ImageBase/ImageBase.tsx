@@ -18,17 +18,17 @@ const ImageBase = ({
 }: ImageProps) => {
     const objectFitClass = setObjectFitClass(objectFit)
     return (
-        <div className={'image-container relative ' + className}>
+        <div className={`image-container relative ${className}`}>
             <NextImage
                 {...props}
                 // objectFit={objectFit}
                 fill
-                sizes='100%'
                 className={[
                     'rounded-[inherit]',
                     objectFitClass,
                     imgClassName,
                 ].join(' ')}
+                sizes='100%'
             />
         </div>
     )
