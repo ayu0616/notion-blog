@@ -2,9 +2,9 @@ import { Color } from '@/type/page/color'
 
 interface CalloutProps {
     children?: React.ReactNode
+    color?: Color
     content?: React.ReactNode
     icon?: string
-    color?: Color
 }
 
 function colorToClass(color: Color) {

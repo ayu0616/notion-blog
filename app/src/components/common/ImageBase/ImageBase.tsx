@@ -3,11 +3,11 @@ import NextImage from 'next/image'
 import './ImageBase.style.scss'
 
 interface ImageProps {
-    src: string | StaticImport
     alt: string
     className?: string
     imgClassName?: string
     objectFit?: 'contain' | 'cover' | 'fill' | 'none' | 'scale-down'
+    src: string | StaticImport
 }
 
 const ImageBase = ({

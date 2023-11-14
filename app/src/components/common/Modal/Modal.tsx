@@ -2,8 +2,8 @@ import { ReactNode, useEffect, useRef } from 'react'
 
 interface ModalProps {
     children: ReactNode
-    show?: boolean
     setShow?: (show: boolean) => void
+    show?: boolean
 }
 
 const Modal = ({ children, show, setShow, ...props }: ModalProps) => {

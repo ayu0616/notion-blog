@@ -6,10 +6,10 @@ import dateToStr from '../../../../util/dateToStr'
 import TagList from '../../../common/Tag/TagList'
 
 interface PageInfoProps {
-    title: string
-    tags: TagType[]
-    publishDate: string
     image: string
+    publishDate: string
+    tags: TagType[]
+    title: string
 }
 
 const PageInfo = ({

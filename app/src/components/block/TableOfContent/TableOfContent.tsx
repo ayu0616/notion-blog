@@ -14,9 +14,9 @@ import Heading from '../Heading/Heading'
 interface TableOfContentProps {}
 
 interface HeadingData {
-    text: string
-    level: number
     id: string
+    level: number
+    text: string
 }
 
 const TableOfContent = ({ ...props }: TableOfContentProps) => {

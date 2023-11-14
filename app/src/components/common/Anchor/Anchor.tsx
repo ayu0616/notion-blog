@@ -1,10 +1,10 @@
 import Link from 'next/link'
 
 interface AnchorProps {
-    isInnerLink?: boolean
-    href: string
     children: React.ReactNode
     className?: string
+    href: string
+    isInnerLink?: boolean
 }
 
 const Anchor = ({

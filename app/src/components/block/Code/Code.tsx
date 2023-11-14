@@ -10,8 +10,8 @@ interface CodeProps {
     children: string
     language: string
     showLineNumbers?: boolean
-    wrapLongLines?: boolean
     style?: { [key: string]: CSSProperties }
+    wrapLongLines?: boolean
 }
 
 const Code = ({

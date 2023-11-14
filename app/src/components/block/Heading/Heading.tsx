@@ -6,9 +6,9 @@ type HeadingLevel = 1 | 2 | 3 | 4 | 5 | 6
 
 interface HeadingProps {
     children?: React.ReactNode
-    level?: HeadingLevel
-    color?: Color
     className?: string
+    color?: Color
+    level?: HeadingLevel
 }
 
 function colorToClass(color: Color) {

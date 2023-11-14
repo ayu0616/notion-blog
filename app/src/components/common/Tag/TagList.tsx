@@ -1,10 +1,10 @@
 import Tag, { TagProps } from './Tag'
 
 interface TagListProps {
-    tagData: TagProps[]
     className?: string
     gap?: number
     isLink?: boolean
+    tagData: TagProps[]
 }
 
 const TagList = ({

@@ -1,9 +1,9 @@
 import { ReactNode } from 'react'
 
 interface CardProps {
-    horizontal?: boolean
     children?: ReactNode
     className?: string
+    horizontal?: boolean
     onClick?: () => void
 }
 

@@ -9,9 +9,9 @@ import {
 } from '@/components/common/Accordion'
 
 interface MenuItem {
+    href?: string
     icon: JSX.Element
     title: string
-    href?: string
 }
 
 const Header = () => {

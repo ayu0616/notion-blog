@@ -15,9 +15,9 @@ interface CarouselProps {
     data: {
         image: string
         publishDate: string
-        title: string
-        tags: TagType[]
         slug: string
+        tags: TagType[]
+        title: string
     }[]
 }
 

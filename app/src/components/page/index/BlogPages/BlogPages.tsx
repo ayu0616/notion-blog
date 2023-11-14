@@ -20,9 +20,9 @@ import dateToStr from '@/util/dateToStr'
 
 interface BlogPageProps {
     pageData: Page[]
-    searchDefaultValue?: string
     /** 検索欄がデフォルトで開いているかどうか */
     searchDefaultOpen?: boolean
+    searchDefaultValue?: string
 }
 
 /** ブログのページ一覧とタグによる検索を表示するコンポーネント */

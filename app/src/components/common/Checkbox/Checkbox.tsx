@@ -3,11 +3,11 @@ import { useId } from 'react'
 import { TagColor } from '@/type/page/page'
 
 export interface CheckboxProps {
-    value?: string
-    name?: string
     checked?: boolean
-    onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
     color?: TagColor
+    name?: string
+    onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
+    value?: string
 }
 
 const Checkbox = ({ value, color = 'default', ...props }: CheckboxProps) => {

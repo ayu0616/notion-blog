@@ -6,8 +6,8 @@ import './style.scss'
 
 interface AccordionProps {
     children?: ReactNode
-    variant?: 'default' | 'unstyled'
     className?: string
+    variant?: 'default' | 'unstyled'
 }
 
 const Accordion = ({

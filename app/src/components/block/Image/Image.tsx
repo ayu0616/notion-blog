@@ -1,8 +1,8 @@
 import ImageBase from '@/components/common/ImageBase/ImageBase'
 
 interface ImageProps {
-    src: string
     alt: string
+    src: string
 }
 
 const Image = ({ ...props }: ImageProps) => {
