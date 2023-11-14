@@ -40,6 +40,17 @@
                 ]
             }
         ],
+        "react/jsx-sort-props": [
+            "warn",
+            {
+                "callbacksLast": true,
+                "shorthandFirst": true,
+                "shorthandLast": false,
+                "ignoreCase": true,
+                "noSortAlphabetically": false,
+                "reservedFirst": true
+            }
+        ],
         "react-hooks/rules-of-hooks": "off",
         "prefer-template": "warn"
     }
