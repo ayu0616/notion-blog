@@ -6,11 +6,11 @@ import dateToStr from '../../../../util/dateToStr'
 import TagList from '../../../common/Tag/TagList'
 
 interface PageInfoProps {
-    title: string
-    tags: TagType[]
-    publishDate: string
-    lastEditedTime: string
     image: string
+    lastEditedTime: string
+    publishDate: string
+    tags: TagType[]
+    title: string
 }
 
 const PageInfo = ({
@@ -24,7 +24,7 @@ const PageInfo = ({
     return (
         <div className='mb-16 space-y-2'>
             <h2>{title}</h2>
-            <TagList tagData={tags} isLink className='justify-end' />
+            <TagList isLink className='justify-end' tagData={tags} />
             <p className='text-end text-sm text-gray-600'>
                 公開日：{dateToStr(publishDate)}
             </p>
@@ -33,11 +33,11 @@ const PageInfo = ({
             </p>
             <div className='flex max-h-[50vh] justify-center'>
                 <Image
+                    alt={'ヘッダ画像'}
                     className='max-h-[50vh] object-scale-down'
-                    width={4000}
                     height={4000}
                     src={image}
-                    alt={'ヘッダ画像'}
+                    width={4000}
                 ></Image>
             </div>
         </div>

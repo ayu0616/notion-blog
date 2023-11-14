@@ -25,14 +25,14 @@ const Embed = ({ url = '', ...props }: EmbedProps) => {
 
     return (
         <div
-            className='mx-auto h-[800px] max-h-[75vh] w-full rounded-md drop-shadow-md'
             ref={ref}
+            className='mx-auto h-[800px] max-h-[75vh] w-full rounded-md drop-shadow-md'
         >
             <iframe
+                frameBorder='0'
+                height={height}
                 src={url}
                 width={width}
-                height={height}
-                frameBorder='0'
             ></iframe>
         </div>
     )

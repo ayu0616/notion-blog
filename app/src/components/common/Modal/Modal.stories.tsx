@@ -32,7 +32,7 @@ export const Default: Story = {
         return (
             <>
                 <div>{'hoge '.repeat(10000)}</div>
-                <meta.component show={show} setShow={setShow}>
+                <meta.component setShow={setShow} show={show}>
                     <Card></Card>
                 </meta.component>
             </>

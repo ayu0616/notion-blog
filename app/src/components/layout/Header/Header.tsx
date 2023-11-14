@@ -9,9 +9,9 @@ import {
 } from '@/components/common/Accordion'
 
 interface MenuItem {
+    href?: string
     icon: JSX.Element
     title: string
-    href?: string
 }
 
 const Header = () => {
@@ -34,8 +34,8 @@ const Header = () => {
     return (
         <header className='sticky left-0 top-0 z-50 w-full bg-orange-500 text-white'>
             <Accordion
-                variant='unstyled'
                 className='items-center justify-between md:flex'
+                variant='unstyled'
             >
                 <div className='flex items-center justify-between'>
                     <h1 className='px-6 py-4 text-2xl'>

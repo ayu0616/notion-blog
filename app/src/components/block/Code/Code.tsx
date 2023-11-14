@@ -10,8 +10,8 @@ interface CodeProps {
     children: string
     language: string
     showLineNumbers?: boolean
-    wrapLongLines?: boolean
     style?: { [key: string]: CSSProperties }
+    wrapLongLines?: boolean
 }
 
 const Code = ({
@@ -63,10 +63,10 @@ const Code = ({
             </div>
             <SyntaxHighlighter
                 {...props}
-                showLineNumbers={showLineNumbers}
-                language={language}
-                style={style}
                 customStyle={{ margin: 0 }}
+                language={language}
+                showLineNumbers={showLineNumbers}
+                style={style}
             ></SyntaxHighlighter>
         </div>
     )

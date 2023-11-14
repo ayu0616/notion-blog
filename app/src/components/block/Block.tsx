@@ -51,21 +51,21 @@ export const Block = ({ data, ...props }: BlockProps) => {
             )
         case 'heading_1':
             return (
-                <Heading className='heading-1' level={3} color={data.color}>
+                <Heading className='heading-1' color={data.color} level={3}>
                     <RichTexts datas={data.richTexts} />
                     <Blocks datas={data.children} />
                 </Heading>
             )
         case 'heading_2':
             return (
-                <Heading className='heading-2' level={4} color={data.color}>
+                <Heading className='heading-2' color={data.color} level={4}>
                     <RichTexts datas={data.richTexts} />
                     <Blocks datas={data.children} />
                 </Heading>
             )
         case 'heading_3':
             return (
-                <Heading className='heading-3' level={5} color={data.color}>
+                <Heading className='heading-3' color={data.color} level={5}>
                     <RichTexts datas={data.richTexts} />
                     <Blocks datas={data.children} />
                 </Heading>
@@ -73,9 +73,9 @@ export const Block = ({ data, ...props }: BlockProps) => {
         case 'callout':
             return (
                 <Callout
-                    icon={data.icon}
                     color={data.color}
                     content={<RichTexts datas={data.richTexts} />}
+                    icon={data.icon}
                 >
                     <Blocks datas={data.children} />
                 </Callout>
@@ -132,8 +132,8 @@ export const Block = ({ data, ...props }: BlockProps) => {
             })()
             return (
                 <Image
-                    src={data.url.replace('../app/public', '')}
                     alt={alt}
+                    src={data.url.replace('../app/public', '')}
                 ></Image>
             )
         case 'video':
@@ -153,7 +153,7 @@ export const Block = ({ data, ...props }: BlockProps) => {
                                     {(
                                         data.children[0] as TableRowData
                                     ).cells.map((cell, i) => (
-                                        <TableCell isHead key={i}>
+                                        <TableCell key={i} isHead>
                                             <RichTexts datas={cell} />
                                         </TableCell>
                                     ))}
@@ -165,11 +165,11 @@ export const Block = ({ data, ...props }: BlockProps) => {
                                         {(row as TableRowData).cells.map(
                                             (cell, j) => (
                                                 <TableCell
+                                                    key={j}
                                                     isHead={
                                                         data.has_row_header &&
                                                         j === 0
                                                     }
-                                                    key={j}
                                                 >
                                                     <RichTexts datas={cell} />
                                                 </TableCell>
@@ -186,11 +186,11 @@ export const Block = ({ data, ...props }: BlockProps) => {
                                     {(row as TableRowData).cells.map(
                                         (cell, j) => (
                                             <TableCell
+                                                key={j}
                                                 isHead={
                                                     data.has_row_header &&
                                                     j === 0
                                                 }
-                                                key={j}
                                             >
                                                 <RichTexts datas={cell} />
                                             </TableCell>
@@ -256,7 +256,7 @@ export const Blocks = ({ datas }: { datas?: BlockData[] | null }) => {
         <>
             {datas?.map((data, i) => {
                 return (
-                    <div className='mb-10 last:mb-0 md:mb-12' key={i}>
+                    <div key={i} className='mb-10 last:mb-0 md:mb-12'>
                         <Block data={data}></Block>
                     </div>
                 )

@@ -18,8 +18,8 @@ const Page = async ({ params: { slug } }: { params: { slug: string } }) => {
         <main className='mx-auto max-w-4xl space-y-12 bg-white p-6'>
             <PageInfo
                 {...pageData}
-                publishDate={pageData.publishDate ?? '1970'}
                 image={pageData.image ?? '/no_image.jpg'}
+                publishDate={pageData.publishDate ?? '1970'}
             />
             <div>
                 <Blocks datas={pageData.blocks} />

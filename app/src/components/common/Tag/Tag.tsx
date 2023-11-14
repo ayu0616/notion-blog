@@ -4,8 +4,8 @@ import { TagColor } from '@/type/page/page'
 
 export interface TagProps {
     color: TagColor
-    name: string
     isLink?: boolean
+    name: string
 }
 
 const Tag = ({ name, color, isLink = false, ...props }: TagProps) => {
@@ -24,7 +24,7 @@ const Tag = ({ name, color, isLink = false, ...props }: TagProps) => {
         </span>
     )
     return isLink ? (
-        <Link href={`/tag/${name}`} className={[].join(' ')}>
+        <Link className={[].join(' ')} href={`/tag/${name}`}>
             {tagBody}
         </Link>
     ) : (

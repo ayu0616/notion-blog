@@ -3,11 +3,11 @@ import NextImage from 'next/image'
 import './ImageBase.style.scss'
 
 interface ImageProps {
-    src: string | StaticImport
     alt: string
     className?: string
     imgClassName?: string
     objectFit?: 'contain' | 'cover' | 'fill' | 'none' | 'scale-down'
+    src: string | StaticImport
 }
 
 const ImageBase = ({
@@ -18,17 +18,17 @@ const ImageBase = ({
 }: ImageProps) => {
     const objectFitClass = setObjectFitClass(objectFit)
     return (
-        <div className={'image-container relative ' + className}>
+        <div className={`image-container relative ${className}`}>
             <NextImage
                 {...props}
                 // objectFit={objectFit}
                 fill
-                sizes='100%'
                 className={[
                     'rounded-[inherit]',
                     objectFitClass,
                     imgClassName,
                 ].join(' ')}
+                sizes='100%'
             />
         </div>
     )

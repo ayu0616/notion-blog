@@ -6,9 +6,9 @@ type HeadingLevel = 1 | 2 | 3 | 4 | 5 | 6
 
 interface HeadingProps {
     children?: React.ReactNode
-    level?: HeadingLevel
-    color?: Color
     className?: string
+    color?: Color
+    level?: HeadingLevel
 }
 
 function colorToClass(color: Color) {
@@ -90,13 +90,14 @@ const Heading = ({
     return (
         <HeadingTag
             {...props}
-            level={level}
-            id={id}
             className={[
                 'border-l-4 border-orange-600 pl-4',
+                level >= 3 ? 'py-1' : 'py-2',
                 colorClass,
                 className,
             ].join(' ')}
+            id={id}
+            level={level}
         ></HeadingTag>
     )
 }

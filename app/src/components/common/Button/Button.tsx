@@ -1,11 +1,11 @@
 import { ForwardedRef, ReactNode, forwardRef } from 'react'
 
 interface ButtonProps {
-    mode?: 'primary' | 'secondary' | 'orange'
     children?: ReactNode
-    disabled?: boolean
-    onClick?: () => void
     className?: string
+    disabled?: boolean
+    mode?: 'primary' | 'secondary' | 'orange'
+    onClick?: () => void
 }
 
 /**
@@ -31,8 +31,8 @@ export const Button = forwardRef(function Button(
     })()
     return (
         <button
-            type='button'
             className={[baseClass, modeClass, className].join(' ')}
+            type='button'
             {...props}
             ref={ref}
         ></button>

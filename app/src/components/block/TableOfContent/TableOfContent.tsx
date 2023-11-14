@@ -14,9 +14,9 @@ import Heading from '../Heading/Heading'
 interface TableOfContentProps {}
 
 interface HeadingData {
-    text: string
-    level: number
     id: string
+    level: number
+    text: string
 }
 
 const TableOfContent = ({ ...props }: TableOfContentProps) => {
@@ -52,10 +52,10 @@ const TableOfContent = ({ ...props }: TableOfContentProps) => {
                     {headings.map((h, i) => (
                         <li key={i} className={plClass(h.level)}>
                             <a
+                                className='cursor-pointer hover:underline'
                                 onClick={() => {
                                     smoothScroll(h.id)
                                 }}
-                                className='cursor-pointer hover:underline'
                             >
                                 {h.text}
                             </a>

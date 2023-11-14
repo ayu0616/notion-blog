@@ -75,8 +75,8 @@ const RichText = ({
                         ...annotationClass,
                     ].join(' ')}
                     href={href}
-                    target='_blank'
                     rel='noreferrer'
+                    target='_blank'
                 >
                     {text}
                 </a>
