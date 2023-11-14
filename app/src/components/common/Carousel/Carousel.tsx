@@ -35,13 +35,13 @@ const Carousel = ({ data, ...props }: CarouselProps) => {
         const nextScrollLeft = container.current.scrollLeft + containerWidth
         if (nextScrollLeft > maxScrollLeft) {
             container.current.scrollTo({
-                left: 0,
                 behavior: 'smooth',
+                left: 0,
             })
         } else {
             container.current.scrollBy({
-                left: containerWidth,
                 behavior: 'smooth',
+                left: containerWidth,
             })
         }
     }
@@ -55,13 +55,13 @@ const Carousel = ({ data, ...props }: CarouselProps) => {
         const nextScrollLeft = container.current.scrollLeft - containerWidth
         if (nextScrollLeft < 0) {
             container.current.scrollTo({
-                left: maxScrollLeft,
                 behavior: 'smooth',
+                left: maxScrollLeft,
             })
         } else {
             container.current.scrollBy({
-                left: -containerWidth,
                 behavior: 'smooth',
+                left: -containerWidth,
             })
         }
     }

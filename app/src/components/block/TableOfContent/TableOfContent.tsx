@@ -32,7 +32,7 @@ const TableOfContent = ({ ...props }: TableOfContentProps) => {
             )
             const text = h.textContent || ''
             const id = h.id
-            return { level, text, id }
+            return { id, level, text }
         })
         setHeadings(headingDatas)
     }, [])

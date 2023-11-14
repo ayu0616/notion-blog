@@ -24,7 +24,7 @@ export default async function handler(
                 ?.getAttribute('content') ?? ''
         const iconUrl = `http://www.google.com/s2/favicons?domain=${url}`
 
-        res.status(200).json({ title, description, iconUrl })
+        res.status(200).json({ description, iconUrl, title })
     } catch (error) {
         console.error(error)
         res.status(500).json({ message: 'Internal server error' })

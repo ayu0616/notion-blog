@@ -175,8 +175,8 @@ const getTagData = (pageData: Page[]): CheckboxProps[] => {
     tagSet.forEach((tag) => {
         const t = JSON.parse(tag)
         tagData.push({
-            value: t.name,
             color: t.color,
+            value: t.name,
         })
     })
     return tagData

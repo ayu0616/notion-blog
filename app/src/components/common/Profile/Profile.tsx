@@ -12,7 +12,8 @@ interface ProfileProps {}
 const Profile = ({ ...props }: ProfileProps) => {
     const snsIcons = [
         {
-            name: 'atcoder',
+            className:
+                'bg-gray-200 text-white hover:bg-gray-100 outline-gray-300',
             icon: (
                 <Image
                     alt='atcoder'
@@ -22,32 +23,32 @@ const Profile = ({ ...props }: ProfileProps) => {
                 />
             ),
             link: 'https://atcoder.jp/users/ayu0616',
-            className:
-                'bg-gray-200 text-white hover:bg-gray-100 outline-gray-300',
+            name: 'atcoder',
         },
         {
-            name: 'github',
-            icon: <FaGithub></FaGithub>,
-            link: 'https://github.com/ayu0616',
             className:
                 'bg-gray-600 text-white hover:bg-gray-500 outline-gray-700',
+            icon: <FaGithub></FaGithub>,
+            link: 'https://github.com/ayu0616',
+            name: 'github',
         },
         {
-            name: 'twitter',
-            icon: <FaTwitter></FaTwitter>,
-            link: 'https://twitter.com/hassaku_0616',
             className:
                 'bg-blue-500 text-white hover:bg-blue-400 outline-blue-600',
+            icon: <FaTwitter></FaTwitter>,
+            link: 'https://twitter.com/hassaku_0616',
+            name: 'twitter',
         },
         {
-            name: 'instagram',
-            icon: <FaInstagram></FaInstagram>,
-            link: 'https://instagram.com/hassaku_0616',
             className:
                 'bg-pink-500 text-white hover:bg-pink-400 outline-pink-600',
+            icon: <FaInstagram></FaInstagram>,
+            link: 'https://instagram.com/hassaku_0616',
+            name: 'instagram',
         },
         {
-            name: 'threads',
+            className:
+                'bg-gray-600 text-white hover:bg-gray-500 outline-gray-700',
             icon: (
                 <svg
                     fill='currentColor'
@@ -60,8 +61,7 @@ const Profile = ({ ...props }: ProfileProps) => {
                 </svg>
             ),
             link: 'https://threads.net/@hassaku_0616',
-            className:
-                'bg-gray-600 text-white hover:bg-gray-500 outline-gray-700',
+            name: 'threads',
         },
     ]
 

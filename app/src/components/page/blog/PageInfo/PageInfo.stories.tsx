@@ -7,15 +7,18 @@ import type { Meta, StoryObj } from '@storybook/react'
 
 // More on how to set up stories at: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 const meta = {
+    // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
+    argTypes: {},
+
     component: PageInfo,
+
     parameters: {
         // Optional parameter to center the component in the Canvas. More info: https://storybook.js.org/docs/react/configure/story-layout
         layout: 'centered',
     },
+
     // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/react/writing-docs/autodocs
     tags: ['autodocs'],
-    // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
-    argTypes: {},
 } satisfies Meta<typeof PageInfo>
 
 export default meta
@@ -25,10 +28,10 @@ const { title, tags, publishDate, lastEditedTime, image } = pageData as PageData
 
 export const Default: Story = {
     args: {
-        title,
-        tags,
-        publishDate: publishDate ?? new Date().toISOString(),
-        lastEditedTime,
         image: image ?? '',
+        lastEditedTime,
+        publishDate: publishDate ?? new Date().toISOString(),
+        tags,
+        title,
     },
 }

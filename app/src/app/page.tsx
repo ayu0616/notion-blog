@@ -21,9 +21,9 @@ export default async function Home() {
         return {
             image: page.image ?? '/no_image.jpg',
             publishDate: page.publishDate ?? '1970-01-01',
-            title: page.title,
-            tags: page.tags,
             slug: page.slug,
+            tags: page.tags,
+            title: page.title,
         }
     })
 

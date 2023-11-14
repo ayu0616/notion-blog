@@ -25,9 +25,9 @@ const Header = () => {
             title: '最新記事',
         },
         {
+            href: '/tag',
             icon: <FaList />,
             title: 'タグ別',
-            href: '/tag',
         },
     ]
 

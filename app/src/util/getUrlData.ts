@@ -10,5 +10,5 @@ export const getUrlData = async (url: string) => {
             .querySelector('meta[name="description"]')
             ?.getAttribute('content') ?? ''
     const iconUrl = `http://www.google.com/s2/favicons?domain=${url}`
-    return { title, description, iconUrl }
+    return { description, iconUrl, title }
 }
