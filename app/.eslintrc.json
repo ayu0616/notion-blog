@@ -6,6 +6,7 @@
         "plugin:import/warnings",
         "prettier"
     ],
+    "plugins": ["typescript-sort-keys"],
     "rules": {
         "import/order": [
             "warn",
@@ -52,6 +53,16 @@
             }
         ],
         "react-hooks/rules-of-hooks": "off",
-        "prefer-template": "warn"
+        "prefer-template": "warn",
+        "sort-keys": [
+            "warn",
+            "asc",
+            {
+                "caseSensitive": true,
+                "natural": false,
+                "minKeys": 2
+            }
+        ],
+        "typescript-sort-keys/interface": "warn"
     }
 }
