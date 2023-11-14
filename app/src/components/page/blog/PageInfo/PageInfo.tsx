@@ -7,6 +7,7 @@ import TagList from '../../../common/Tag/TagList'
 
 interface PageInfoProps {
     image: string
+    lastEditedTime: string
     publishDate: string
     tags: TagType[]
     title: string
@@ -16,6 +17,7 @@ const PageInfo = ({
     title,
     tags,
     publishDate,
+    lastEditedTime,
     image,
     ...props
 }: PageInfoProps) => {
