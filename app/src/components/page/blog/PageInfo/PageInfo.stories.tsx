@@ -1,4 +1,5 @@
-import image from '@/../public/no_image.jpg'
+import pageData from '@/../public/data/pages/test/data.json'
+import { Page as PageData } from '@/type/page/page'
 
 import PageInfo from './PageInfo'
 
@@ -20,15 +21,14 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
+const { title, tags, publishDate, lastEditedTime, image } = pageData as PageData
+
 export const Default: Story = {
     args: {
-        title: 'Notionで書いたブログをウェブページとして公開してみた【Next.js】',
-        tags: [
-            { name: 'プログラミング', color: 'blue' },
-            { name: 'Notion', color: 'gray' },
-            { name: 'JavaScript', color: 'yellow' },
-        ],
-        publishDate: '2023-08-11',
-        image: image as unknown as string,
+        title,
+        tags,
+        publishDate: publishDate ?? new Date().toISOString(),
+        lastEditedTime,
+        image: image ?? '',
     },
 }

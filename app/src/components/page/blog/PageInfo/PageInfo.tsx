@@ -26,7 +26,10 @@ const PageInfo = ({
             <h2>{title}</h2>
             <TagList isLink className='justify-end' tagData={tags} />
             <p className='text-end text-sm text-gray-600'>
-                {dateToStr(publishDate)}
+                公開日：{dateToStr(publishDate)}
+            </p>
+            <p className='text-end text-sm text-gray-600'>
+                最終更新日：{dateToStr(lastEditedTime)}
             </p>
             <div className='flex max-h-[50vh] justify-center'>
                 <Image
