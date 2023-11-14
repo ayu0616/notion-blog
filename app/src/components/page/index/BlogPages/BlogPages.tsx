@@ -56,8 +56,8 @@ const BlogPages = ({
         } else {
             setPageData(
                 pageData.filter((page) => {
-                    return page.tags.some((tag) => {
-                        return checkedTag.includes(tag.name)
+                    return checkedTag.every((tag) => {
+                        return page.tags.map((t) => t.name).includes(tag)
                     })
                 }),
             )
