@@ -11,7 +11,7 @@
         "files.associations": {
             "*.css": "postcss"
         },
-        "files.autoSave": "off",
+        "files.autoSave": "afterDelay",
         "cSpell.words": ["Autodocs", "datas"],
         "liveServer.settings.multiRootWorkspaceName": "app",
         "terminal.integrated.env.osx": {
