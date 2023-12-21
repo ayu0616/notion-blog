@@ -5,6 +5,9 @@
         },
         {
             "path": "get-pages"
+        },
+        {
+            "path": "backend"
         }
     ],
     "settings": {
