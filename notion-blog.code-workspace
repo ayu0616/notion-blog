@@ -7,7 +7,7 @@
             "path": "app"
         },
         {
-            "path": "get-pages"
+            "path": "backend/get-pages"
         },
         {
             "path": "backend"
