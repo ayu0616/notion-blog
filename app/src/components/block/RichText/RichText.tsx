@@ -85,7 +85,7 @@ const RichText = ({
             return (
                 <code
                     className={[
-                        'rounded-sm bg-gray-200 px-1 text-red-600',
+                        'mx-0.5 rounded-sm bg-gray-200 px-1 text-red-600 first:ml-0 last:mr-0',
                         ...annotationClass,
                     ].join(' ')}
                 >
@@ -96,7 +96,11 @@ const RichText = ({
             return <span className={annotationClass.join(' ')}>{text}</span>
         }
     } else {
-        return <InlineMath math={text} />
+        return (
+            <span className='mx-1 inline-flex items-center text-lg first:ml-0 last:mr-0'>
+                <InlineMath math={text} />
+            </span>
+        )
     }
 }
 

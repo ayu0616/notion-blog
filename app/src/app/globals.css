@@ -52,3 +52,14 @@ code {
 .katex-html {
     @apply hidden;
 }
+
+/* 数式の上下中央揃え */
+span[data-testid='react-katex'] {
+    @apply inline-flex items-center;
+}
+
+/* 数式の上下中央揃え */
+.katex,
+.katex-mathml {
+    @apply inline-flex;
+}
