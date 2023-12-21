@@ -182,8 +182,8 @@ export interface TableRow extends BlockBase {
 
 /** 表 */
 export interface Table extends BlockBase {
-    has_column_header: boolean
-    has_row_header: boolean
+    hasColumnHeader: boolean
+    hasRowHeader: boolean
     type: 'table'
 }
 

@@ -20,11 +20,11 @@ class PageInfo(BaseModel):
 
     id: str
     title: str
-    last_edited_time: str
+    lastEditedTime: str
     tags: list[Tag]
     slug: str
     status: str
-    publish_date: Optional[str]
+    publishDate: Optional[str]
     image: Optional[str]
     description: str
 

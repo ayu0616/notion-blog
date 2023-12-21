@@ -42,7 +42,7 @@ BlockType = Literal[
 
 class BlockBase(BaseModel):
     id: str
-    has_children: bool
+    hasChildren: bool
     type: str
     children: Optional[list["BlockBase"]]
 
@@ -87,7 +87,7 @@ class RichText(BaseModel):
 
 
 class RichTextBlockBase(BlockBase):
-    rich_texts: list[RichText]
+    richTexts: list[RichText]
     color: Color
 
 
@@ -101,7 +101,7 @@ class Paragraph(RichTextBlockBase):
 
 class HeadingBlockBase(RichTextBlockBase):
     type: Literal["heading_1", "heading_2", "heading_3"]
-    is_toggleable: bool
+    isToggleable: bool
 
 
 class Heading1(HeadingBlockBase):
@@ -122,7 +122,7 @@ class BulletedListItem(RichTextBlockBase):
 
 class BulletedList(WithCaptionBlockBase):
     type: Literal["bulleted_list"]
-    list_items: list[BulletedListItem]
+    listItems: list[BulletedListItem]
 
 
 class NumberedListItem(RichTextBlockBase):
@@ -131,7 +131,7 @@ class NumberedListItem(RichTextBlockBase):
 
 class NumberedList(WithCaptionBlockBase):
     type: Literal["numbered_list"]
-    list_items: list[NumberedListItem]
+    listItems: list[NumberedListItem]
 
 
 class Bookmark(WithCaptionBlockBase):
@@ -141,7 +141,7 @@ class Bookmark(WithCaptionBlockBase):
 
 class Code(WithCaptionBlockBase):
     type: Literal["code"]
-    rich_texts: list[RichText]
+    richTexts: list[RichText]
     language: str
 
 
@@ -180,8 +180,8 @@ class TableRow(BlockBase):
 
 class Table(BlockBase):
     type: Literal["table"]
-    has_column_header: bool
-    has_row_header: bool
+    hasColumnHeader: bool
+    hasRowHeader: bool
 
 
 class Column(BlockBase):
