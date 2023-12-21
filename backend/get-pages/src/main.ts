@@ -55,7 +55,7 @@ const HEADERS = {
 };
 
 // データを格納するパス
-const DATA_PATH = path.join(__dirname, "../data");
+const DATA_PATH = path.join(__dirname, "../../data");
 
 /** データベース上にあるページの情報をAPIから取得する */
 const getPageData = async () => {
