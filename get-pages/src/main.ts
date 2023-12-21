@@ -107,7 +107,7 @@ const convertToPages = async (data: any) => {
         }
         const page: Page = {
             id: p.id,
-            title: p.properties.title.title[0] ? p.properties.title.title[0].plain_text : "",
+            title: p.properties.title.title[0] ? p.properties.title.title.map((t: any) => t.plain_text).join("") : "",
             tags: p.properties.tags.multi_select.map((tag: any) => {
                 return { name: tag.name, color: tag.color };
             }),
