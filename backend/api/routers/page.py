@@ -1,61 +1,29 @@
-from fastapi import APIRouter
+import json
+import os
 
-from ..schemas import block as block_schema
+from fastapi import APIRouter
+from fastapi.responses import JSONResponse
+
+from ..schemas import error as error_schema
 from ..schemas import page as page_schema
 
 router = APIRouter()
+cur_dir = os.path.dirname(__file__)
 
 
 @router.get("/pages", response_model=list[page_schema.PageInfo])
 async def get_pages():
-    return [
-        page_schema.PageInfo(
-            id="1",
-            title="Test Page",
-            last_edited_time="2021-10-19T14:58:00.000Z",
-            slug="test-page",
-            status="published",
-            publish_date="2021-10-19T14:58:00.000Z",
-            image="hogehoge://hoge.hoge",
-            description="This is a test page",
-            tags=[
-                page_schema.Tag(name="test", color="blue"),
-                page_schema.Tag(name="test2", color="red"),
-            ],
-        )
-    ]
+    with open(os.path.join(cur_dir, "../../data/pages.json"), "r") as f:
+        pages = json.load(f)
+    return pages
 
 
-@router.get("/pages/{slug}", response_model=page_schema.Page)
+@router.get("/pages/{slug}", response_model=page_schema.Page, responses={404: {"model": error_schema.Error}})
 async def get_page(slug: str):
-    return page_schema.Page(
-        id=slug,
-        title="Test Page",
-        last_edited_time="2021-10-19T14:58:00.000Z",
-        slug="test-page",
-        status="published",
-        publish_date="2021-10-19T14:58:00.000Z",
-        image="hogehoge://hoge.hoge",
-        description="This is a test page",
-        tags=[
-            page_schema.Tag(name="test", color="blue"),
-            page_schema.Tag(name="test2", color="red"),
-        ],
-        blocks=[
-            block_schema.Image(
-                id="1",
-                has_children=False,
-                type="image",
-                children=None,
-                url="https://example.com/image.png",
-                caption=[],
-            ),
-            block_schema.Embed(
-                id="2",
-                has_children=False,
-                type="embed",
-                children=None,
-                url="https://example.com/embed",
-            ),
-        ],
-    )
+    data_path = os.path.join(cur_dir, "../../data/pages", slug, "data.json")
+    is_exist = os.path.exists(data_path)
+    if not is_exist:
+        return JSONResponse(status_code=404, content={"message": "Page not found"})
+    with open(data_path, "r") as f:
+        page = json.load(f)
+    return page

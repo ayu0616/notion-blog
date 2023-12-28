@@ -1,8 +1,6 @@
-from typing import Literal, Optional
+from typing import Any, Literal, Optional
 
 from pydantic import BaseModel
-
-from .block import Block
 
 TagColor = Literal["blue", "brown", "default", "gray", "green", "orange", "pink", "purple", "red", "yellow"]
 
@@ -32,7 +30,7 @@ class PageInfo(BaseModel):
 class Page(PageInfo):
     """ページの内容を表すモデル
 
-    - `Block`の情報も含まれている
+    - `BlockBase`の情報も含まれている
     """
 
-    blocks: list[Block]
+    blocks: list[Any]
