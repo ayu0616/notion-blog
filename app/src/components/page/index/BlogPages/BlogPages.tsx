@@ -77,10 +77,10 @@ const BlogPages = ({
         }
     }, [composing, pageData, searchValue])
     return (
-        <div className='space-y-4 px-4'>
-            <Accordion>
-                <AccordionButton open={searchDefaultOpen}>
-                    <div className='flex items-center justify-between px-4 py-2'>
+        <div className='space-y-10 px-4'>
+            <Accordion variant='orange'>
+                <AccordionButton>
+                    <div className='flex items-center justify-between px-5 py-3'>
                         <Heading className='flex-1' level={3}>
                             ページを絞り込む
                         </Heading>
@@ -88,8 +88,8 @@ const BlogPages = ({
                     </div>
                 </AccordionButton>
                 <AccordionContent>
-                    <div className='space-y-4 p-4'>
-                        <div className='space-y-2'>
+                    <div className='space-y-6 p-5'>
+                        <div className='space-y-4'>
                             <label htmlFor='search-query'>
                                 <Heading level={4}>ページを検索</Heading>
                             </label>
@@ -111,9 +111,9 @@ const BlogPages = ({
                                 />
                             </div>
                         </div>
-                        <div className='space-y-2'>
+                        <div className='space-y-4'>
                             <Heading level={4}>タグで絞り込む</Heading>
-                            <div className='flex gap-2'>
+                            <div className='flex flex-wrap gap-2'>
                                 {tagData.map((tag, i) => {
                                     return (
                                         <Checkbox
@@ -128,7 +128,7 @@ const BlogPages = ({
                     </div>
                 </AccordionContent>
             </Accordion>
-            <div className='grid gap-4'>
+            <div className='grid gap-8'>
                 {showPageData.map((page, i) => {
                     return (
                         <Link key={i} href={`/blog/${page.slug}`}>
@@ -143,6 +143,7 @@ const BlogPages = ({
                                     <h3>{page.title}</h3>
                                     <TagList
                                         isLink
+                                        gap={1}
                                         tagData={page.tags}
                                     ></TagList>
                                     <p className='text-end text-sm text-gray-600'>
@@ -150,7 +151,9 @@ const BlogPages = ({
                                             new Date(page.publishDate ?? 0),
                                         )}
                                     </p>
-                                    <p>{page.description}</p>
+                                    <p className='text-xs leading-3 md:text-sm md:leading-4'>
+                                        {page.description}
+                                    </p>
                                 </div>
                             </Card>
                         </Link>
