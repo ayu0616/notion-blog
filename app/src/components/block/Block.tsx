@@ -27,7 +27,7 @@ interface BlockProps {
     data: BlockData
 }
 
-const RichTexts = ({ datas }: { datas?: RichTextData[] | null }) => {
+export const RichTexts = ({ datas }: { datas?: RichTextData[] | null }) => {
     return (
         <>
             {datas?.map((data, i) => {
@@ -44,8 +44,7 @@ export const Block = ({ data, ...props }: BlockProps) => {
     switch (data.type) {
         case 'paragraph':
             return (
-                <Paragraph>
-                    <RichTexts datas={data.richTexts} />
+                <Paragraph richTextData={data.richTexts}>
                     <Children datas={data.children} />
                 </Paragraph>
             )

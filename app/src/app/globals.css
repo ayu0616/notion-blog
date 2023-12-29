@@ -15,6 +15,7 @@
 body {
     font-family: 'BIZ UDPGothic', sans-serif; /* フォントを設定 */
     @apply text-sm md:text-base; /* テキストサイズを設定 */
+    @apply leading-relaxed; /* 行間を広げる */
     @apply tracking-wider; /* 文字間を広げる */
     @apply text-gray-700; /* テキストカラーを設定 */
     @apply bg-orange-50; /* 背景色を設定 */
