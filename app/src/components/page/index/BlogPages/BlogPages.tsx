@@ -113,7 +113,7 @@ const BlogPages = ({
                         </div>
                         <div className='space-y-2'>
                             <Heading level={4}>タグで絞り込む</Heading>
-                            <div className='flex gap-2'>
+                            <div className='flex flex-wrap gap-2'>
                                 {tagData.map((tag, i) => {
                                     return (
                                         <Checkbox
