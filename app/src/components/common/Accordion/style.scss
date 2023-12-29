@@ -1,9 +1,36 @@
 .accordion {
-    &[data-variant='default'] {
+    &:not([data-variant="unstyled"]) {
         @apply rounded-md border;
 
         .accordion-button {
             @apply rounded-md bg-white;
+
+            &[data-open='true'] {
+                @apply rounded-b-none border-b;
+            }
+        }
+        .accordion-content {
+            @apply rounded-b-md bg-white;
+        }
+    }
+
+    &[data-variant='default'] {
+        .accordion-button {
+            &:hover {
+                @apply bg-slate-50;
+            }
+
+            &active {
+                @apply bg-slate-100;
+            }
+        }
+    }
+
+    &[data-variant='orange'] {
+        @apply border-orange-200;
+
+        .accordion-button {
+            @apply border-orange-200;
 
             &:hover {
                 @apply bg-slate-50;
@@ -12,14 +39,6 @@
             &active {
                 @apply bg-slate-100;
             }
-
-            &[data-open='true'] {
-                @apply rounded-b-none border-b;
-            }
-        }
-
-        .accordion-content {
-            @apply rounded-b-md bg-white;
         }
     }
 }

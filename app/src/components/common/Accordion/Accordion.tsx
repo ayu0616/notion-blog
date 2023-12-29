@@ -1,52 +1,57 @@
 'use client'
 
-import { ReactNode, useEffect, useRef } from 'react'
+import { ReactNode, createContext, useEffect, useRef, useState } from 'react'
 
 import './style.scss'
 
 interface AccordionProps {
     children?: ReactNode
     className?: string
-    variant?: 'default' | 'unstyled'
+    variant?: 'default' | 'unstyled' | 'orange'
 }
+
+export const AccordionContext = createContext({
+    isOpen: false,
+    toggle: () => {},
+})
 
 const Accordion = ({
     variant = 'default',
     className,
     ...props
 }: AccordionProps) => {
+    const [isOpen, setIsOpen] = useState(false)
+    const toggle = () => {
+        setIsOpen((prev) => !prev)
+    }
     const elem = useRef<HTMLDivElement>(null)
     const styleClass = variant === 'default' ? 'rounded-md border' : ''
 
     useEffect(() => {
         if (!elem.current) return
-        const button =
-            elem.current.querySelector<HTMLDivElement>('.accordion-button')
         const content =
             elem.current.querySelector<HTMLDivElement>('.accordion-content')
-        if (!button || !content) return
-        toggleContent(content, button.dataset.open ?? '')
-        button.addEventListener('click', () => {
-            button.dataset.open = (!(button.dataset.open === 'true')).toString()
-            toggleContent(content, button.dataset.open ?? '')
-        })
-    }, [])
+        if (!content) return
+        toggleContent(content, isOpen)
+    }, [isOpen])
 
     return (
-        <div
-            {...props}
-            ref={elem}
-            className={['accordion group', styleClass, className].join(' ')}
-            data-variant={variant}
-        ></div>
+        <AccordionContext.Provider value={{ isOpen, toggle }}>
+            <div
+                {...props}
+                ref={elem}
+                className={['accordion group', styleClass, className].join(' ')}
+                data-variant={variant}
+            ></div>
+        </AccordionContext.Provider>
     )
 }
 
 export default Accordion
 
-const toggleContent = (content: HTMLDivElement, open: string) => {
+const toggleContent = (content: HTMLDivElement, isOpen: boolean) => {
     const actualHeight = (content.firstChild as HTMLDivElement).clientHeight
-    if (open === 'true') {
+    if (isOpen) {
         content.style.height = `${actualHeight}px`
         setTimeout(() => {
             content.style.height = 'auto'

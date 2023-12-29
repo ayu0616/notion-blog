@@ -78,9 +78,9 @@ const BlogPages = ({
     }, [composing, pageData, searchValue])
     return (
         <div className='space-y-10 px-4'>
-            <Accordion className='border-orange-200'>
-                <AccordionButton open={searchDefaultOpen}>
-                    <div className='flex items-center justify-between px-4 py-2'>
+            <Accordion variant='orange'>
+                <AccordionButton>
+                    <div className='flex items-center justify-between px-5 py-3'>
                         <Heading className='flex-1' level={3}>
                             ページを絞り込む
                         </Heading>
@@ -88,7 +88,7 @@ const BlogPages = ({
                     </div>
                 </AccordionButton>
                 <AccordionContent>
-                    <div className='space-y-6 p-4'>
+                    <div className='space-y-6 p-5'>
                         <div className='space-y-4'>
                             <label htmlFor='search-query'>
                                 <Heading level={4}>ページを検索</Heading>
