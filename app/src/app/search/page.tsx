@@ -1,6 +1,6 @@
 import Heading from '@/components/block/Heading/Heading'
 import { Page } from '@/type/page/page'
-import {getPages} from '@/util/getPageData'
+import { getPages } from '@/util/getPageData'
 
 import BlogPages from '../../components/page/index/BlogPages/BlogPages'
 

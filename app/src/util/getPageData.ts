@@ -18,7 +18,10 @@ export const getPages = async () => {
 export const getPageData = async (slug: string) => {
     const url = new URL(`pages/${slug}`, apiUrl)
     const pageData = (await fetch(url)
-        .then((res) => res.json())
+        .then((res) => {
+            if (!res.ok) return null
+            return res.json()
+        })
         .catch(() => null)) as Page | null
     if (!pageData) return null
     if (process.env.NODE_ENV === 'production') {

@@ -1,3 +1,5 @@
+import { notFound } from 'next/navigation'
+
 import { Blocks } from '@/components/block/Block'
 import Profile from '@/components/common/Profile/Profile'
 import PageInfo from '@/components/page/blog/PageInfo/PageInfo'
@@ -6,9 +8,7 @@ import { getPageData } from '@/util/getPageData'
 const Page = async ({ params: { slug } }: { params: { slug: string } }) => {
     const pageData = await getPageData(slug)
     if (!pageData) {
-        return {
-            notFound: true,
-        }
+        notFound()
     }
     return (
         <main className='mx-auto max-w-4xl space-y-12 bg-white p-6'>
