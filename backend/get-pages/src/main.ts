@@ -262,7 +262,7 @@ const convertToBlocks = async (data: any, slug: string) => {
                     // 画像を保存する
                     writeFile(savePath, await imgToWebp(buffer));
                     // 画像のURLをローカルのパスに変更する
-                    url = savePath.replace("../app/public", "");
+                    url = path.join("data", "pages", slug, fname)
                 }
                 const image: Image = {
                     ...blockBase,
