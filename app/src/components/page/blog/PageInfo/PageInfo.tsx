@@ -22,15 +22,17 @@ const PageInfo = ({
     ...props
 }: PageInfoProps) => {
     return (
-        <div className='mb-16 space-y-2'>
+        <div className='space-y-6 rounded-md border border-orange-200 bg-white p-6'>
             <h2>{title}</h2>
             <TagList isLink className='justify-end' tagData={tags} />
-            <p className='text-end text-sm text-gray-600'>
-                公開日：{dateToStr(publishDate)}
-            </p>
-            <p className='text-end text-sm text-gray-600'>
-                最終更新日：{dateToStr(lastEditedTime)}
-            </p>
+            <div className='space-y-2'>
+                <p className='text-end text-sm text-gray-600'>
+                    公開日：{dateToStr(publishDate)}
+                </p>
+                <p className='text-end text-sm text-gray-600'>
+                    最終更新日：{dateToStr(lastEditedTime)}
+                </p>
+            </div>
             <div className='flex max-h-[50vh] justify-center'>
                 <Image
                     alt={'ヘッダ画像'}

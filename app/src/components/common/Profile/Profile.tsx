@@ -77,7 +77,7 @@ const Profile = ({ ...props }: ProfileProps) => {
     }
 
     return (
-        <div className='mx-auto w-fit max-w-full space-y-4 rounded-md border p-4'>
+        <div className='mx-auto w-fit max-w-full space-y-4 rounded-md border border-orange-200 bg-white p-6'>
             <ImageBase
                 alt='著者のアイコン'
                 className='mx-auto h-24 w-24 rounded-full'
