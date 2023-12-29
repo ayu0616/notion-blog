@@ -146,7 +146,7 @@ export const Block = ({ data, ...props }: BlockProps) => {
                 // hasRowHeader={data.has_row_header}
                 // hasColHeader={data.has_column_header}
                 >
-                    {data.children && data.has_column_header ? (
+                    {data.children && data.hasColumnHeader ? (
                         <>
                             <TableHead>
                                 <TableRow>
@@ -167,7 +167,7 @@ export const Block = ({ data, ...props }: BlockProps) => {
                                                 <TableCell
                                                     key={j}
                                                     isHead={
-                                                        data.has_row_header &&
+                                                        data.hasRowHeader &&
                                                         j === 0
                                                     }
                                                 >
@@ -188,8 +188,7 @@ export const Block = ({ data, ...props }: BlockProps) => {
                                             <TableCell
                                                 key={j}
                                                 isHead={
-                                                    data.has_row_header &&
-                                                    j === 0
+                                                    data.hasRowHeader && j === 0
                                                 }
                                             >
                                                 <RichTexts datas={cell} />

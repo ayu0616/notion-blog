@@ -1,16 +1,11 @@
 import Carousel from '@/components/common/Carousel/Carousel'
 import { Page } from '@/type/page/page'
-import getPageData from '@/util/getPageData'
+import { getPages } from '@/util/getPageData'
 
 import BlogPages from '../components/page/index/BlogPages/BlogPages'
 
-const NEXT_PUBLIC_URL = process.env.NEXT_PUBLIC_URL
-
 export default async function Home() {
-    // const pageData: Page[] = await fetch(
-    //     `${NEXT_PUBLIC_URL}/data/pages.json`,
-    // ).then((res) => res.json())
-    const pageData: Page[] = getPageData()
+    const pageData: Page[] = await getPages()
     pageData.sort((a, b) => {
         return (
             new Date(b.publishDate ?? '1970-01-01').getTime() -

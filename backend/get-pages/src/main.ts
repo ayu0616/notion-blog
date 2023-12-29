@@ -55,7 +55,7 @@ const HEADERS = {
 };
 
 // データを格納するパス
-const DATA_PATH = "../app/public/data";
+const DATA_PATH = path.join(__dirname, "../../data");
 
 /** データベース上にあるページの情報をAPIから取得する */
 const getPageData = async () => {
@@ -292,8 +292,8 @@ const convertToBlocks = async (data: any, slug: string) => {
                 const table: Table = {
                     ...blockBase,
                     type: "table",
-                    has_column_header: b.table.has_column_header,
-                    has_row_header: b.table.has_row_header,
+                    hasColumnHeader: b.table.has_column_header,
+                    hasRowHeader: b.table.has_row_header,
                 };
                 blocks.push(table);
                 break;

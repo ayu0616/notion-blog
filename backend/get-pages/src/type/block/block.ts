@@ -183,8 +183,8 @@ export interface TableRow extends BlockBase {
 /** 表 */
 export interface Table extends BlockBase {
     type: "table";
-    has_column_header: boolean;
-    has_row_header: boolean;
+    hasColumnHeader: boolean;
+    hasRowHeader: boolean;
 }
 
 /** 段組みのコンテンツ */
