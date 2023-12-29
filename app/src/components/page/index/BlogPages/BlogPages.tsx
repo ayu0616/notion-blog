@@ -143,6 +143,7 @@ const BlogPages = ({
                                     <h3>{page.title}</h3>
                                     <TagList
                                         isLink
+                                        gap={1}
                                         tagData={page.tags}
                                     ></TagList>
                                     <p className='text-end text-sm text-gray-600'>
@@ -150,7 +151,9 @@ const BlogPages = ({
                                             new Date(page.publishDate ?? 0),
                                         )}
                                     </p>
-                                    <p>{page.description}</p>
+                                    <p className='text-xs leading-3 md:text-sm md:leading-4'>
+                                        {page.description}
+                                    </p>
                                 </div>
                             </Card>
                         </Link>
