@@ -1,6 +1,6 @@
 import Heading from '@/components/block/Heading/Heading'
 import { Page } from '@/type/page/page'
-import getPageData from '@/util/getPageData'
+import {getPages} from '@/util/getPageData'
 
 import BlogPages from '../../components/page/index/BlogPages/BlogPages'
 
@@ -9,7 +9,7 @@ const Page = async ({
 }: {
     searchParams: { query: string }
 }) => {
-    const pageData: Page[] = getPageData()
+    const pageData: Page[] = await getPages()
     // pageData = pageData.filter((page) => {
     //     return page.title.includes(query)
     // })

@@ -1,19 +1,15 @@
-import fs from 'fs'
-
 import { Blocks } from '@/components/block/Block'
 import Profile from '@/components/common/Profile/Profile'
 import PageInfo from '@/components/page/blog/PageInfo/PageInfo'
-import { Page as PageData } from '@/type/page/page'
-
-const NEXT_PUBLIC_URL = process.env.NEXT_PUBLIC_URL
+import { getPageData } from '@/util/getPageData'
 
 const Page = async ({ params: { slug } }: { params: { slug: string } }) => {
-    // const pageData: PageData = await fetch(
-    //     `${NEXT_PUBLIC_URL}/data/page/${slug}.json`,
-    // ).then((res) => res.json())
-    const pageData: PageData = JSON.parse(
-        fs.readFileSync(`./public/data/pages/${slug}/data.json`, 'utf-8'),
-    )
+    const pageData = await getPageData(slug)
+    if (!pageData) {
+        return {
+            notFound: true,
+        }
+    }
     return (
         <main className='mx-auto max-w-4xl space-y-12 bg-white p-6'>
             <PageInfo
