@@ -78,7 +78,7 @@ const BlogPages = ({
     }, [composing, pageData, searchValue])
     return (
         <div className='space-y-4 px-4'>
-            <Accordion>
+            <Accordion className='border-orange-200'>
                 <AccordionButton open={searchDefaultOpen}>
                     <div className='flex items-center justify-between px-4 py-2'>
                         <Heading className='flex-1' level={3}>
