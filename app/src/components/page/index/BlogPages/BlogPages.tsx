@@ -77,7 +77,7 @@ const BlogPages = ({
         }
     }, [composing, pageData, searchValue])
     return (
-        <div className='space-y-4 px-4'>
+        <div className='space-y-10 px-4'>
             <Accordion className='border-orange-200'>
                 <AccordionButton open={searchDefaultOpen}>
                     <div className='flex items-center justify-between px-4 py-2'>
@@ -88,8 +88,8 @@ const BlogPages = ({
                     </div>
                 </AccordionButton>
                 <AccordionContent>
-                    <div className='space-y-4 p-4'>
-                        <div className='space-y-2'>
+                    <div className='space-y-6 p-4'>
+                        <div className='space-y-4'>
                             <label htmlFor='search-query'>
                                 <Heading level={4}>ページを検索</Heading>
                             </label>
@@ -111,7 +111,7 @@ const BlogPages = ({
                                 />
                             </div>
                         </div>
-                        <div className='space-y-2'>
+                        <div className='space-y-4'>
                             <Heading level={4}>タグで絞り込む</Heading>
                             <div className='flex flex-wrap gap-2'>
                                 {tagData.map((tag, i) => {
@@ -128,7 +128,7 @@ const BlogPages = ({
                     </div>
                 </AccordionContent>
             </Accordion>
-            <div className='grid gap-4'>
+            <div className='grid gap-8'>
                 {showPageData.map((page, i) => {
                     return (
                         <Link key={i} href={`/blog/${page.slug}`}>
