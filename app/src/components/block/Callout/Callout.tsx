@@ -54,6 +54,7 @@ const Callout = ({
     icon,
     content,
     color = 'default',
+    children,
     ...props
 }: CalloutProps) => {
     const colorClass = colorToClass(color)
@@ -65,9 +66,9 @@ const Callout = ({
             ].join(' ')}
         >
             <div className=''>{icon}</div>
-            <div>
+            <div className='space-y-4'>
                 <div className=''>{content}</div>
-                <div {...props} className=''></div>
+                {children}
             </div>
         </div>
     )

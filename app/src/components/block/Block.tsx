@@ -77,7 +77,7 @@ export const Block = ({ data, ...props }: BlockProps) => {
                     content={<RichTexts datas={data.richTexts} />}
                     icon={data.icon}
                 >
-                    <Blocks datas={data.children} />
+                    <Blocks datas={data.children} space='sm' />
                 </Callout>
             )
         case 'bulleted_list':
@@ -250,16 +250,33 @@ const Children = ({ datas }: { datas?: BlockData[] | null }) => {
     )
 }
 
-export const Blocks = ({ datas }: { datas?: BlockData[] | null }) => {
+export const Blocks = ({
+    datas,
+    space = 'default',
+}: {
+    datas?: BlockData[] | null
+    space?: 'default' | 'sm'
+}) => {
+    const spaceClass = (() => {
+        switch (space) {
+            case 'default':
+                return 'space-y-10 md:space-y-12'
+            case 'sm':
+                return 'space-y-3 md:space-y-4'
+        }
+    })()
+
+    if (!datas) return <></>
+
     return (
-        <>
-            {datas?.map((data, i) => {
+        <div className={spaceClass}>
+            {datas.map((data, i) => {
                 return (
-                    <div key={i} className='mb-10 last:mb-0 md:mb-12'>
+                    <div key={i}>
                         <Block data={data}></Block>
                     </div>
                 )
             })}
-        </>
+        </div>
     )
 }
