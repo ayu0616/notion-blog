@@ -1,3 +1,5 @@
+import urlJoin from 'url-join'
+
 import Heading from '@/components/block/Heading/Heading'
 import Paragraph from '@/components/block/Paragraph'
 import {
@@ -22,6 +24,8 @@ import { RichText } from './RichText'
 import { Table, TableBody, TableCell, TableHead, TableRow } from './Table'
 import TableOfContent from './TableOfContent/TableOfContent'
 import Video from './Video/Video'
+
+const API_URL = process.env.NEXT_API_URL
 
 interface BlockProps {
     data: BlockData
@@ -130,12 +134,16 @@ export const Block = ({ data, ...props }: BlockProps) => {
                     return data.url //なければ画像のURLをaltにする
                 }
             })()
-            return (
-                <Image
-                    alt={alt}
-                    src={data.url.replace('../app/public', '')}
-                ></Image>
-            )
+            const url = (() => {
+                if (data.url.startsWith('http')) {
+                    return data.url
+                } else if (API_URL) {
+                    return urlJoin(API_URL, 'files', data.url)
+                } else {
+                    return data.url
+                }
+            })()
+            return <Image alt={alt} src={url}></Image>
         case 'video':
             return <Video url={data.url} />
         case 'table_of_contents':
