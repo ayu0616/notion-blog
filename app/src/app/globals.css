@@ -14,6 +14,7 @@
 
 body {
     font-family: 'BIZ UDPGothic', sans-serif; /* フォントを設定 */
+    word-break: auto-phrase; /* 日本語を自然な形で改行させる設定 */
     @apply text-sm md:text-base; /* テキストサイズを設定 */
     @apply leading-relaxed; /* 行間を広げる */
     @apply tracking-wider; /* 文字間を広げる */
