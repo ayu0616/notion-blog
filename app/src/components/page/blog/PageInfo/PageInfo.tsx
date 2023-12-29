@@ -22,7 +22,7 @@ const PageInfo = ({
     ...props
 }: PageInfoProps) => {
     return (
-        <div className='space-y-6 rounded-md border border-orange-200 bg-white p-6'>
+        <div className='space-y-6 rounded-md border border-orange-200 bg-white p-6 md:p-9'>
             <h2>{title}</h2>
             <TagList isLink className='justify-end' tagData={tags} />
             <div className='space-y-2'>

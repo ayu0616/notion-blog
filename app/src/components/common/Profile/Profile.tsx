@@ -105,7 +105,7 @@ const Profile = ({ ...props }: ProfileProps) => {
             </BulletedList>
             <div className='space-y-2'>
                 <h5>SNSアカウント</h5>
-                <div className='flex justify-center gap-2'>
+                <div className='flex justify-center gap-2 md:gap-3'>
                     {snsIcons.map((snsIcon) => {
                         return (
                             <a

@@ -17,7 +17,7 @@ const Page = async ({ params: { slug } }: { params: { slug: string } }) => {
                 image={pageData.image ?? '/no_image.jpg'}
                 publishDate={pageData.publishDate ?? '1970'}
             />
-            <div className='rounded-md border border-orange-200 bg-white p-6'>
+            <div className='rounded-md border border-orange-200 bg-white p-6 md:p-9'>
                 <Blocks datas={pageData.blocks} />
             </div>
             <Profile />
