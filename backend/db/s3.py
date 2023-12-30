@@ -17,11 +17,11 @@ def sync(path: str):
     subprocess.run(["aws", "s3", "sync", data_path, s3_path])
 
 
-def generate_presigned_url(path: str):
+def generate_presigned_url(path: str, expires_in: int = 3600):
     return s3.meta.client.generate_presigned_url(
         ClientMethod="get_object",
         Params={"Bucket": "hassaku-travel-blog", "Key": path},
-        ExpiresIn=3600,
+        ExpiresIn=expires_in,
     )
 
 
