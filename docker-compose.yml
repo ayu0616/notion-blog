@@ -11,16 +11,16 @@ services:
             - ./backend:/app
         ports:
             - 8000:8000
-    dynamodb:
-        image: amazon/dynamodb-local
-        ports:
-            - 8001:8000
-        volumes:
-            - ./dynamodb:/home/dynamodblocal/data
-        command: "-jar DynamoDBLocal.jar -sharedDb -dbPath /home/dynamodblocal/data"
-    dynamodb-admin:
-        image: aaronshaf/dynamodb-admin
-        ports:
-            - "8002:8001"
-        environment:
-            - DYNAMO_ENDPOINT=http://dynamodb:8000
+    # dynamodb:
+    #     image: amazon/dynamodb-local
+    #     ports:
+    #         - 8001:8000
+    #     volumes:
+    #         - ./dynamodb:/home/dynamodblocal/data
+    #     command: "-jar DynamoDBLocal.jar -sharedDb -dbPath /home/dynamodblocal/data"
+    # dynamodb-admin:
+    #     image: aaronshaf/dynamodb-admin
+    #     ports:
+    #         - "8002:8001"
+    #     environment:
+    #         - DYNAMO_ENDPOINT=http://dynamodb:8000
