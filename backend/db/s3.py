@@ -1,5 +1,6 @@
 import os
 import subprocess
+from functools import lru_cache
 
 import boto3
 
@@ -24,7 +25,9 @@ def generate_presigned_url(path: str):
     )
 
 
+@lru_cache
 def get_file(path: str) -> bytes | None:
+    print("called get_file")
     try:
         res = s3.meta.client.get_object(
             Bucket="hassaku-travel-blog",
