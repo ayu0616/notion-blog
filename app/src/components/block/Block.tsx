@@ -129,12 +129,17 @@ export const Block = ({ data, ...props }: BlockProps) => {
                     return data.url //なければ画像のURLをaltにする
                 }
             })()
-            return (
-                <Image
-                    alt={alt}
-                    src={data.url.replace('../app/public', '')}
-                ></Image>
-            )
+            const url = (() => {
+                if (data.url.startsWith('http')) {
+                    return data.url
+                } else {
+                    return new URL(
+                        `images/${data.url}`,
+                        process.env.NEXT_API_URL,
+                    ).toString()
+                }
+            })()
+            return <Image alt={alt} src={url}></Image>
         case 'video':
             return <Video url={data.url} />
         case 'table_of_contents':
