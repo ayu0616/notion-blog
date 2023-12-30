@@ -100,7 +100,10 @@ const convertToPages = async (data: any) => {
                 const fname = `${slug}.${ext}`;
                 const savePath = path.join(DATA_PATH, "thumbnail", fname);
                 // 画像を保存する
-                writeFile(savePath, await imgToWebp(buffer));
+                if (!fs.existsSync(path.join(DATA_PATH, "thumbnail"))) {
+                    writeFile(savePath, await imgToWebp(buffer));
+                    console.log(savePath);
+                }
                 // 画像のURLをローカルのパスに変更する
                 image = path.join("/", "data", "thumbnail", fname);
             }
@@ -260,7 +263,10 @@ const convertToBlocks = async (data: any, slug: string) => {
                     const fname = `${b.id}.${ext}`;
                     const savePath = path.join(pageDirPath(slug), fname);
                     // 画像を保存する
-                    writeFile(savePath, await imgToWebp(buffer));
+                    if (!fs.existsSync(pageDirPath(slug))) {
+                        writeFile(savePath, await imgToWebp(buffer));
+                        console.log(savePath);
+                    }
                     // 画像のURLをローカルのパスに変更する
                     url = savePath.replace("../app/public", "");
                 }
