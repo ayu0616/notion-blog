@@ -1,5 +1,5 @@
-from dynamodb import dynamodb
-from settings import TABLE_NAME
+from db.dynamodb import dynamodb
+from db.settings import TABLE_NAME
 
 table = dynamodb.Table(TABLE_NAME)
 
