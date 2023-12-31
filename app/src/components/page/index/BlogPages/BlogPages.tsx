@@ -128,37 +128,56 @@ const BlogPages = ({
                     </div>
                 </AccordionContent>
             </Accordion>
-            <div className='grid gap-8'>
-                {showPageData.map((page, i) => {
-                    return (
-                        <Link key={i} href={`/blog/${page.slug}`}>
-                            <Card horizontal className=''>
-                                <ImageBase
-                                    alt=''
-                                    className='w-1/3 rounded-l-md'
-                                    objectFit='cover'
-                                    src={page.image ?? '/no_image.jpg'}
-                                ></ImageBase>
-                                <div className='flex flex-1 flex-col gap-2 p-3'>
-                                    <h3>{page.title}</h3>
-                                    <TagList
-                                        isLink
-                                        gap={1}
-                                        tagData={page.tags}
-                                    ></TagList>
-                                    <p className='text-end text-sm text-gray-600'>
-                                        {dateToStr(
-                                            new Date(page.publishDate ?? 0),
-                                        )}
-                                    </p>
-                                    <p className='text-xs leading-3 md:text-sm md:leading-4'>
-                                        {page.description}
-                                    </p>
-                                </div>
-                            </Card>
-                        </Link>
-                    )
-                })}
+            <div className='flex flex-col gap-4'>
+                <div className='flex flex-col gap-2 rounded border border-orange-200 bg-white p-2 text-sm text-gray-600'>
+                    <p>表示件数 ： {showPageData.length}件</p>
+                    {searchValue ? (
+                        <div className='flex gap-2'>
+                            <p>{'検索テキスト ： '}</p>
+                            <p className='flex-1 break-all'>{searchValue}</p>
+                        </div>
+                    ) : null}
+                    {checkedTag.length ? (
+                        <div className='flex gap-2'>
+                            <p>検索タグ ： </p>
+                            <p className='flex-1'>{checkedTag.join(', ')}</p>
+                        </div>
+                    ) : null}
+                </div>
+                <div className='grid gap-8'>
+                    {showPageData.map((page, i) => {
+                        return (
+                            <Link key={i} href={`/blog/${page.slug}`}>
+                                <Card horizontal className=''>
+                                    <ImageBase
+                                        alt=''
+                                        className='aspect-[4/3] w-1/3 rounded-l-md'
+                                        objectFit='cover'
+                                        src={page.image ?? '/no_image.jpg'}
+                                    ></ImageBase>
+                                    <div className='flex flex-1 flex-col gap-2 p-3'>
+                                        <h3 className='blog-card-title'>
+                                            {page.title}
+                                        </h3>
+                                        <TagList
+                                            isLink
+                                            gap={1}
+                                            tagData={page.tags}
+                                        ></TagList>
+                                        <p className='text-end text-sm text-gray-600'>
+                                            {dateToStr(
+                                                new Date(page.publishDate ?? 0),
+                                            )}
+                                        </p>
+                                        <p className='line-clamp-2 text-xs leading-3 md:line-clamp-3 md:text-sm md:leading-4'>
+                                            {page.description}
+                                        </p>
+                                    </div>
+                                </Card>
+                            </Link>
+                        )
+                    })}
+                </div>
             </div>
         </div>
     )

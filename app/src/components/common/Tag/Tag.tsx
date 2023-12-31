@@ -14,7 +14,7 @@ const Tag = ({ name, color, isLink = false, ...props }: TagProps) => {
     const tagBody = (
         <span
             className={[
-                'rounded-sm p-1',
+                'rounded-sm p-1 text-sm md:text-base',
                 colorClass,
                 decorationClass,
                 isLink ? 'hover:underline' : '',
