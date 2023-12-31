@@ -156,7 +156,9 @@ const BlogPages = ({
                                         src={page.image ?? '/no_image.jpg'}
                                     ></ImageBase>
                                     <div className='flex flex-1 flex-col gap-2 p-3'>
-                                        <h3>{page.title}</h3>
+                                        <h3 className='blog-card-title'>
+                                            {page.title}
+                                        </h3>
                                         <TagList
                                             isLink
                                             gap={1}

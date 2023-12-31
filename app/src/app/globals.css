@@ -65,3 +65,12 @@ span[data-testid='react-katex'] {
 .katex-mathml {
     @apply inline-flex;
 }
+
+/* TODO: tailwindで実装されたらそちらに移行する */
+.blog-card-title{
+    @apply break-all;
+
+    @media (min-width: 768px) {
+        word-break: inherit;
+    }
+}
