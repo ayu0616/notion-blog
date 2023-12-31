@@ -129,9 +129,21 @@ const BlogPages = ({
                 </AccordionContent>
             </Accordion>
             <div className='flex flex-col gap-4'>
-                <p className='text-sm text-gray-600'>
-                    表示件数 ： {showPageData.length}件
-                </p>
+                <div className='flex flex-col gap-2 rounded border border-orange-200 bg-white p-2 text-sm text-gray-600'>
+                    <p>表示件数 ： {showPageData.length}件</p>
+                    {searchValue ? (
+                        <div className='flex gap-2'>
+                            <p>{'検索テキスト ： '}</p>
+                            <p className='flex-1 break-all'>{searchValue}</p>
+                        </div>
+                    ) : null}
+                    {checkedTag.length ? (
+                        <div className='flex gap-2'>
+                            <p>検索タグ ： </p>
+                            <p className='flex-1'>{checkedTag.join(', ')}</p>
+                        </div>
+                    ) : null}
+                </div>
                 <div className='grid gap-8'>
                     {showPageData.map((page, i) => {
                         return (
