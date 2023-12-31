@@ -151,7 +151,7 @@ const BlogPages = ({
                                             new Date(page.publishDate ?? 0),
                                         )}
                                     </p>
-                                    <p className='text-xs leading-3 md:text-sm md:leading-4'>
+                                    <p className='line-clamp-2 text-xs leading-3 md:line-clamp-3 md:text-sm md:leading-4'>
                                         {page.description}
                                     </p>
                                 </div>
