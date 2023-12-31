@@ -30,7 +30,7 @@ ul.bulleted-list li {
     &:not(:first-child) {
         @apply mt-2;
     }
-    li{
+    li {
         @apply mt-2;
     }
 
@@ -43,7 +43,7 @@ ul.bulleted-list li {
 
         font-family: Arial;
         font-size: 1.5rem;
-        line-height: inherit;
+        @apply leading-6 md:leading-7;
         vertical-align: middle;
     }
 

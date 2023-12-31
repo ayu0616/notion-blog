@@ -105,7 +105,7 @@ const convertToPages = async (data: any) => {
                     console.log(savePath);
                 }
                 // 画像のURLをローカルのパスに変更する
-                image = path.join("/", "data", "thumbnail", fname);
+                image = path.join("data", "thumbnail", fname);
             }
         }
         const page: Page = {
@@ -268,7 +268,7 @@ const convertToBlocks = async (data: any, slug: string) => {
                         console.log(savePath);
                     }
                     // 画像のURLをローカルのパスに変更する
-                    url = savePath.replace("../app/public", "");
+                    url = path.join("data", "pages", slug, fname);
                 }
                 const image: Image = {
                     ...blockBase,
