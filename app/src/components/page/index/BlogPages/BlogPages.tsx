@@ -151,7 +151,7 @@ const BlogPages = ({
                                 <Card horizontal className=''>
                                     <ImageBase
                                         alt=''
-                                        className='w-1/3 rounded-l-md'
+                                        className='aspect-[4/3] w-1/3 rounded-l-md'
                                         objectFit='cover'
                                         src={page.image ?? '/no_image.jpg'}
                                     ></ImageBase>
