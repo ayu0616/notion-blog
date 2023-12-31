@@ -56,7 +56,7 @@ export const DefaultOpen: Story = {
     render: () => (
         <div className='w-[600px]'>
             <Accordion>
-                <AccordionButton open={true}>
+                <AccordionButton>
                     <div className='flex items-center justify-between'>
                         <h3 className='flex-1'>見出し</h3>
                         <AccordionIcon />
