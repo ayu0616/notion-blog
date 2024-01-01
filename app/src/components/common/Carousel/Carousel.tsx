@@ -15,9 +15,9 @@ interface CarouselProps {
     data: {
         image: string
         publishDate: string
-        title: string
-        tags: TagType[]
         slug: string
+        tags: TagType[]
+        title: string
     }[]
 }
 
@@ -35,13 +35,13 @@ const Carousel = ({ data, ...props }: CarouselProps) => {
         const nextScrollLeft = container.current.scrollLeft + containerWidth
         if (nextScrollLeft > maxScrollLeft) {
             container.current.scrollTo({
-                left: 0,
                 behavior: 'smooth',
+                left: 0,
             })
         } else {
             container.current.scrollBy({
-                left: containerWidth,
                 behavior: 'smooth',
+                left: containerWidth,
             })
         }
     }
@@ -55,13 +55,13 @@ const Carousel = ({ data, ...props }: CarouselProps) => {
         const nextScrollLeft = container.current.scrollLeft - containerWidth
         if (nextScrollLeft < 0) {
             container.current.scrollTo({
-                left: maxScrollLeft,
                 behavior: 'smooth',
+                left: maxScrollLeft,
             })
         } else {
             container.current.scrollBy({
-                left: -containerWidth,
                 behavior: 'smooth',
+                left: -containerWidth,
             })
         }
     }
@@ -88,8 +88,8 @@ const Carousel = ({ data, ...props }: CarouselProps) => {
         <div className='relative bg-gray-50'>
             {/* 進む・戻るボタン */}
             <button
-                title='前へ'
                 className='absolute left-0 top-0 z-10 flex h-full items-center justify-center px-2 text-3xl text-white md:px-4 md:text-4xl'
+                title='前へ'
                 onClick={() => {
                     stopInterval()
                     startInterval()
@@ -101,8 +101,8 @@ const Carousel = ({ data, ...props }: CarouselProps) => {
                 </span>
             </button>
             <button
-                title='次へ'
                 className='absolute right-0 top-0 z-10 flex h-full items-center justify-center px-2 text-3xl text-white md:px-4 md:text-4xl'
+                title='次へ'
                 onClick={() => {
                     stopInterval()
                     startInterval()
@@ -116,8 +116,8 @@ const Carousel = ({ data, ...props }: CarouselProps) => {
 
             {/* 画像 */}
             <div
-                className='carousel-container flex aspect-video w-full snap-x snap-mandatory overflow-x-scroll'
                 ref={container}
+                className='carousel-container flex aspect-video w-full snap-x snap-mandatory overflow-x-scroll'
                 onScroll={() => {
                     stopInterval()
                     startInterval()
@@ -126,23 +126,23 @@ const Carousel = ({ data, ...props }: CarouselProps) => {
                 {data.map((d, index) => {
                     return (
                         <Link
-                            href={`/blog/${d.slug}`}
                             key={index}
                             className='relative min-w-full'
+                            href={`/blog/${d.slug}`}
                         >
                             <ImageBase
-                                src={d.image}
                                 alt={`image of ${d.title}`}
                                 className='aspect-video h-full snap-center'
                                 objectFit='cover'
+                                src={d.image}
                             ></ImageBase>
                             <div className='absolute bottom-0 flex w-full flex-col gap-2 bg-black/25 p-3 text-sm text-white md:px-4'>
                                 <p>{d.title}</p>
                                 <div className='flex items-end justify-between gap-4'>
                                     <TagList
-                                        tagData={d.tags}
-                                        gap={1}
                                         className='flex-1'
+                                        gap={1}
+                                        tagData={d.tags}
                                     ></TagList>
                                     <p className='w-fit text-right text-xs'>
                                         {dateToStr(d.publishDate)}

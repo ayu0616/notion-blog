@@ -14,9 +14,12 @@
 
 body {
     font-family: 'BIZ UDPGothic', sans-serif; /* フォントを設定 */
-    @apply text-sm md:text-base;
-    @apply text-gray-800;
-    @apply bg-orange-50;
+    word-break: auto-phrase; /* 日本語を自然な形で改行させる設定 */
+    @apply text-sm md:text-base; /* テキストサイズを設定 */
+    @apply leading-relaxed; /* 行間を広げる */
+    @apply tracking-wider; /* 文字間を広げる */
+    @apply text-gray-700; /* テキストカラーを設定 */
+    @apply bg-orange-50; /* 背景色を設定 */
 }
 
 h1 {
@@ -50,4 +53,24 @@ code {
 /* 整形された数式の下に整形前の数式が表示されるので、それを消す */
 .katex-html {
     @apply hidden;
+}
+
+/* 数式の上下中央揃え */
+span[data-testid='react-katex'] {
+    @apply inline-flex items-center;
+}
+
+/* 数式の上下中央揃え */
+.katex,
+.katex-mathml {
+    @apply inline-flex;
+}
+
+/* TODO: tailwindで実装されたらそちらに移行する */
+.blog-card-title{
+    @apply break-all;
+
+    @media (min-width: 768px) {
+        word-break: inherit;
+    }
 }

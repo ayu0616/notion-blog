@@ -9,9 +9,9 @@ import {
 } from '@/components/common/Accordion'
 
 interface MenuItem {
+    href?: string
     icon: JSX.Element
     title: string
-    href?: string
 }
 
 const Header = () => {
@@ -25,17 +25,17 @@ const Header = () => {
             title: '最新記事',
         },
         {
+            href: '/tag',
             icon: <FaList />,
             title: 'タグ別',
-            href: '/tag',
         },
     ]
 
     return (
         <header className='sticky left-0 top-0 z-50 w-full bg-orange-500 text-white'>
             <Accordion
-                variant='unstyled'
                 className='items-center justify-between md:flex'
+                variant='unstyled'
             >
                 <div className='flex items-center justify-between'>
                     <h1 className='px-6 py-4 text-2xl'>
@@ -47,10 +47,10 @@ const Header = () => {
                                 <div className='opacity-0'>
                                     <BsX />
                                 </div>
-                                <div className='absolute-center opacity-0 transition-opacity duration-300 group-data-[open="true"]:opacity-100'>
+                                <div className='opacity-0 transition-opacity duration-300 absolute-center group-data-[open="true"]:opacity-100'>
                                     <BsX />
                                 </div>
-                                <div className='absolute-center opacity-0 transition-opacity duration-300 group-data-[open="false"]:opacity-100'>
+                                <div className='opacity-0 transition-opacity duration-300 absolute-center group-data-[open="false"]:opacity-100'>
                                     <BsList />
                                 </div>
                             </div>

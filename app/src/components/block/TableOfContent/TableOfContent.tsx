@@ -5,8 +5,8 @@ import { useEffect, useState } from 'react'
 import {
     Accordion,
     AccordionButton,
-    AccordionIcon,
     AccordionContent,
+    AccordionIcon,
 } from '@/components/common/Accordion'
 
 import Heading from '../Heading/Heading'
@@ -14,9 +14,9 @@ import Heading from '../Heading/Heading'
 interface TableOfContentProps {}
 
 interface HeadingData {
-    text: string
-    level: number
     id: string
+    level: number
+    text: string
 }
 
 const TableOfContent = ({ ...props }: TableOfContentProps) => {
@@ -32,30 +32,30 @@ const TableOfContent = ({ ...props }: TableOfContentProps) => {
             )
             const text = h.textContent || ''
             const id = h.id
-            return { level, text, id }
+            return { id, level, text }
         })
         setHeadings(headingDatas)
     }, [])
 
     return (
         <Accordion>
-            <Heading level={3}>
+            <Heading className='border-none p-[0!important]' level={3}>
                 <AccordionButton>
-                    <div className='hover:inherit active:inherit flex cursor-pointer items-center justify-between  px-4 py-2'>
+                    <div className='hover:inherit active:inherit flex cursor-pointer items-center justify-between px-4 py-2'>
                         <div className='flex-1 text-center'>〜目次〜</div>
                         <AccordionIcon />
                     </div>
                 </AccordionButton>
             </Heading>
             <AccordionContent>
-                <ul className='px-4 py-2'>
+                <ul className='space-y-1 px-8 py-6'>
                     {headings.map((h, i) => (
                         <li key={i} className={plClass(h.level)}>
                             <a
+                                className='cursor-pointer hover:underline'
                                 onClick={() => {
                                     smoothScroll(h.id)
                                 }}
-                                className='cursor-pointer hover:underline'
                             >
                                 {h.text}
                             </a>
@@ -74,9 +74,9 @@ const plClass = (level: number) => {
         case 1:
             return 'pl-0'
         case 2:
-            return 'pl-4'
+            return 'pl-6'
         case 3:
-            return 'pl-8'
+            return 'pl-10'
         default:
             return 'pl-0'
     }

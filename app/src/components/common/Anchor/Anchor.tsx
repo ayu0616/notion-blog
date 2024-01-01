@@ -1,10 +1,10 @@
 import Link from 'next/link'
 
 interface AnchorProps {
-    isInnerLink?: boolean
-    href: string
     children: React.ReactNode
     className?: string
+    href: string
+    isInnerLink?: boolean
 }
 
 const Anchor = ({
@@ -20,8 +20,8 @@ const Anchor = ({
             <a
                 {...props}
                 className={classes}
-                target='_blank'
                 rel='noopener noreferrer'
+                target='_blank'
             ></a>
         )
     }

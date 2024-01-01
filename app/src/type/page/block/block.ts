@@ -56,18 +56,22 @@ export type Block =
     | TableOfContents
     | Table
     | TableRow
+    | Column
+    | ColumnList
+    | SyncedBlock
+    | Embed
 
 export interface BlockBase {
-    id: string
-    hasChildren: boolean
-    type: BlockType
     children: Block[] | null
+    hasChildren: boolean
+    id: string
+    type: BlockType
 }
 
 /** リッチテキストつきのコンテンツ */
 export interface RichTextBlockContent extends BlockBase {
-    richTexts: RichText[]
     color: Color
+    richTexts: RichText[]
 }
 
 /** 脚注つきのコンテンツ */
@@ -82,8 +86,8 @@ export interface Paragraph extends RichTextBlockContent {
 
 /** 見出し */
 export interface Heading extends RichTextBlockContent {
-    type: 'heading_1' | 'heading_2' | 'heading_3'
     isToggleable: boolean
+    type: 'heading_1' | 'heading_2' | 'heading_3'
 }
 
 /** 見出し1 */
@@ -103,8 +107,8 @@ export interface Heading3 extends Heading {
 
 /** 箇条書きリスト */
 export interface BulletedList extends BlockBase {
-    type: 'bulleted_list'
     listItems: BulletedListItem[]
+    type: 'bulleted_list'
 }
 
 /** 箇条書きリストアイテム */
@@ -114,8 +118,8 @@ export interface BulletedListItem extends RichTextBlockContent {
 
 /** 番号付きリスト */
 export interface NumberedList extends BlockBase {
-    type: 'numbered_list'
     listItems: NumberedListItem[]
+    type: 'numbered_list'
 }
 
 /** 番号付きリストアイテム */
@@ -131,21 +135,21 @@ export interface Bookmark extends BlockBase, WithCaption {
 
 /** コードブロック */
 export interface Code extends BlockBase, WithCaption {
-    type: 'code'
-    richTexts: RichText[]
     language: string
+    richTexts: RichText[]
+    type: 'code'
 }
 
 /** 数式 */
 export interface Equation extends BlockBase {
-    type: 'equation'
     expression: string
+    type: 'equation'
 }
 
 /** コールアウト */
 export interface Callout extends RichTextBlockContent {
-    type: 'callout'
     icon: string
+    type: 'callout'
 }
 
 /** 仕切り線 */
@@ -172,13 +176,34 @@ export interface TableOfContents extends BlockBase {
 
 /** 表の行 */
 export interface TableRow extends BlockBase {
-    type: 'table_row'
     cells: RichText[][]
+    type: 'table_row'
 }
 
 /** 表 */
 export interface Table extends BlockBase {
+    hasColumnHeader: boolean
+    hasRowHeader: boolean
     type: 'table'
-    has_column_header: boolean
-    has_row_header: boolean
+}
+
+/** 段組みのコンテンツ */
+export interface Column extends BlockBase {
+    type: 'column'
+}
+
+/** 段組み */
+export interface ColumnList extends BlockBase {
+    type: 'column_list'
+}
+
+/** 同期ブロック */
+export interface SyncedBlock extends BlockBase {
+    type: 'synced_block'
+}
+
+/** 埋め込みコンテンツ */
+export interface Embed extends BlockBase {
+    type: 'embed'
+    url: string
 }

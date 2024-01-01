@@ -13,19 +13,19 @@ export type TagColor =
     | 'yellow'
 
 export interface Tag {
-    name: string
     color: TagColor
+    name: string
 }
 
 export interface Page {
+    blocks: Block[]
+    description: string
     id: string
-    title: string
+    image: string | null
     lastEditedTime: string
-    tags: Tag[]
+    publishDate: string | null
     slug: string
     status: string
-    publishDate: string | null
-    blocks: Block[]
-    image: string | null
-    description: string
+    tags: Tag[]
+    title: string
 }

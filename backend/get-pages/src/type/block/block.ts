@@ -55,7 +55,11 @@ export type Block =
     | Video
     | TableOfContents
     | Table
-    | TableRow;
+    | TableRow
+    | Column
+    | ColumnList
+    | SyncedBlock
+    | Embed;
 
 export interface BlockBase {
     id: string;
@@ -179,6 +183,27 @@ export interface TableRow extends BlockBase {
 /** 表 */
 export interface Table extends BlockBase {
     type: "table";
-    has_column_header: boolean;
-    has_row_header: boolean;
+    hasColumnHeader: boolean;
+    hasRowHeader: boolean;
+}
+
+/** 段組みのコンテンツ */
+export interface Column extends BlockBase {
+    type: "column";
+}
+
+/** 段組み */
+export interface ColumnList extends BlockBase {
+    type: "column_list";
+}
+
+/** 同期ブロック */
+export interface SyncedBlock extends BlockBase {
+    type: "synced_block";
+}
+
+/** 埋め込みコンテンツ */
+export interface Embed extends BlockBase {
+    type: "embed";
+    url: string;
 }

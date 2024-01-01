@@ -11,7 +11,9 @@ import BulletedList from './BulletedList/BulletedList'
 import BulletedListItem from './BulletedList/BulletedListItem'
 import Callout from './Callout/Callout'
 import Code from './Code/Code'
+import { Column, ColumnList } from './Column'
 import Divider from './Divider/Divider'
+import { Embed } from './Embed'
 import Equation from './Equation/Equation'
 import Image from './Image/Image'
 import NumberedList from './NumberedList/NumberedList'
@@ -25,17 +27,7 @@ interface BlockProps {
     data: BlockData
 }
 
-const Children = ({ datas }: { datas?: BlockData[] | null }) => {
-    return (
-        <>
-            {datas?.map((data, i) => {
-                return <Block key={i} data={data}></Block>
-            })}
-        </>
-    )
-}
-
-const RichTexts = ({ datas }: { datas?: RichTextData[] | null }) => {
+export const RichTexts = ({ datas }: { datas?: RichTextData[] | null }) => {
     return (
         <>
             {datas?.map((data, i) => {
@@ -52,28 +44,27 @@ export const Block = ({ data, ...props }: BlockProps) => {
     switch (data.type) {
         case 'paragraph':
             return (
-                <Paragraph>
-                    <RichTexts datas={data.richTexts} />
-                    <Blocks datas={data.children} />
+                <Paragraph richTextData={data.richTexts}>
+                    <Children datas={data.children} />
                 </Paragraph>
             )
         case 'heading_1':
             return (
-                <Heading className='heading-1' level={3} color={data.color}>
+                <Heading className='heading-1' color={data.color} level={3}>
                     <RichTexts datas={data.richTexts} />
                     <Blocks datas={data.children} />
                 </Heading>
             )
         case 'heading_2':
             return (
-                <Heading className='heading-2' level={4} color={data.color}>
+                <Heading className='heading-2' color={data.color} level={4}>
                     <RichTexts datas={data.richTexts} />
                     <Blocks datas={data.children} />
                 </Heading>
             )
         case 'heading_3':
             return (
-                <Heading className='heading-3' level={5} color={data.color}>
+                <Heading className='heading-3' color={data.color} level={5}>
                     <RichTexts datas={data.richTexts} />
                     <Blocks datas={data.children} />
                 </Heading>
@@ -81,11 +72,11 @@ export const Block = ({ data, ...props }: BlockProps) => {
         case 'callout':
             return (
                 <Callout
-                    icon={data.icon}
                     color={data.color}
                     content={<RichTexts datas={data.richTexts} />}
+                    icon={data.icon}
                 >
-                    <Blocks datas={data.children} />
+                    <Blocks datas={data.children} space='sm' />
                 </Callout>
             )
         case 'bulleted_list':
@@ -100,7 +91,7 @@ export const Block = ({ data, ...props }: BlockProps) => {
             return (
                 <BulletedListItem>
                     <RichTexts datas={data.richTexts} />
-                    <Blocks datas={data.children} />
+                    <Children datas={data.children} />
                 </BulletedListItem>
             )
         case 'numbered_list':
@@ -115,7 +106,7 @@ export const Block = ({ data, ...props }: BlockProps) => {
             return (
                 <NumberedListItem>
                     <RichTexts datas={data.richTexts} />
-                    <Blocks datas={data.children} />
+                    <Children datas={data.children} />
                 </NumberedListItem>
             )
         case 'bookmark':
@@ -138,7 +129,17 @@ export const Block = ({ data, ...props }: BlockProps) => {
                     return data.url //なければ画像のURLをaltにする
                 }
             })()
-            return <Image src={data.url} alt={alt}></Image>
+            const url = (() => {
+                if (data.url.startsWith('http')) {
+                    return data.url
+                } else {
+                    return new URL(
+                        `images/${data.url}`,
+                        process.env.NEXT_API_URL,
+                    ).toString()
+                }
+            })()
+            return <Image alt={alt} src={url}></Image>
         case 'video':
             return <Video url={data.url} />
         case 'table_of_contents':
@@ -149,14 +150,14 @@ export const Block = ({ data, ...props }: BlockProps) => {
                 // hasRowHeader={data.has_row_header}
                 // hasColHeader={data.has_column_header}
                 >
-                    {data.children && data.has_row_header ? (
+                    {data.children && data.hasColumnHeader ? (
                         <>
                             <TableHead>
                                 <TableRow>
                                     {(
                                         data.children[0] as TableRowData
                                     ).cells.map((cell, i) => (
-                                        <TableCell isHead key={i}>
+                                        <TableCell key={i} isHead>
                                             <RichTexts datas={cell} />
                                         </TableCell>
                                     ))}
@@ -168,11 +169,11 @@ export const Block = ({ data, ...props }: BlockProps) => {
                                         {(row as TableRowData).cells.map(
                                             (cell, j) => (
                                                 <TableCell
+                                                    key={j}
                                                     isHead={
-                                                        data.has_column_header &&
+                                                        data.hasRowHeader &&
                                                         j === 0
                                                     }
-                                                    key={j}
                                                 >
                                                     <RichTexts datas={cell} />
                                                 </TableCell>
@@ -189,11 +190,10 @@ export const Block = ({ data, ...props }: BlockProps) => {
                                     {(row as TableRowData).cells.map(
                                         (cell, j) => (
                                             <TableCell
-                                                isHead={
-                                                    data.has_column_header &&
-                                                    j === 0
-                                                }
                                                 key={j}
+                                                isHead={
+                                                    data.hasRowHeader && j === 0
+                                                }
                                             >
                                                 <RichTexts datas={cell} />
                                             </TableCell>
@@ -215,17 +215,72 @@ export const Block = ({ data, ...props }: BlockProps) => {
                     ))}
                 </TableRow>
             )
+        case 'column_list':
+            return (
+                <ColumnList>
+                    <Blocks datas={data.children} />
+                </ColumnList>
+            )
+        case 'column':
+            return (
+                <Column>
+                    <Blocks datas={data.children} />
+                </Column>
+            )
+        case 'synced_block':
+            return (
+                <>
+                    <Blocks datas={data.children}></Blocks>
+                </>
+            )
+        case 'embed':
+            return <Embed url={data.url}></Embed>
         default:
             return <></>
     }
 }
 
-export const Blocks = ({ datas }: { datas?: BlockData[] | null }) => {
+/** 子ブロック
+ *
+ * `Blocks`との違い
+ *   - `<div></div>`で囲まれている
+ *   - インデントがついている
+ */
+const Children = ({ datas }: { datas?: BlockData[] | null }) => {
     return (
-        <>
-            {datas?.map((data, i) => {
-                return <Block key={i} data={data}></Block>
+        <div className='pl-4'>
+            <Blocks datas={datas} />
+        </div>
+    )
+}
+
+export const Blocks = ({
+    datas,
+    space = 'default',
+}: {
+    datas?: BlockData[] | null
+    space?: 'default' | 'sm'
+}) => {
+    const spaceClass = (() => {
+        switch (space) {
+            case 'default':
+                return 'space-y-10 md:space-y-12'
+            case 'sm':
+                return 'space-y-3 md:space-y-4'
+        }
+    })()
+
+    if (!datas) return <></>
+
+    return (
+        <div className={spaceClass}>
+            {datas.map((data, i) => {
+                return (
+                    <div key={i}>
+                        <Block data={data}></Block>
+                    </div>
+                )
             })}
-        </>
+        </div>
     )
 }

@@ -1,10 +1,10 @@
 import Tag, { TagProps } from './Tag'
 
 interface TagListProps {
-    tagData: TagProps[]
     className?: string
     gap?: number
     isLink?: boolean
+    tagData: TagProps[]
 }
 
 const TagList = ({
@@ -18,12 +18,12 @@ const TagList = ({
         gap === 1
             ? 'gap-1'
             : gap === 2
-            ? 'gap-2'
-            : gap === 3
-            ? 'gap-3'
-            : gap === 4
-            ? 'gap-4'
-            : 'gap-3'
+              ? 'gap-2'
+              : gap === 3
+                ? 'gap-3'
+                : gap === 4
+                  ? 'gap-4'
+                  : 'gap-3'
     return (
         <ul className={['flex flex-wrap', gapClass, className].join(' ')}>
             {tagData.map((tag, index) => (

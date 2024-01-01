@@ -2,11 +2,11 @@ import { useEffect, useRef } from 'react'
 import './Tooltip.style.scss'
 
 interface TooltipProps {
+    bgOpacity?: 50 | 75 | 100
     children?: React.ReactNode
-    placement?: 'top' | 'bottom' | 'left' | 'right'
     elem?: HTMLElement | null
     isShow?: boolean
-    bgOpacity?: 50 | 75 | 100
+    placement?: 'top' | 'bottom' | 'left' | 'right'
 }
 
 const Tooltip = ({
@@ -81,14 +81,14 @@ const Tooltip = ({
     }
     return (
         <div
-            data-placement={placement}
+            ref={container}
             className={[
                 'tooltip-container absolute flex items-center before:absolute',
                 isShowClass,
                 containerColorClass,
             ].join(' ')}
+            data-placement={placement}
             onClick={(e) => e.stopPropagation()}
-            ref={container}
         >
             <div
                 className={[

@@ -20,9 +20,9 @@ import dateToStr from '@/util/dateToStr'
 
 interface BlogPageProps {
     pageData: Page[]
-    searchDefaultValue?: string
     /** 検索欄がデフォルトで開いているかどうか */
     searchDefaultOpen?: boolean
+    searchDefaultValue?: string
 }
 
 /** ブログのページ一覧とタグによる検索を表示するコンポーネント */
@@ -56,8 +56,8 @@ const BlogPages = ({
         } else {
             setPageData(
                 pageData.filter((page) => {
-                    return page.tags.some((tag) => {
-                        return checkedTag.includes(tag.name)
+                    return checkedTag.every((tag) => {
+                        return page.tags.map((t) => t.name).includes(tag)
                     })
                 }),
             )
@@ -77,10 +77,10 @@ const BlogPages = ({
         }
     }, [composing, pageData, searchValue])
     return (
-        <div className='space-y-4 px-4'>
-            <Accordion>
-                <AccordionButton open={searchDefaultOpen}>
-                    <div className='flex items-center justify-between px-4 py-2'>
+        <div className='space-y-10 px-4'>
+            <Accordion variant='orange'>
+                <AccordionButton>
+                    <div className='flex items-center justify-between px-5 py-3'>
                         <Heading className='flex-1' level={3}>
                             ページを絞り込む
                         </Heading>
@@ -88,32 +88,32 @@ const BlogPages = ({
                     </div>
                 </AccordionButton>
                 <AccordionContent>
-                    <div className='space-y-4 p-4'>
-                        <div className='space-y-2'>
+                    <div className='space-y-6 p-5'>
+                        <div className='space-y-4'>
                             <label htmlFor='search-query'>
                                 <Heading level={4}>ページを検索</Heading>
                             </label>
                             <div className='rounded-full border border-orange-600'>
                                 <SearchForm
-                                    siz='lg'
-                                    placeholder='ブログタイトル'
                                     action='/search'
+                                    id='search-query'
                                     name='query'
+                                    placeholder='ブログタイトル'
+                                    siz='lg'
                                     value={searchValue}
                                     onChange={(e) =>
                                         setSearchValue(e.target.value)
                                     }
+                                    onCompositionEnd={() => setComposing(false)}
                                     onCompositionStart={() =>
                                         setComposing(true)
                                     }
-                                    onCompositionEnd={() => setComposing(false)}
-                                    id='search-query'
                                 />
                             </div>
                         </div>
-                        <div className='space-y-2'>
+                        <div className='space-y-4'>
                             <Heading level={4}>タグで絞り込む</Heading>
-                            <div className='flex gap-2'>
+                            <div className='flex flex-wrap gap-2'>
                                 {tagData.map((tag, i) => {
                                     return (
                                         <Checkbox
@@ -128,34 +128,56 @@ const BlogPages = ({
                     </div>
                 </AccordionContent>
             </Accordion>
-            <div className='grid gap-4'>
-                {showPageData.map((page, i) => {
-                    return (
-                        <Link href={`/blog/${page.slug}`} key={i}>
-                            <Card horizontal className=''>
-                                <ImageBase
-                                    src={page.image ?? '/no_image.jpg'}
-                                    alt=''
-                                    className='w-1/3 rounded-l-md'
-                                    objectFit='cover'
-                                ></ImageBase>
-                                <div className='flex flex-1 flex-col gap-2 p-3'>
-                                    <h3>{page.title}</h3>
-                                    <TagList
-                                        isLink
-                                        tagData={page.tags}
-                                    ></TagList>
-                                    <p className='text-end text-sm text-gray-600'>
-                                        {dateToStr(
-                                            new Date(page.publishDate ?? 0),
-                                        )}
-                                    </p>
-                                    <p>{page.description}</p>
-                                </div>
-                            </Card>
-                        </Link>
-                    )
-                })}
+            <div className='flex flex-col gap-4'>
+                <div className='flex flex-col gap-2 rounded border border-orange-200 bg-white p-2 text-sm text-gray-600'>
+                    <p>表示件数 ： {showPageData.length}件</p>
+                    {searchValue ? (
+                        <div className='flex gap-2'>
+                            <p>{'検索テキスト ： '}</p>
+                            <p className='flex-1 break-all'>{searchValue}</p>
+                        </div>
+                    ) : null}
+                    {checkedTag.length ? (
+                        <div className='flex gap-2'>
+                            <p>検索タグ ： </p>
+                            <p className='flex-1'>{checkedTag.join(', ')}</p>
+                        </div>
+                    ) : null}
+                </div>
+                <div className='grid gap-8'>
+                    {showPageData.map((page, i) => {
+                        return (
+                            <Link key={i} href={`/blog/${page.slug}`}>
+                                <Card horizontal className=''>
+                                    <ImageBase
+                                        alt=''
+                                        className='aspect-[4/3] w-1/3 rounded-l-md'
+                                        objectFit='cover'
+                                        src={page.image ?? '/no_image.jpg'}
+                                    ></ImageBase>
+                                    <div className='flex flex-1 flex-col gap-2 p-3'>
+                                        <h3 className='blog-card-title'>
+                                            {page.title}
+                                        </h3>
+                                        <TagList
+                                            isLink
+                                            gap={1}
+                                            tagData={page.tags}
+                                        ></TagList>
+                                        <p className='text-end text-sm text-gray-600'>
+                                            {dateToStr(
+                                                new Date(page.publishDate ?? 0),
+                                            )}
+                                        </p>
+                                        <p className='line-clamp-2 text-xs leading-3 md:line-clamp-3 md:text-sm md:leading-4'>
+                                            {page.description}
+                                        </p>
+                                    </div>
+                                </Card>
+                            </Link>
+                        )
+                    })}
+                </div>
             </div>
         </div>
     )
@@ -175,8 +197,8 @@ const getTagData = (pageData: Page[]): CheckboxProps[] => {
     tagSet.forEach((tag) => {
         const t = JSON.parse(tag)
         tagData.push({
-            value: t.name,
             color: t.color,
+            value: t.name,
         })
     })
     return tagData
