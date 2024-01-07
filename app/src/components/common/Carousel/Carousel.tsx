@@ -24,7 +24,7 @@ interface CarouselProps {
 const Carousel = ({ data, ...props }: CarouselProps) => {
     const container = useRef<HTMLDivElement>(null)
 
-    const intervalRef = useRef<NodeJS.Timer | null>(null)
+    const intervalRef = useRef<number | null>(null)
 
     const goNext = () => {
         if (!container.current) {
@@ -67,7 +67,7 @@ const Carousel = ({ data, ...props }: CarouselProps) => {
     }
 
     const startInterval = useCallback(() => {
-        intervalRef.current = setInterval(() => {
+        intervalRef.current = window.setInterval(() => {
             goNext()
         }, 7500)
     }, [])
