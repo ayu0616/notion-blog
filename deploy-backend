@@ -1,0 +1,15 @@
+#! /bin/zsh
+
+init_dir=$(pwd)
+file_dir=$(
+    cd "$(dirname "$0")"
+    pwd
+)
+cd $file_dir
+cd ./backend
+
+docker build -t notion-blog-backend . --no-cache
+docker tag notion-blog-backend:latest asia-northeast1-docker.pkg.dev/dajare-evaluate/hassaku-travel-blog/backend:latest
+docker push asia-northeast1-docker.pkg.dev/dajare-evaluate/hassaku-travel-blog/backend:latest
+
+cd $init_dir
