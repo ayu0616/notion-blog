@@ -8,8 +8,8 @@ file_dir=$(
 cd $file_dir
 cd ./app
 
-docker build -t notion-blog-frontend .
-docker tag notion-blog-frontend:latest 705654573183.dkr.ecr.ap-northeast-1.amazonaws.com/notion-blog-frontend:latest
-docker push 705654573183.dkr.ecr.ap-northeast-1.amazonaws.com/notion-blog-frontend:latest
+docker build -t notion-blog-frontend . --no-cache
+docker tag notion-blog-frontend:latest asia-northeast1-docker.pkg.dev/dajare-evaluate/hassaku-travel-blog/frontend:latest
+docker push asia-northeast1-docker.pkg.dev/dajare-evaluate/hassaku-travel-blog/frontend:latest
 
 cd $init_dir
