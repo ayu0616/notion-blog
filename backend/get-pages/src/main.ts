@@ -100,7 +100,7 @@ const convertToPages = async (data: any) => {
                 const fname = `${slug}.${ext}`;
                 const savePath = path.join(DATA_PATH, "thumbnail", fname);
                 // 画像を保存する
-                if (!fs.existsSync(path.join(DATA_PATH, "thumbnail"))) {
+                if (!fs.existsSync(savePath)) {
                     writeFile(savePath, await imgToWebp(buffer));
                     console.log(savePath);
                 }
@@ -263,7 +263,7 @@ const convertToBlocks = async (data: any, slug: string) => {
                     const fname = `${b.id}.${ext}`;
                     const savePath = path.join(pageDirPath(slug), fname);
                     // 画像を保存する
-                    if (!fs.existsSync(pageDirPath(slug))) {
+                    if (!fs.existsSync(savePath)) {
                         writeFile(savePath, await imgToWebp(buffer));
                         console.log(savePath);
                     }
