@@ -21,6 +21,11 @@ const PageInfo = ({
     image,
     ...props
 }: PageInfoProps) => {
+    const imgUrl =
+        image.startsWith('/') || image.startsWith('http')
+            ? image
+            : `http://localhost:8000/images/${image}`
+
     return (
         <div className='space-y-6 rounded-md border border-orange-200 bg-white p-6 md:p-9'>
             <h2>{title}</h2>
@@ -38,7 +43,7 @@ const PageInfo = ({
                     alt={'ヘッダ画像'}
                     className='max-h-[50vh] object-scale-down'
                     height={4000}
-                    src={image}
+                    src={imgUrl}
                     width={4000}
                 ></Image>
             </div>

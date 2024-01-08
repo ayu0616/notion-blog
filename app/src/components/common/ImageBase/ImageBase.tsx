@@ -14,14 +14,18 @@ const ImageBase = ({
     className = '',
     imgClassName = '',
     objectFit = 'contain',
+    src,
     ...props
 }: ImageProps) => {
     const objectFitClass = setObjectFitClass(objectFit)
+    const imgUrl =
+        typeof src !== 'string' || src.startsWith('/') || src.startsWith('http')
+            ? src
+            : `http://localhost:8000/images/${src}`
     return (
         <div className={`image-container relative ${className}`}>
             <NextImage
                 {...props}
-                // objectFit={objectFit}
                 fill
                 className={[
                     'rounded-[inherit]',
@@ -29,6 +33,8 @@ const ImageBase = ({
                     imgClassName,
                 ].join(' ')}
                 sizes='100%'
+                src={imgUrl}
+                // objectFit={objectFit}
             />
         </div>
     )
